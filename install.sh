@@ -11,29 +11,20 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# Determine the .windsurf directory
-# Windsurf requires project-specific .windsurf directory for workflows to be picked up
-CURRENT_DIR="$(pwd)"
-PROJECT_WINDSURF_DIR="$CURRENT_DIR/.windsurf"
+# Determine the global Windsurf directory for workflows
+# Global workflows must be in ~/.codeium/windsurf/global_workflows/
+GLOBAL_WORKFLOWS_DIR="$HOME/.codeium/windsurf/global_workflows"
 
-if [ -d "$PROJECT_WINDSURF_DIR" ]; then
-    WINDSURF_DIR="$PROJECT_WINDSURF_DIR"
-    echo -e "${GREEN}Using project-specific .windsurf directory at $WINDSURF_DIR${NC}"
-else
-    # Create project-specific .windsurf directory
-    echo -e "${YELLOW}Creating project-specific .windsurf directory at $PROJECT_WINDSURF_DIR${NC}"
-    mkdir -p "$PROJECT_WINDSURF_DIR"
-    WINDSURF_DIR="$PROJECT_WINDSURF_DIR"
+# Create the directory if it doesn't exist
+if [ ! -d "$GLOBAL_WORKFLOWS_DIR" ]; then
+    echo -e "${YELLOW}Creating global workflows directory at $GLOBAL_WORKFLOWS_DIR${NC}"
+    mkdir -p "$GLOBAL_WORKFLOWS_DIR"
 fi
 
-# Validate the directory exists
-if [ ! -d "$WINDSURF_DIR" ]; then
-    echo -e "${RED}Error: Directory $WINDSURF_DIR does not exist.${NC}"
-    exit 1
-fi
+WINDSURF_DIR="$HOME/.codeium/windsurf"
 
 # Create workflows directory if it doesn't exist
-WORKFLOWS_DIR="$WINDSURF_DIR/workflows"
+WORKFLOWS_DIR="$GLOBAL_WORKFLOWS_DIR"
 if [ ! -d "$WORKFLOWS_DIR" ]; then
     echo -e "${YELLOW}Creating workflows directory at $WORKFLOWS_DIR${NC}"
     mkdir -p "$WORKFLOWS_DIR"
