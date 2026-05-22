@@ -41,30 +41,31 @@ This repository contains skills/workflows that can be used with Cascade AI to st
 
 ## Installation
 
+**Important**: Windsurf requires workflows to be in the project-specific `.windsurf` directory, not the global directory. You must install these skills in each project where you want to use them.
+
 ### Quick Install
 
-Run the installation script to copy all skills to your global Cascade/Windsurf directory:
+Run the installation script from within your project directory:
 
 ```bash
-./install.sh
+cd /path/to/your/project
+/path/to/cascade-skills/install.sh
 ```
+
+This will create (or use) a `.windsurf` directory in your project and copy the skills there.
 
 ### Manual Installation
 
-1. Copy the workflow files to your Cascade/Windsurf workflows directory:
+1. Copy the workflow files to your project's Cascade/Windsurf workflows directory:
    ```bash
-   cp -r workflows/* ~/.windsurf/workflows/
+   mkdir -p .windsurf/workflows
+   cp -r /path/to/cascade-skills/workflows/* .windsurf/workflows/
    ```
 
-2. Copy the documentation files to your Cascade/Windsurf docs directory:
+2. Copy the documentation files to your project's Cascade/Windsurf docs directory:
    ```bash
-   cp -r docs/* ~/.windsurf/docs/
-   ```
-
-3. Alternatively, copy to a specific project:
-   ```bash
-   cp -r workflows/* /path/to/your/project/.windsurf/workflows/
-   cp -r docs/* /path/to/your/project/.windsurf/docs/
+   mkdir -p .windsurf/docs
+   cp -r /path/to/cascade-skills/docs/* .windsurf/docs/
    ```
 
 ## Usage

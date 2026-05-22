@@ -10,3 +10,6 @@
 
 # Temporary files
 *.tmp
+
+# Project-specific .windsurf directory (created by install.sh)
+.windsurf/
