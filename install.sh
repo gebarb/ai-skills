@@ -11,28 +11,37 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# Determine the global .windsurf directory
-# Common locations for .windsurf directory
-POSSIBLE_DIRS=(
-    "$HOME/.windsurf"
-    "$HOME/.config/windsurf"
-    "$HOME/Library/Application Support/windsurf"
-)
+# Determine the .windsurf directory
+# Check for project-specific .windsurf directory first
+CURRENT_DIR="$(pwd)"
+PROJECT_WINDSURF_DIR="$CURRENT_DIR/.windsurf"
 
-WINDSURF_DIR=""
+if [ -d "$PROJECT_WINDSURF_DIR" ]; then
+    WINDSURF_DIR="$PROJECT_WINDSURF_DIR"
+    echo -e "${GREEN}Using project-specific .windsurf directory at $WINDSURF_DIR${NC}"
+else
+    # Fall back to global .windsurf directory
+    POSSIBLE_DIRS=(
+        "$HOME/.windsurf"
+        "$HOME/.config/windsurf"
+        "$HOME/Library/Application Support/windsurf"
+    )
 
-for dir in "${POSSIBLE_DIRS[@]}"; do
-    if [ -d "$dir" ]; then
-        WINDSURF_DIR="$dir"
-        break
+    WINDSURF_DIR=""
+
+    for dir in "${POSSIBLE_DIRS[@]}"; do
+        if [ -d "$dir" ]; then
+            WINDSURF_DIR="$dir"
+            break
+        fi
+    done
+
+    # If not found in common locations, ask user
+    if [ -z "$WINDSURF_DIR" ]; then
+        echo -e "${YELLOW}Could not find .windsurf directory in common locations.${NC}"
+        echo -e "${YELLOW}Please enter the path to your .windsurf directory:${NC}"
+        read -r WINDSURF_DIR
     fi
-done
-
-# If not found in common locations, ask user
-if [ -z "$WINDSURF_DIR" ]; then
-    echo -e "${YELLOW}Could not find .windsurf directory in common locations.${NC}"
-    echo -e "${YELLOW}Please enter the path to your .windsurf directory:${NC}"
-    read -r WINDSURF_DIR
 fi
 
 # Validate the directory exists
