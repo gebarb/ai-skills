@@ -90,5 +90,44 @@ else
     echo -e "${YELLOW}No local docs directory found, skipping docs installation${NC}"
 fi
 
+# Check if running from within a project directory
+CURRENT_DIR="$(pwd)"
+PROJECT_WINDSURF_DIR="$CURRENT_DIR/.windsurf"
+
+if [ -d "$PROJECT_WINDSURF_DIR" ]; then
+    echo -e "${YELLOW}Detected project-specific .windsurf directory at $PROJECT_WINDSURF_DIR${NC}"
+    echo -e "${YELLOW}Would you like to also install to this project directory? (y/n)${NC}"
+    read -r INSTALL_TO_PROJECT
+
+    if [ "$INSTALL_TO_PROJECT" = "y" ] || [ "$INSTALL_TO_PROJECT" = "Y" ]; then
+        # Create project workflows directory if it doesn't exist
+        PROJECT_WORKFLOWS_DIR="$PROJECT_WINDSURF_DIR/workflows"
+        if [ ! -d "$PROJECT_WORKFLOWS_DIR" ]; then
+            echo -e "${YELLOW}Creating project workflows directory at $PROJECT_WORKFLOWS_DIR${NC}"
+            mkdir -p "$PROJECT_WORKFLOWS_DIR"
+        fi
+
+        # Copy workflow files to project directory
+        echo -e "${GREEN}Copying workflow files to $PROJECT_WORKFLOWS_DIR${NC}"
+        cp -v "$LOCAL_WORKFLOWS_DIR"/*.md "$PROJECT_WORKFLOWS_DIR/"
+
+        # Create project docs directory if it doesn't exist
+        PROJECT_DOCS_DIR="$PROJECT_WINDSURF_DIR/docs"
+        if [ ! -d "$PROJECT_DOCS_DIR" ]; then
+            echo -e "${YELLOW}Creating project docs directory at $PROJECT_DOCS_DIR${NC}"
+            mkdir -p "$PROJECT_DOCS_DIR"
+        fi
+
+        # Copy docs files to project directory
+        if [ -d "$LOCAL_DOCS_DIR" ]; then
+            echo -e "${GREEN}Copying docs files to $PROJECT_DOCS_DIR${NC}"
+            cp -rv "$LOCAL_DOCS_DIR"/* "$PROJECT_DOCS_DIR/"
+        fi
+
+        echo -e "${GREEN}Successfully installed to project directory${NC}"
+    fi
+fi
+
 echo -e "${GREEN}Installation complete!${NC}"
 echo -e "${YELLOW}You can now use the skills in Cascade AI.${NC}"
+echo -e "${YELLOW}Note: You may need to restart Windsurf for the skills to appear.${NC}"
