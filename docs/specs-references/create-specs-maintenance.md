@@ -111,7 +111,7 @@ As your project evolves, specs may need to be updated:
 ## Examples
 
 When creating your specs, consider these organizational patterns:
-- **Sequential organization**: Phases numbered sequentially (Phase 0, 1, 2, 3...)
+- **Sequential organization**: Phases numbered sequentially (Phase 1, 2, 3, 4...)
 - **Categorized organization**: Phases grouped by category (e.g., Foundational, Foundation, Core, Enhanced)
 - **Custom organization**: Define your own category structure based on project needs
 
@@ -135,9 +135,17 @@ ls -la specs/
 ```
 
 **Sharing Specs:**
-- Share specs via file transfer for team access
+- Share specs via file transfer for access
 - Share specs via file transfer for external collaborators
 - Use separate spec proposal files for spec proposal workflows
+
+**Backup/Restore Coordination with Implementation:**
+- Spec backups (create-specs) and implementation checkpoints (implement-specs) serve different purposes
+- Spec backups preserve the design and specification documents
+- Implementation checkpoints preserve the code state during phase implementation
+- When restoring from a spec backup, ensure it aligns with the current implementation state
+- If implementation has progressed, consider whether spec changes require re-implementation of affected phases
+- Coordinate spec version changes with checkpoint creation to maintain traceability
 
 ## Visual Dependency Graph
 

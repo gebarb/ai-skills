@@ -17,11 +17,20 @@ This file contains the progress file format and validation for the spec implemen
   "specVersion": "1.0.0",
   "startPhase": null,
   "phases": [
+```
+
+**Field Descriptions:**
+- `repository`: Name of the repository
+- `lastUpdated`: Timestamp of last progress update (ISO 8601 format)
+- `specVersion`: Current spec version from specs/README.md (updated when spec changes are detected)
+- `startPhase`: Phase number to start from (null = start from beginning)
+- `phases`: Array of phase objects with individual progress tracking
     {
-      "name": "Phase 0: Foundation",
-      "file": "specs/phase-0-foundation.md",
+      "name": "Phase 1: Foundation",
+      "file": "specs/phase-1-foundation.md",
       "status": "completed",
       "completedAt": "2024-01-15T09:00:00Z",
+      "specVersion": "1.0.0",
       "tasksCompleted": 8,
       "totalTasks": 8,
       "tasks": [
@@ -40,10 +49,11 @@ This file contains the progress file format and validation for the spec implemen
       ]
     },
     {
-      "name": "Phase 1: First Feature",
-      "file": "specs/phase-1-first-feature.md",
+      "name": "Phase 2: First Feature",
+      "file": "specs/phase-2-first-feature.md",
       "status": "in-progress",
       "startedAt": "2024-01-15T10:00:00Z",
+      "specVersion": "1.0.0",
       "tasksCompleted": 3,
       "totalTasks": 5,
       "tasks": [
@@ -66,8 +76,8 @@ This file contains the progress file format and validation for the spec implemen
       ]
     },
     {
-      "name": "Phase 2: Second Feature",
-      "file": "specs/phase-2-second-feature.md",
+      "name": "Phase 3: Second Feature",
+      "file": "specs/phase-3-second-feature.md",
       "status": "pending",
       "tasks": []
     }
@@ -79,6 +89,14 @@ This file contains the progress file format and validation for the spec implemen
 - `startPhase`: The phase number to start implementation from (null for all phases)
 - When set, all phases before this number are marked as completed
 - Used when user selects "Start from specific phase" option
+
+**Phase-Level specVersion Field:**
+- Each phase object has its own `specVersion` field
+- This records the spec version that was used when implementing that specific phase
+- When a phase starts, the current spec version from README is locked into this field
+- This enables tracking which spec version was used for each phase implementation
+- If specs are updated during implementation, the phase's locked version doesn't change
+- The root-level `specVersion` field tracks the current/latest spec version in the README
 
 **Task Status Values:**
 - `pending`: Task not yet started
@@ -92,13 +110,55 @@ This file contains the progress file format and validation for the spec implemen
 To ensure the progress file remains valid, validate the structure:
 
 **Validation Checklist:**
-- All required fields are present (repository, lastUpdated, specVersion, phases)
-- Phase status values are valid (pending, in-progress, completed, skipped)
+- All required fields are present (repository, lastUpdated, specVersion, phases, startPhase)
+- Phase status values are valid (pending, in-progress, completed, skipped, failed)
 - Task status values are valid (pending, in-progress, completed, skipped, failed)
 - Timestamps follow ISO 8601 format
 - Phase names are unique
 - File paths reference existing phase files
 - startPhase is null or a valid phase number
+
+**Automated Validation:**
+Implement automated schema validation when reading or writing the progress file:
+```bash
+# Validate progress file structure before use
+validate_progress_file() {
+  local progress_file="$1"
+  
+  # Check if file exists and is valid JSON
+  if ! jq empty "$progress_file" 2>/dev/null; then
+    echo "Error: Progress file is not valid JSON"
+    return 1
+  fi
+  
+  # Check required fields
+  required_fields=("repository" "lastUpdated" "specVersion" "phases" "startPhase")
+  for field in "${required_fields[@]}"; do
+    if ! jq -e ".has(\"$field\")" "$progress_file" > /dev/null; then
+      echo "Error: Missing required field: $field"
+      return 1
+    fi
+  done
+  
+  # Validate phase status values
+  invalid_statuses=$(jq -r '.phases[] | select(.status != "pending" and .status != "in-progress" and .status != "completed" and .status != "skipped" and .status != "failed") | .name' "$progress_file")
+  if [ -n "$invalid_statuses" ]; then
+    echo "Error: Invalid phase status values found for: $invalid_statuses"
+    return 1
+  fi
+  
+  echo "Progress file validation passed"
+  return 0
+}
+
+# Run validation before using progress file
+if [ -f .specs-progress.json ]; then
+  if ! validate_progress_file .specs-progress.json; then
+    echo "Error: Progress file validation failed. Please check .specs-progress.json"
+    exit 1
+  fi
+fi
+```
 
 ## Progress File Backup and Restore
 
@@ -113,7 +173,6 @@ To protect against data loss, implement backup and restore procedures:
 1. **Corrupted progress file**: Restore from most recent backup
 2. **Wrong phase marked complete**: Restore to previous state and correct
 3. **Spec version mismatch**: Restore to match spec version or update progress
-4. **Team sync issue**: Restore from shared backup or reconcile manually
 
 ## Phase File Format
 
