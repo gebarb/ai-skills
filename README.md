@@ -56,9 +56,15 @@ Run the installation script to copy all skills to your global Cascade/Windsurf d
    cp -r workflows/* ~/.windsurf/workflows/
    ```
 
-2. Alternatively, copy to a specific project:
+2. Copy the documentation files to your Cascade/Windsurf docs directory:
+   ```bash
+   cp -r docs/* ~/.windsurf/docs/
+   ```
+
+3. Alternatively, copy to a specific project:
    ```bash
    cp -r workflows/* /path/to/your/project/.windsurf/workflows/
+   cp -r docs/* /path/to/your/project/.windsurf/docs/
    ```
 
 ## Usage
@@ -81,9 +87,16 @@ or
 cascade-skills/
 ├── README.md              # This file
 ├── install.sh            # Installation script
-└── workflows/            # Workflow/skill definitions
-    ├── create-specs.md   # Spec creation workflow
-    └── implement-specs.md # Spec implementation workflow
+├── workflows/            # Workflow/skill definitions
+│   ├── create-specs.md   # Spec creation workflow
+│   └── implement-specs.md # Spec implementation workflow
+└── docs/                 # Reference documentation
+    └── specs-references/ # Detailed reference materials for spec workflows
+        ├── create-specs-guidelines.md
+        ├── create-specs-maintenance.md
+        ├── create-specs-templates.md
+        ├── implement-specs-handling.md
+        └── implement-specs-progress.md
 ```
 
 ## Contributing

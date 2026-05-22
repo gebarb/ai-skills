@@ -62,9 +62,33 @@ fi
 echo -e "${GREEN}Copying workflow files to $WORKFLOWS_DIR${NC}"
 cp -v "$LOCAL_WORKFLOWS_DIR"/*.md "$WORKFLOWS_DIR/"
 
-# Count copied files
-COPIED_COUNT=$(ls -1 "$LOCAL_WORKFLOWS_DIR"/*.md 2>/dev/null | wc -l)
+# Count copied workflow files
+WORKFLOW_COPIED_COUNT=$(ls -1 "$LOCAL_WORKFLOWS_DIR"/*.md 2>/dev/null | wc -l)
 
-echo -e "${GREEN}Successfully copied $COPIED_COUNT workflow file(s)${NC}"
+echo -e "${GREEN}Successfully copied $WORKFLOW_COPIED_COUNT workflow file(s)${NC}"
+
+# Create docs directory if it doesn't exist
+DOCS_DIR="$WINDSURF_DIR/docs"
+if [ ! -d "$DOCS_DIR" ]; then
+    echo -e "${YELLOW}Creating docs directory at $DOCS_DIR${NC}"
+    mkdir -p "$DOCS_DIR"
+fi
+
+LOCAL_DOCS_DIR="$SCRIPT_DIR/docs"
+
+# Check if local docs directory exists
+if [ -d "$LOCAL_DOCS_DIR" ]; then
+    # Copy all docs files
+    echo -e "${GREEN}Copying docs files to $DOCS_DIR${NC}"
+    cp -rv "$LOCAL_DOCS_DIR"/* "$DOCS_DIR/"
+
+    # Count copied docs files
+    DOCS_COPIED_COUNT=$(find "$LOCAL_DOCS_DIR" -type f | wc -l)
+
+    echo -e "${GREEN}Successfully copied $DOCS_COPIED_COUNT docs file(s)${NC}"
+else
+    echo -e "${YELLOW}No local docs directory found, skipping docs installation${NC}"
+fi
+
 echo -e "${GREEN}Installation complete!${NC}"
 echo -e "${YELLOW}You can now use the skills in Cascade AI.${NC}"
