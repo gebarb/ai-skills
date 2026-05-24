@@ -210,6 +210,10 @@ The script requires:
 - Access to the specs/ directory
 
 ```bash
+#!/bin/bash
+set -e  # Exit on error
+set -u  # Exit on undefined variable
+
 # Calculate quality score using robust parsing
 PHASE_COMPLETENESS=0
 TASK_SPECIFICITY=0
@@ -232,6 +236,7 @@ if [ "$TOTAL_PHASES" -eq 0 ]; then
 fi
 
 # Check phase completeness with robust section detection
+# This section checks each phase file for required sections using awk
 for phase_file in specs/phase-*.md; do
   # Check if file exists and is readable
   if [ -f "$phase_file" ] && [ -r "$phase_file" ]; then
@@ -538,28 +543,44 @@ If the workflow crashes during iteration mode, recover the draft state:
 # Check if draft file exists
 if [ -f .specs-draft.json ]; then
   echo "Draft file found. Recovering iteration session..."
-
-  # Check if jq is available for JSON parsing (recommended)
-  if command -v jq &> /dev/null; then
-    # Use jq for JSON parsing
-    echo "Session started: $(jq -r '.sessionStarted' .specs-draft.json)"
-    echo "Pending changes: $(jq -r '.pendingChanges' .specs-draft.json)"
-    echo "Changes made: $(jq '.changes | length' .specs-draft.json)"
+  
+  # Validate JSON structure before attempting to parse
+  if ! jq empty .specs-draft.json 2>/dev/null; then
+    echo "Error: Draft file is corrupted or invalid JSON"
+    echo "Options:"
+    echo "  'discard' - Delete corrupted draft and start fresh"
+    echo "  'manual' - Manually inspect and repair the file"
+    read -p "Choose option: " recovery_choice
+    if [ "$recovery_choice" = "discard" ]; then
+      rm .specs-draft.json
+      echo "Draft file discarded. Starting fresh..."
+    else
+      echo "Manual intervention required. Please inspect .specs-draft.json"
+      exit 1
+    fi
   else
-    # Fallback: use basic tools for JSON parsing (less accurate)
-    echo "Warning: jq not found. Using basic parsing (may be less accurate)."
-    echo "Session started: $(grep -o '"sessionStarted"[[:space:]]*:[[:space:]]*"[^"]*"' .specs-draft.json | sed 's/.*"sessionStarted"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/')"
-    echo "Pending changes: $(grep -o '"pendingChanges"[[:space:]]*:[[:space:]]*[^,}]*' .specs-draft.json | sed 's/.*"pendingChanges"[[:space:]]*:[[:space:]]*\([^,}]*\).*/\1/')"
-    # Count opening braces after "changes" to estimate array length
-    echo "Changes made: $(grep -A 100 '"changes"' .specs-draft.json | grep -c '{')"
-    echo "Note: Install jq for accurate change counting: brew install jq (macOS) or sudo apt-get install jq (Linux)"
+    # Check if jq is available for JSON parsing (recommended)
+    if command -v jq &> /dev/null; then
+      # Use jq for JSON parsing
+      echo "Session started: $(jq -r '.sessionStarted' .specs-draft.json)"
+      echo "Pending changes: $(jq -r '.pendingChanges' .specs-draft.json)"
+      echo "Changes made: $(jq '.changes | length' .specs-draft.json)"
+    else
+      # Fallback: use basic tools for JSON parsing (less accurate)
+      echo "Warning: jq not found. Using basic parsing (may be less accurate)."
+      echo "Session started: $(grep -o '"sessionStarted"[[:space:]]*:[[:space:]]*"[^"]*"' .specs-draft.json | sed 's/.*"sessionStarted"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/' 2>/dev/null || echo "unknown")"
+      echo "Pending changes: $(grep -o '"pendingChanges"[[:space:]]*:[[:space:]]*[^,}]*' .specs-draft.json | sed 's/.*"pendingChanges"[[:space:]]*:[[:space:]]*\([^,}]*\).*/\1/' 2>/dev/null || echo "unknown")"
+      # Count opening braces after "changes" to estimate array length
+      echo "Changes made: $(grep -A 100 '"changes"' .specs-draft.json | grep -c '{' 2>/dev/null || echo "unknown")"
+      echo "Note: Install jq for accurate change counting: brew install jq (macOS) or sudo apt-get install jq (Linux)"
+    fi
+    
+    # Ask user if they want to resume or discard
+    echo "Options:"
+    echo "  'resume' - Continue iteration from draft state"
+    echo "  'discard' - Discard draft and start fresh"
+    echo "  'review' - Review draft changes before deciding"
   fi
-
-  # Ask user if they want to resume or discard
-  echo "Options:"
-  echo "  'resume' - Continue iteration from draft state"
-  echo "  'discard' - Discard draft and start fresh"
-  echo "  'review' - Review draft changes before deciding"
 fi
 ```
 

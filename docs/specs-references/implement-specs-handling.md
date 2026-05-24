@@ -175,6 +175,10 @@ If specs are updated during implementation:
 
 **Implementation:**
 ```bash
+#!/bin/bash
+set -e  # Exit on error
+set -u  # Exit on undefined variable
+
 # Get current spec version from README with flexible parsing
 # Supports multiple formats: "Spec Version: X.Y.Z", "Version: X.Y.Z", "vX.Y.Z"
 CURRENT_SPEC_VERSION=$(awk '
@@ -222,16 +226,19 @@ else
 fi
 
 # Cross-platform function to get file modification time in seconds
+# This function attempts multiple methods to get file modification time
+# It tries macOS stat, Linux stat, BSD stat, and Python as fallbacks
+# Returns 0 if all methods fail
 get_file_mtime() {
   local file="$1"
   if command -v stat &> /dev/null; then
-    # Try macOS stat first
+    # Try macOS stat first (common on macOS systems)
     if stat -f "%m" "$file" &> /dev/null; then
       stat -f "%m" "$file"
-    # Try Linux stat
+    # Try Linux stat (common on Linux systems)
     elif stat -c "%Y" "$file" &> /dev/null; then
       stat -c "%Y" "$file"
-    # Try BSD stat with different format
+    # Try BSD stat with different format (FreeBSD, etc.)
     elif stat -t "%s" "$file" &> /dev/null; then
       stat -t "%s" "$file"
     else
@@ -253,16 +260,19 @@ get_file_mtime() {
 }
 
 # Cross-platform function to convert ISO timestamp to seconds
+# This function attempts multiple methods to parse ISO 8601 timestamps
+# It tries macOS date, GNU date, and Python as fallbacks
+# Returns 0 if all methods fail
 iso_to_epoch() {
   local iso_time="$1"
   if command -v date &> /dev/null; then
-    # Try macOS date
+    # Try macOS date (BSD date)
     if date -j -f "%Y-%m-%dT%H:%M:%SZ" "$iso_time" +%s &> /dev/null; then
       date -j -f "%Y-%m-%dT%H:%M:%SZ" "$iso_time" +%s
-    # Try Linux date with -d
+    # Try Linux date with -d (GNU date)
     elif date -d "$iso_time" +%s &> /dev/null; then
       date -d "$iso_time" +%s
-    # Try GNU date with different format
+    # Try GNU date with --date (alternative format)
     elif date --date="$iso_time" +%s &> /dev/null; then
       date --date="$iso_time" +%s
     else

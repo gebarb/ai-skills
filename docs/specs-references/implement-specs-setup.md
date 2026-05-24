@@ -111,6 +111,16 @@ After selection:
 - Validate that dependencies for selected phase are satisfied
 - If dependencies not satisfied, warn user and suggest starting from earlier phase
 
+**Note on --from-phase flag:**
+The optional --from-phase flag (e.g., `/implement-specs --from-phase 3`) provides a shortcut to start from a specific phase. When this flag is used:
+1. The workflow skips the phase selection prompt
+2. All phases before the specified phase are marked as completed in the progress file
+3. The specified phase is set as "in-progress"
+4. Dependencies are validated before proceeding
+5. If dependencies are not satisfied, the workflow will warn and suggest starting from an earlier phase
+
+This flag is equivalent to selecting "Option 2: Start from specific phase" in the interactive workflow.
+
 **If option 3 (Resume from existing progress):**
 - Load existing progress file
 - Find first incomplete phase with satisfied dependencies
@@ -274,7 +284,42 @@ Before resolving dependencies, verify no circular dependencies exist in the depe
 
 **Note**: This circular dependency check requires bash 4.0 or later for associative array support. If using an older bash version or a different shell (e.g., sh, dash), this check may fail. Consider upgrading bash or using an alternative dependency validation method.
 
+**Fallback for systems without bash 4.0+:**
+If the circular dependency check fails due to bash version, you can use a simpler validation approach:
 ```bash
+# Simple circular dependency check without associative arrays (works with bash 3.x)
+simple_circular_check() {
+  echo "Checking for circular dependencies (simple mode)..."
+  local deps_file="specs/README.md"
+  
+  if [ ! -f "$deps_file" ]; then
+    echo "Warning: README not found, skipping circular dependency check"
+    return 0
+  fi
+  
+  # Extract dependencies and check for obvious cycles
+  # This is a simplified check that may miss some edge cases
+  awk '
+  /^\|.*\|.*\|.*\|.*\|/ {
+    if (NR > 1) {
+      phase = $2
+      deps = $5
+      gsub(/^[[:space:]]*|[[:space:]]*$/, "", phase)
+      gsub(/^[[:space:]]*|[[:space:]]*$/, "", deps)
+      if (deps != "None" && deps != "" && deps != "-") {
+        print phase " depends on " deps
+      }
+    }
+  }
+  ' "$deps_file" | grep -v "depends on" > /dev/null && echo "Dependencies found, manual review recommended" || echo "No obvious circular dependencies detected"
+}
+```
+
+```bash
+#!/bin/bash
+set -e  # Exit on error
+set -u  # Exit on undefined variable
+
 # Build adjacency list for dependency graph and detect cycles using DFS
 check_circular_deps() {
   echo "Checking for circular dependencies..."

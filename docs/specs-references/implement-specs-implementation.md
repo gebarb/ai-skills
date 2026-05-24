@@ -277,6 +277,34 @@ After successful save, clean up the checkpoint:
 - Keep only the most recent checkpoint if needed for reference
 - Delete stale checkpoints periodically
 
+**Automated Cleanup:**
+After successful phase completion, run automated checkpoint cleanup to prevent accumulation of old checkpoints:
+```bash
+# Automated checkpoint cleanup - keep only last 5 checkpoints
+cleanup_checkpoints() {
+  if [ -d .phase-checkpoints ]; then
+    # List checkpoints sorted by name (which includes timestamp), keep last 5
+    ls -t .phase-checkpoints/ | tail -n +6 | while read checkpoint; do
+      echo "Cleaning up old checkpoint: $checkpoint"
+      rm -rf ".phase-checkpoints/$checkpoint"
+    done
+  fi
+}
+
+# Run cleanup after successful phase completion
+cleanup_checkpoints
+```
+
+**Manual Cleanup:**
+If automated cleanup is not desired, checkpoints can be cleaned manually:
+```bash
+# Clean up all checkpoints
+rm -rf .phase-checkpoints/phase-*
+
+# Clean up specific checkpoint
+rm -rf .phase-checkpoints/phase-3-20240115-103045
+```
+
 ### 18. Continue to Next Phase
 
 Repeat steps 6-18 for the next incomplete phase.

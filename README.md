@@ -23,6 +23,21 @@ This repository contains skills/workflows that can be used with Cascade AI to st
 
 **File**: `workflows/create-specs.md`
 
+### `/validate-specs`
+**Description**: Validate specs through comprehensive multi-perspective review before implementation.
+
+**Use Case**: When you have completed spec creation and want to validate them before implementation to identify issues, bugs, or gaps.
+
+**Features**:
+- Multi-perspective review (3 subagents: Technical/Architecture, Implementation Feasibility, Completeness/Gaps)
+- Comprehensive issue identification and prioritization
+- Health scoring and readiness assessment
+- User interaction for feedback and decisions
+- Implementation of approved changes
+- Re-validation of modified specs
+
+**File**: `workflows/validate-specs.md`
+
 ### `/implement-specs`
 **Description**: Implement specs and phases from a repository with progress tracking and user confirmation.
 
@@ -73,7 +88,13 @@ Once installed, use the skills directly in Cascade by typing the slash command:
 /create-specs
 ```
 
-or
+Then validate your specs:
+
+```
+/validate-specs
+```
+
+Finally, implement your validated specs:
 
 ```
 /implement-specs
@@ -87,6 +108,7 @@ cascade-skills/
 ├── install.sh            # Installation script
 ├── workflows/            # Workflow/skill definitions
 │   ├── create-specs.md   # Spec creation workflow
+│   ├── validate-specs.md # Spec validation workflow
 │   └── implement-specs.md # Spec implementation workflow
 └── docs/                 # Reference documentation
     └── specs-references/ # Detailed reference materials for spec workflows
@@ -94,7 +116,14 @@ cascade-skills/
         ├── create-specs-maintenance.md
         ├── create-specs-templates.md
         ├── implement-specs-handling.md
-        └── implement-specs-progress.md
+        ├── implement-specs-progress.md
+        ├── validate-specs-guidelines.md
+        ├── validate-specs-initial.md
+        ├── validate-specs-interaction.md
+        ├── validate-specs-finalization.md
+        ├── validate-specs-review.md
+        ├── validate-specs-synthesis.md
+        └── validate-specs-templates.md
 ```
 
 ## Contributing
