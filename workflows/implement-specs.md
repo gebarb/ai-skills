@@ -43,32 +43,34 @@ Optional: Start from a specific phase:
 
 The complete workflow is split into two phases to keep each document under 500 lines:
 
+**Important**: All steps below are performed for EACH phase being implemented. The workflow loops through phases until all are complete.
+
 **Note**: Technology stack selection (language, frameworks, architecture, etc.) is handled in the create-specs workflow. This implementation workflow uses the technology decisions documented in the specs.
 
-### Setup Phase (Steps 1-9)
+### Preparation Phase (Steps 1-9)
 See `docs/specs-references/implement-specs-setup.md` for:
-1. Repository Review (Required First Step)
-2. Initialize Progress Tracking and Phase Selection
-3. Validate Spec Structure
-4. Parse Specs Structure
-5. Resolve Dependencies
-6. Determine Next Phase
-7. Display Phase Overview
-8. Request User Confirmation
-9. Create Implementation Checkpoint
+1. **Check for Existing Progress State** - Determine if this is a fresh start or a resume operation from a previous checkpoint
+2. **Repository Review** - Deep review of all code, configuration, and other files in the codebase to understand how it works, its intent, and how to work in it. This is performed for each phase since the codebase state changes after implementation.
+3. Initialize Progress Tracking and Phase Selection
+4. Validate Spec Structure
+5. Parse Specs Structure
+6. Resolve Dependencies
+7. Determine Next Phase
+8. **Display Phase Overview** - Build and present a summary and plan of action for the upcoming phase implementation
+9. **Request User Confirmation** - Present the summary and plan to the user for confirmation before proceeding
 
 ### Implementation Phase (Steps 10-19)
 See `docs/specs-references/implement-specs-implementation.md` for:
-10. Implement Phase
-11. Run Code Quality Checks
-12. Execute Tests
-13. Verify Implementation
-14. Request Code Review
-15. Update Progress
-16. Save Code (User Action)
-17. Clean Up Checkpoint
-18. Continue to Next Phase
-19. Completion
+10. Create Implementation Checkpoint
+11. Implement Phase
+12. Run Code Quality Checks
+13. Execute Tests
+14. Verify Implementation
+15. Request Code Review
+16. Update Progress
+17. Save Code (User Action)
+18. Clean Up Checkpoint
+19. Continue to Next Phase
 
 ## Reference Materials
 
