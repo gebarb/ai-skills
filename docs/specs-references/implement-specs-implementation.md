@@ -9,7 +9,7 @@ This is the implementation phase of the implement-specs workflow, covering Steps
 **Note**: Technology stack selection (language, frameworks, architecture, etc.) is handled in the create-specs workflow. This implementation workflow uses the technology decisions documented in the specs.
 
 For the complete workflow, see:
-- Setup Phase: `docs/specs-references/implement-specs-setup.md` (Steps 1-9)
+- Setup Phase: `~/.codeium/windsurf/docs/specs-references/implement-specs-setup.md` (Steps 1-9)
 - Implementation Phase: This file (Steps 10-19)
 
 ## Workflow Steps
@@ -329,5 +329,5 @@ Next steps:
 ## Reference Materials
 
 For detailed progress tracking, error handling, and guidelines, see:
-- **Progress Tracking**: `docs/specs-references/implement-specs-progress.md` - Progress file format and validation
-- **Error Handling**: `docs/specs-references/implement-specs-handling.md` - Error handling, rollback, and spec updates
+- **Progress Tracking**: `~/.codeium/windsurf/docs/specs-references/implement-specs-progress.md` - Progress file format and validation
+- **Error Handling**: `~/.codeium/windsurf/docs/specs-references/implement-specs-handling.md` - Error handling, rollback, and spec updates

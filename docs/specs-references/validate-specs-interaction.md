@@ -7,11 +7,11 @@ description: Validate specs through comprehensive multi-perspective review - Par
 This is Part 4 of the validate-specs workflow, covering Steps 10-12: Presenting the validation report, gathering user feedback, and implementing approved changes.
 
 For the complete workflow, see:
-- Initial Assessment: `docs/specs-references/validate-specs-initial.md` (Steps 1-3)
-- Multi-Perspective Review: `docs/specs-references/validate-specs-review.md` (Steps 4-6)
-- Synthesis: `docs/specs-references/validate-specs-synthesis.md` (Steps 7-9)
+- Initial Assessment: `~/.codeium/windsurf/docs/specs-references/validate-specs-initial.md` (Steps 1-3)
+- Multi-Perspective Review: `~/.codeium/windsurf/docs/specs-references/validate-specs-review.md` (Steps 4-6)
+- Synthesis: `~/.codeium/windsurf/docs/specs-references/validate-specs-synthesis.md` (Steps 7-9)
 - User Interaction: This file (Steps 10-12)
-- Finalization: `docs/specs-references/validate-specs-finalization.md` (Steps 13-14)
+- Finalization: `~/.codeium/windsurf/docs/specs-references/validate-specs-finalization.md` (Steps 13-14)
 
 ## Usage
 
@@ -307,4 +307,4 @@ Custom Instructions:
 
 ## Continue to Part 5
 
-For Steps 13-14 (Finalization Phase), see `docs/specs-references/validate-specs-finalization.md`.
+For Steps 13-14 (Finalization Phase), see `~/.codeium/windsurf/docs/specs-references/validate-specs-finalization.md`.

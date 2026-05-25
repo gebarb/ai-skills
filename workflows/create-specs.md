@@ -36,7 +36,7 @@ Run this workflow from the root of your repository:
 The complete workflow is split into two phases to keep each document under 500 lines:
 
 ### Planning Phase (Steps 1-5)
-See `docs/specs-references/create-specs-planning.md` for:
+See `~/.codeium/windsurf/docs/specs-references/create-specs-planning.md` for:
 1. Repository Review (Required First Step)
 2. New Codebase Detection and Technology Guidance
 3. Project Overview Gathering
@@ -44,7 +44,7 @@ See `docs/specs-references/create-specs-planning.md` for:
 5. Phase Definition
 
 ### Execution Phase (Steps 6-13)
-See `docs/specs-references/create-specs-execution.md` for:
+See `~/.codeium/windsurf/docs/specs-references/create-specs-execution.md` for:
 6. Phase Detail Gathering
 7. README.md Generation
 8. Validate Spec Structure
@@ -57,8 +57,8 @@ See `docs/specs-references/create-specs-execution.md` for:
 ## Reference Materials
 
 For detailed templates, maintenance strategies, and guidelines, see:
-- **Planning Phase**: `docs/specs-references/create-specs-planning.md` - Steps 1-5
-- **Execution Phase**: `docs/specs-references/create-specs-execution.md` - Steps 6-13
-- **Templates**: `docs/specs-references/create-specs-templates.md` - Phase file and README templates
-- **Maintenance**: `docs/specs-references/create-specs-maintenance.md` - Migration, versioning, and import/export
-- **Guidelines**: `docs/specs-references/create-specs-guidelines.md` - Best practices and quality metrics
+- **Planning Phase**: `~/.codeium/windsurf/docs/specs-references/create-specs-planning.md` - Steps 1-5
+- **Execution Phase**: `~/.codeium/windsurf/docs/specs-references/create-specs-execution.md` - Steps 6-13
+- **Templates**: `~/.codeium/windsurf/docs/specs-references/create-specs-templates.md` - Phase file and README templates
+- **Maintenance**: `~/.codeium/windsurf/docs/specs-references/create-specs-maintenance.md` - Migration, versioning, and import/export
+- **Guidelines**: `~/.codeium/windsurf/docs/specs-references/create-specs-guidelines.md` - Best practices and quality metrics

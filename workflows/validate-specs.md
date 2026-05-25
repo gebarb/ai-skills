@@ -39,13 +39,13 @@ The workflow will validate all phases in the specs directory.
 The complete workflow is organized into review phases that simulate multiple analytical perspectives:
 
 ### Initial Assessment Phase (Steps 1-3)
-See `docs/specs-references/validate-specs-initial.md` for:
+See `~/.codeium/windsurf/docs/specs-references/validate-specs-initial.md` for:
 1. Repository Review (Required First Step)
 2. Spec Structure Validation
 3. Spec Completeness Check
 
 ### Multi-Perspective Review Phase (Steps 4-6)
-See `docs/specs-references/validate-specs-review.md` for:
+See `~/.codeium/windsurf/docs/specs-references/validate-specs-review.md` for:
 4. **Subagent 1**: Technical & Architecture Review
    - Analyze technology stack choices
    - Review architectural decisions
@@ -65,32 +65,32 @@ See `docs/specs-references/validate-specs-review.md` for:
    - Validate success criteria and acceptance criteria
 
 ### Synthesis Phase (Steps 7-9)
-See `docs/specs-references/validate-specs-synthesis.md` for:
+See `~/.codeium/windsurf/docs/specs-references/validate-specs-synthesis.md` for:
 7. Aggregate and Correlate Findings
 8. Prioritize Issues and Recommendations
 9. Generate Validation Report
 
 ### User Interaction Phase (Steps 10-12)
-See `docs/specs-references/validate-specs-interaction.md` for:
+See `~/.codeium/windsurf/docs/specs-references/validate-specs-interaction.md` for:
 10. Present Validation Report to User
 11. Gather User Feedback and Decisions
 12. Implement Approved Changes
 
 ### Finalization Phase (Steps 13-14)
-See `docs/specs-references/validate-specs-finalization.md` for:
+See `~/.codeium/windsurf/docs/specs-references/validate-specs-finalization.md` for:
 13. Re-validate Modified Specs
 14. Generate Final Validation Summary
 
 ## Reference Materials
 
 For detailed validation criteria, review templates, and guidelines, see:
-- **Initial Assessment**: `docs/specs-references/validate-specs-initial.md` - Steps 1-3
-- **Multi-Perspective Review**: `docs/specs-references/validate-specs-review.md` - Steps 4-6
-- **Synthesis**: `docs/specs-references/validate-specs-synthesis.md` - Steps 7-9
-- **User Interaction**: `docs/specs-references/validate-specs-interaction.md` - Steps 10-12
-- **Finalization**: `docs/specs-references/validate-specs-finalization.md` - Steps 13-14
-- **Templates**: `docs/specs-references/validate-specs-templates.md` - Report templates and checklists
-- **Guidelines**: `docs/specs-references/validate-specs-guidelines.md` - Validation criteria and best practices
+- **Initial Assessment**: `~/.codeium/windsurf/docs/specs-references/validate-specs-initial.md` - Steps 1-3
+- **Multi-Perspective Review**: `~/.codeium/windsurf/docs/specs-references/validate-specs-review.md` - Steps 4-6
+- **Synthesis**: `~/.codeium/windsurf/docs/specs-references/validate-specs-synthesis.md` - Steps 7-9
+- **User Interaction**: `~/.codeium/windsurf/docs/specs-references/validate-specs-interaction.md` - Steps 10-12
+- **Finalization**: `~/.codeium/windsurf/docs/specs-references/validate-specs-finalization.md` - Steps 13-14
+- **Templates**: `~/.codeium/windsurf/docs/specs-references/validate-specs-templates.md` - Report templates and checklists
+- **Guidelines**: `~/.codeium/windsurf/docs/specs-references/validate-specs-guidelines.md` - Validation criteria and best practices
 
 ## Integration in Development Lifecycle
 

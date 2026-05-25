@@ -48,7 +48,7 @@ The complete workflow is split into two phases to keep each document under 500 l
 **Note**: Technology stack selection (language, frameworks, architecture, etc.) is handled in the create-specs workflow. This implementation workflow uses the technology decisions documented in the specs.
 
 ### Preparation Phase (Steps 1-9)
-See `docs/specs-references/implement-specs-setup.md` for:
+See `~/.codeium/windsurf/docs/specs-references/implement-specs-setup.md` for:
 1. **Check for Existing Progress State** - Determine if this is a fresh start or a resume operation from a previous checkpoint
 2. **Repository Review** - Deep review of all code, configuration, and other files in the codebase to understand how it works, its intent, and how to work in it. This is performed for each phase since the codebase state changes after implementation.
 3. Initialize Progress Tracking and Phase Selection
@@ -60,7 +60,7 @@ See `docs/specs-references/implement-specs-setup.md` for:
 9. **Request User Confirmation** - Present the summary and plan to the user for confirmation before proceeding
 
 ### Implementation Phase (Steps 10-19)
-See `docs/specs-references/implement-specs-implementation.md` for:
+See `~/.codeium/windsurf/docs/specs-references/implement-specs-implementation.md` for:
 10. Create Implementation Checkpoint
 11. Implement Phase
 12. Run Code Quality Checks
@@ -75,7 +75,7 @@ See `docs/specs-references/implement-specs-implementation.md` for:
 ## Reference Materials
 
 For detailed progress tracking, error handling, and guidelines, see:
-- **Setup Phase**: `docs/specs-references/implement-specs-setup.md` - Steps 1-9
-- **Implementation Phase**: `docs/specs-references/implement-specs-implementation.md` - Steps 10-19
-- **Progress Tracking**: `docs/specs-references/implement-specs-progress.md` - Progress file format and validation
-- **Error Handling**: `docs/specs-references/implement-specs-handling.md` - Error handling, rollback, and spec updates
+- **Setup Phase**: `~/.codeium/windsurf/docs/specs-references/implement-specs-setup.md` - Steps 1-9
+- **Implementation Phase**: `~/.codeium/windsurf/docs/specs-references/implement-specs-implementation.md` - Steps 10-19
+- **Progress Tracking**: `~/.codeium/windsurf/docs/specs-references/implement-specs-progress.md` - Progress file format and validation
+- **Error Handling**: `~/.codeium/windsurf/docs/specs-references/implement-specs-handling.md` - Error handling, rollback, and spec updates

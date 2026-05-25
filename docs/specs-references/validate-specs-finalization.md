@@ -7,10 +7,10 @@ description: Validate specs through comprehensive multi-perspective review - Par
 This is Part 5 of the validate-specs workflow, covering Steps 13-14: Re-validating modified specs and generating the final validation summary.
 
 For the complete workflow, see:
-- Initial Assessment: `docs/specs-references/validate-specs-initial.md` (Steps 1-3)
-- Multi-Perspective Review: `docs/specs-references/validate-specs-review.md` (Steps 4-6)
-- Synthesis: `docs/specs-references/validate-specs-synthesis.md` (Steps 7-9)
-- User Interaction: `docs/specs-references/validate-specs-interaction.md` (Steps 10-12)
+- Initial Assessment: `~/.codeium/windsurf/docs/specs-references/validate-specs-initial.md` (Steps 1-3)
+- Multi-Perspective Review: `~/.codeium/windsurf/docs/specs-references/validate-specs-review.md` (Steps 4-6)
+- Synthesis: `~/.codeium/windsurf/docs/specs-references/validate-specs-synthesis.md` (Steps 7-9)
+- User Interaction: `~/.codeium/windsurf/docs/specs-references/validate-specs-interaction.md` (Steps 10-12)
 - Finalization: This file (Steps 13-14)
 
 ## Usage

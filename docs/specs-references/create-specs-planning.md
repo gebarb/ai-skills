@@ -8,7 +8,7 @@ This is Part 1 of the create-specs workflow, covering Steps 1-5: Repository revi
 
 For the complete workflow, see:
 - Planning Phase: This file (Steps 1-5)
-- Execution Phase: `docs/specs-references/create-specs-execution.md` (Steps 6-13)
+- Execution Phase: `~/.codeium/windsurf/docs/specs-references/create-specs-execution.md` (Steps 6-13)
 
 ## Usage
 
@@ -302,4 +302,4 @@ Phase N: [Phase Name]
 
 ## Continue to Part 2
 
-For Steps 6-13 (Phase Detail Gathering through Finalization), see `docs/specs-references/create-specs-execution.md`.
+For Steps 6-13 (Phase Detail Gathering through Finalization), see `~/.codeium/windsurf/docs/specs-references/create-specs-execution.md`.

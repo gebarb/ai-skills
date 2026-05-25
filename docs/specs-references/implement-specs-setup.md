@@ -10,7 +10,7 @@ This is the setup phase of the implement-specs workflow, covering Steps 1-9: Rep
 
 For the complete workflow, see:
 - Setup Phase: This file (Steps 1-9)
-- Implementation Phase: `docs/specs-references/implement-specs-implementation.md` (Steps 10-19)
+- Implementation Phase: `~/.codeium/windsurf/docs/specs-references/implement-specs-implementation.md` (Steps 10-19)
 
 ## Prerequisites
 
@@ -606,4 +606,4 @@ This allows rollback if implementation fails.
 
 ## Continue to Part 2
 
-For Steps 10-19 (Implement Phase through Completion), see `docs/specs-references/implement-specs-implementation.md`.
+For Steps 10-19 (Implement Phase through Completion), see `~/.codeium/windsurf/docs/specs-references/implement-specs-implementation.md`.

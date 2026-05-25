@@ -8,10 +8,10 @@ This is Part 1 of the validate-specs workflow, covering Steps 1-3: Repository re
 
 For the complete workflow, see:
 - Initial Assessment: This file (Steps 1-3)
-- Multi-Perspective Review: `docs/specs-references/validate-specs-review.md` (Steps 4-6)
-- Synthesis: `docs/specs-references/validate-specs-synthesis.md` (Steps 7-9)
-- User Interaction: `docs/specs-references/validate-specs-interaction.md` (Steps 10-12)
-- Finalization: `docs/specs-references/validate-specs-finalization.md` (Steps 13-14)
+- Multi-Perspective Review: `~/.codeium/windsurf/docs/specs-references/validate-specs-review.md` (Steps 4-6)
+- Synthesis: `~/.codeium/windsurf/docs/specs-references/validate-specs-synthesis.md` (Steps 7-9)
+- User Interaction: `~/.codeium/windsurf/docs/specs-references/validate-specs-interaction.md` (Steps 10-12)
+- Finalization: `~/.codeium/windsurf/docs/specs-references/validate-specs-finalization.md` (Steps 13-14)
 
 ## Usage
 
@@ -214,4 +214,4 @@ Recommendations:
 
 ## Continue to Part 2
 
-For Steps 4-6 (Multi-Perspective Review Phase), see `docs/specs-references/validate-specs-review.md`.
+For Steps 4-6 (Multi-Perspective Review Phase), see `~/.codeium/windsurf/docs/specs-references/validate-specs-review.md`.
