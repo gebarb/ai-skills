@@ -14,10 +14,12 @@ For the complete workflow, see:
 
 ## Prerequisites
 
-- Repository must have a `specs/` directory
-- `specs/README.md` must exist and define phase structure
+**Note**: The use of create-specs and validate-specs workflows is optional. Users may provide their own spec files or implementation requests. If specs cannot be determined, this workflow will ask for direction or recommend using create-specs.
+
+- If specs exist: Repository must have a `specs/` directory with `specs/README.md` defining phase structure
 - Phase files must be named `phase-*.md` (e.g., `phase-1-foundation.md`)
 - Each phase file should contain implementation tasks, technical requirements, and success criteria
+- If specs don't exist: Workflow will prompt user for direction or recommend create-specs
 
 ## Usage
 
@@ -57,17 +59,71 @@ Optional: Start from a specific phase:
 
 **Do NOT proceed to subsequent steps until this comprehensive review is complete and you have a deep understanding of the codebase.**
 
-### 2. Initialize Progress Tracking and Phase Selection
+### 2. Check for Specs and Determine Implementation Approach
+
+After the repository review, check if specs exist and determine how to proceed:
+
+**Spec Existence Check:**
+- Check if `specs/` directory exists
+- Check if `specs/README.md` exists
+- Check if phase files exist (e.g., `phase-*.md`)
+
+**If Specs Exist:**
+- Proceed with normal spec-based implementation (continue to Step 3)
+- Parse specs and follow the standard workflow
+
+**If Specs Don't Exist:**
+Ask the user for direction:
+
+```
+=== No Specs Detected ===
+
+No spec files were found in the repository. How would you like to proceed?
+
+1. Provide spec file path - I have spec files in a different location
+2. Describe implementation request - I'll describe what needs to be implemented
+3. Create specs first - Use the /create-specs workflow to generate specs
+4. Exit - Stop the workflow
+
+Select option (1-4):
+```
+
+**If option 1 (Provide spec file path):**
+- Ask user to provide the path to their spec files
+- Validate the provided path exists and contains required files
+- Proceed with spec-based implementation using the provided path
+
+**If option 2 (Describe implementation request):**
+- Ask user to describe what they want implemented
+- Parse their description to extract requirements
+- Create an ad-hoc implementation plan based on their request
+- Proceed with implementation using the ad-hoc plan
+- Note: This approach is less structured than spec-based implementation
+
+**If option 3 (Create specs first):**
+- Recommend running `/create-specs` workflow
+- Explain the benefits of spec-driven development
+- Exit the workflow and let user run create-specs
+- User can return to implement-specs after specs are created
+
+**If option 4 (Exit):**
+- Exit the workflow
+- No changes are made to the repository
+
+**Implementation Approach Storage:**
+Store the chosen implementation approach in the progress file or a temporary state file to ensure consistency throughout the workflow.
+
+### 3. Initialize Progress Tracking and Phase Selection
 
 Check for existing progress file (`.specs-progress.json`) and determine implementation scope.
 
-**Important**: Progress file initialization is deferred until after successful spec parsing in Step 4. This ensures the progress file is only created when specs are valid and can be parsed correctly.
+**Important**: Progress file initialization is deferred until after successful spec parsing in Step 5. This ensures the progress file is only created when specs are valid and can be parsed correctly.
 
 ```bash
 # Check if progress file exists
 if [ ! -f .specs-progress.json ]; then
   echo "No existing progress found. Progress file will be initialized after successful spec parsing."
-  # Progress file will be created in Step 4 after validating and parsing specs
+  # Progress file will be created in Step 5 after validating and parsing specs
 else
   echo "Found existing progress. Will resume from last completed phase."
 fi
@@ -127,7 +183,7 @@ This flag is equivalent to selecting "Option 2: Start from specific phase" in th
 - Proceed with that phase
 
 
-### 3. Validate Spec Structure
+### 4. Validate Spec Structure
 
 Before parsing, validate that the specs directory has the expected structure:
 
@@ -168,7 +224,7 @@ The quality score threshold of 90% is consistent between create-specs and implem
 - If score is 75-89%, implementation is allowed with warning
 - If score is <75%, strongly recommend returning to create-specs workflow
 
-### 4. Parse Specs Structure
+### 5. Parse Specs Structure
 
 Read the `specs/README.md` to understand the phase structure and dependencies.
 
@@ -259,7 +315,7 @@ if [ ! -f .specs-progress.json ]; then
 fi
 ```
 
-### 5. Resolve Dependencies
+### 6. Resolve Dependencies
 
 Before selecting the next phase, resolve dependencies:
 
@@ -437,7 +493,7 @@ When multiple phases have satisfied dependencies and are available to start:
 - If user explicitly requests selective implementation, present User Selection option
 - Critical Path Priority and Dependency Depth are advanced options that can be used when optimizing for parallel development or minimizing overall implementation time
 
-### 6. Determine Next Phase
+### 7. Determine Next Phase
 
 Based on `.specs-progress.json`, resolved dependencies, and user's phase selection, identify the next phase to implement.
 
@@ -458,7 +514,7 @@ If user selected a specific phase in step 1:
 1. **Sequential**: Implement phases one at a time in dependency order
 2. **Selective**: User chooses which phase to implement next from available options
 
-### 7. Display Phase Overview
+### 8. Display Phase Overview
 
 Before implementing, show the user what will be implemented:
 
@@ -486,7 +542,7 @@ Success Criteria:
 ...
 ```
 
-### 8. Request User Confirmation
+### 9. Request User Confirmation
 
 Ask the user to confirm before proceeding:
 
@@ -497,7 +553,57 @@ Ready to implement [Phase Name]?
 - Type 'exit' to stop the workflow
 ```
 
-### 9. Create Implementation Checkpoint
+### 10. Confirm Testing Approach (TDD Prompt)
+
+Before creating the checkpoint and beginning implementation, ask the user about their testing approach:
+
+```
+=== Testing Approach ===
+
+Would you like unit tests created for this phase implementation?
+
+- Type 'yes' to create comprehensive unit tests
+- Type 'no' to skip unit test creation
+- Type 'later' to create tests later (not recommended for production code)
+```
+
+**If user selects 'yes':**
+Ask about TDD approach:
+```
+Would you like to use Test-Driven Development (TDD)?
+
+- Type 'tdd' to use TDD approach (write tests first, then implementation)
+- Type 'standard' to write implementation first, then tests
+```
+
+**If user selects 'tdd':**
+- Set implementation mode to TDD
+- Tests will be written before implementation code
+- Implementation will be driven by making tests pass
+- This ensures tests drive the design
+
+**If user selects 'standard':**
+- Set implementation mode to standard
+- Implementation will be written first
+- Tests will be written after implementation
+- This is the traditional approach
+
+**If user selects 'no':**
+- Skip unit test creation
+- Note that this is not recommended for production code
+- Proceed to checkpoint creation
+- Consider adding tests later before deployment
+
+**If user selects 'later':**
+- Skip unit test creation for now
+- Add a reminder to create tests before deployment
+- Proceed to checkpoint creation
+- Note that tests should be created before production deployment
+
+**Testing Approach Storage:**
+Store the chosen testing approach in the progress file or temporary state for the current phase to ensure the implementation follows the selected approach.
+
+### 11. Create Implementation Checkpoint
 
 Before implementing, create a checkpoint for potential rollback:
 
@@ -606,4 +712,4 @@ This allows rollback if implementation fails.
 
 ## Continue to Part 2
 
-For Steps 10-19 (Implement Phase through Completion), see `~/.codeium/windsurf/docs/specs-references/implement-specs-implementation.md`.
+For Steps 12-21 (Implement Phase through Completion), see `~/.codeium/windsurf/docs/specs-references/implement-specs-implementation.md`.
