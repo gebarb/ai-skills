@@ -58,16 +58,21 @@ This repository contains skills/workflows that can be used with Cascade AI to st
 
 ### Quick Install
 
-Run the installation script to copy all skills to the global Windsurf directory:
+Run the installation script to copy all skills to the global directory for your AI agent:
 
 ```bash
 ./install.sh
 ```
 
-This will copy the workflows to `~/.codeium/windsurf/global_workflows/` and the docs to `~/.codeium/windsurf/docs/`, making them available in every workspace on your machine.
+The script will prompt you to select your AI agent (Windsurf or Claude) and copy the workflows and docs to the appropriate directories, making them available in every workspace on your machine.
+
+**Supported Agents:**
+- **Windsurf**: Workflows to `~/.codeium/windsurf/global_workflows/`, Docs to `~/.codeium/windsurf/docs/`
+- **Claude**: Workflows to `~/.claude/workflows/`, Docs to `~/.claude/docs/`
 
 ### Manual Installation
 
+For Windsurf:
 1. Copy the workflow files to the global Windsurf workflows directory:
    ```bash
    mkdir -p ~/.codeium/windsurf/global_workflows
@@ -79,6 +84,29 @@ This will copy the workflows to `~/.codeium/windsurf/global_workflows/` and the 
    mkdir -p ~/.codeium/windsurf/docs
    cp -r docs/* ~/.codeium/windsurf/docs/
    ```
+
+For Claude:
+1. Copy the workflow files to the Claude workflows directory:
+   ```bash
+   mkdir -p ~/.claude/workflows
+   cp -r workflows/* ~/.claude/workflows/
+   ```
+
+2. Copy the documentation files to the Claude docs directory:
+   ```bash
+   mkdir -p ~/.claude/docs
+   cp -r docs/* ~/.claude/docs/
+   ```
+
+### Path Resolution
+
+Workflow files use **placeholder paths** (`{{DOCS_DIR}}`) that are replaced with absolute paths during installation. This ensures compatibility across different AI agents and execution contexts:
+
+- **Source files** in this repository use `{{DOCS_DIR}}` placeholders
+- **During installation**, the install.sh script replaces `{{DOCS_DIR}}` with the actual absolute path to the docs directory for the selected agent
+- **Installed files** contain absolute paths (e.g., `~/.codeium/windsurf/docs/` or `~/.claude/docs/`) that work regardless of where the AI agent executes from
+
+This approach ensures that paths are correct whether the agent executes from the workflows directory, the repository root, or any other location.
 
 ## Usage
 
@@ -111,26 +139,25 @@ cascade-skills/
 │   ├── specs-validate.md # Spec validation workflow
 │   └── specs-implement.md # Spec implementation workflow
 └── docs/                 # Reference documentation
-    └── specs-references/ # Detailed reference materials for spec workflows
-        ├── specs-create/  # Spec creation references
-        │   ├── guidelines.md
-        │   ├── maintenance.md
-        │   ├── templates.md
-        │   ├── execution.md
-        │   └── planning.md
-        ├── specs-implement/  # Spec implementation references
-        │   ├── handling.md
-        │   ├── progress.md
-        │   ├── setup.md
-        │   └── implementation.md
-        └── specs-validate/  # Spec validation references
-            ├── guidelines.md
-            ├── initial.md
-            ├── interaction.md
-            ├── finalization.md
-            ├── review.md
-            ├── synthesis.md
-            └── templates.md
+    ├── specs-create/  # Spec creation references
+    │   ├── guidelines.md
+    │   ├── maintenance.md
+    │   ├── templates.md
+    │   ├── execution.md
+    │   └── planning.md
+    ├── specs-implement/  # Spec implementation references
+    │   ├── handling.md
+    │   ├── progress.md
+    │   ├── setup.md
+    │   └── implementation.md
+    └── specs-validate/  # Spec validation references
+        ├── guidelines.md
+        ├── initial.md
+        ├── interaction.md
+        ├── finalization.md
+        ├── review.md
+        ├── synthesis.md
+        └── templates.md
 ```
 
 ## Contributing

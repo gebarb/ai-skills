@@ -89,9 +89,14 @@ if [ ! -d "$LOCAL_WORKFLOWS_DIR" ]; then
     exit 1
 fi
 
-# Copy all workflow files
+# Copy all workflow files and replace placeholders
 echo -e "${GREEN}Copying workflow files to $WORKFLOWS_DIR${NC}"
-cp -v "$LOCAL_WORKFLOWS_DIR"/*.md "$WORKFLOWS_DIR/"
+for file in "$LOCAL_WORKFLOWS_DIR"/*.md; do
+    if [ -f "$file" ]; then
+        # Replace {{DOCS_DIR}} placeholder with actual docs directory
+        sed "s|{{DOCS_DIR}}|$DOCS_DIR|g" "$file" > "$WORKFLOWS_DIR/$(basename "$file")"
+    fi
+done
 
 # Count copied workflow files
 WORKFLOW_COPIED_COUNT=$(ls -1 "$LOCAL_WORKFLOWS_DIR"/*.md 2>/dev/null | wc -l)
@@ -108,10 +113,24 @@ LOCAL_DOCS_DIR="$SCRIPT_DIR/docs"
 
 # Check if local docs directory exists
 if [ -d "$LOCAL_DOCS_DIR" ]; then
-    # Copy all docs files
+    # Copy all docs files and replace placeholders
     echo -e "${GREEN}Copying docs files to $DOCS_DIR${NC}"
-    cp -rv "$LOCAL_DOCS_DIR"/* "$DOCS_DIR/"
-
+    
+    # Create a temporary directory for processing
+    TEMP_DOCS_DIR=$(mktemp -d)
+    
+    # Copy docs to temp directory
+    cp -r "$LOCAL_DOCS_DIR"/* "$TEMP_DOCS_DIR/"
+    
+    # Replace {{DOCS_DIR}} placeholder in all markdown files
+    find "$TEMP_DOCS_DIR" -type f -name "*.md" -exec sed -i '' "s|{{DOCS_DIR}}|$DOCS_DIR|g" {} \;
+    
+    # Copy processed docs to destination
+    cp -r "$TEMP_DOCS_DIR"/* "$DOCS_DIR/"
+    
+    # Clean up temp directory
+    rm -rf "$TEMP_DOCS_DIR"
+    
     # Count copied docs files
     DOCS_COPIED_COUNT=$(find "$LOCAL_DOCS_DIR" -type f | wc -l)
 

@@ -796,7 +796,7 @@ Select option (1-4):
 ### Getting Help
 
 If you encounter issues not covered here:
-1. Review workflow documentation in ~/.codeium/windsurf/docs/specs-references/
+1. Review workflow documentation in {{DOCS_DIR}}/
 2. Check error messages for specific guidance
 3. Review progress file for current state
 4. Use rollback to recover from failed implementations
