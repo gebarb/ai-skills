@@ -175,26 +175,26 @@ For reviewing and refining skills/workflows:
 ```
 cascade-skills/
 ├── README.md              # This file
-├── install.sh            # Installation script
-├── workflows/            # Workflow/skill definitions
-│   ├── specs-create.md   # Spec creation workflow
-│   ├── specs-validate.md # Spec validation workflow
+├── install.sh             # Installation script
+├── workflows/             # Workflow/skill definitions
+│   ├── specs-create.md    # Spec creation workflow
 │   ├── specs-implement.md # Spec implementation workflow
-│   ├── skill-builder.md  # Skill/workflow creation workflow
-│   └── skill-review.md   # Skill/workflow review workflow
-└── docs/                 # Reference documentation
-    ├── specs-create/  # Spec creation references
+│   ├── specs-validate.md  # Spec validation workflow
+│   ├── skill-builder.md   # Skill/workflow creation workflow
+│   └── skill-review.md    # Skill/workflow review workflow
+└── docs/                  # Reference documentation
+    ├── specs-create/      # Spec creation references
     │   ├── guidelines.md
     │   ├── maintenance.md
     │   ├── templates.md
     │   ├── execution.md
     │   └── planning.md
-    ├── specs-implement/  # Spec implementation references
+    ├── specs-implement/   # Spec implementation references
     │   ├── handling.md
     │   ├── progress.md
     │   ├── setup.md
     │   └── implementation.md
-    ├── specs-validate/  # Spec validation references
+    ├── specs-validate/    # Spec validation references
     │   ├── guidelines.md
     │   ├── initial.md
     │   ├── interaction.md
@@ -202,14 +202,14 @@ cascade-skills/
     │   ├── review.md
     │   ├── synthesis.md
     │   └── templates.md
-    ├── skill-builder/  # Skill/workflow creation references
+    ├── skill-builder/     # Skill/workflow creation references
     │   ├── guidelines.md
     │   ├── planning.md
     │   ├── creation.md
     │   ├── validation.md
     │   ├── refinement.md
     │   └── templates.md
-    └── skill-review/  # Skill/workflow review references
+    └── skill-review/      # Skill/workflow review references
         ├── guidelines.md
         ├── initial.md
         ├── perspectives.md

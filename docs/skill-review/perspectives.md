@@ -6,7 +6,7 @@ This document provides detailed guidance for Steps 4-6 of the skill-review workf
 
 The three perspectives are applied sequentially as conceptual subagents, each with fresh context and a specific analytical focus:
 
-1. **Standards & Best Practices Review**: Focus on compliance with Windsurf and Anthropic specifications
+1. **Standards & Best Practices Review**: Focus on compliance with current standards retrieved in Step 0 from all available sources
 2. **Execution & Structure Review**: Focus on how the skill/workflow executes and its structural integrity
 3. **Completeness & Gaps Review**: Focus on whether all requirements are met and gaps are identified
 
@@ -16,13 +16,51 @@ Each perspective reviews the skill/workflow independently, then findings are syn
 
 ### Review Focus
 
-This perspective evaluates compliance with:
-- Windsurf skill/workflow specifications
-- Anthropic agent skill guidelines
+This perspective evaluates compliance with current standards retrieved in Step 0 from all available external sources:
+- AI agent skill/workflow standards from any platform
+- Platform-specific guidelines when applicable (Windsurf, Anthropic/Claude, Devin, Microsoft/CoPilot, etc.)
 - Industry best practices
 - Project-specific standards
+- Apply the most current standards found, regardless of source
+
+### Platform Standards Checklist
+
+**Note**: Use the current standards retrieved in Step 0. The following provides a general framework that should be adapted based on the specific standards found during live research.
+
+**General Standards Framework**:
+- [ ] Contains required `name` field
+- [ ] Contains required `description` field
+- [ ] Description is 1-2 sentences maximum
+- [ ] Description is clear and specific
+- [ ] Name follows kebab-case convention (lowercase with hyphens)
+- [ ] No special characters in name
+- [ ] Name is descriptive but concise
+
+**Progressive Disclosure** (Skills only):
+- [ ] Name and description are concise (Level 1)
+- [ ] Core SKILL.md is focused and not overwhelming (Level 2)
+- [ ] SKILL.md is under 300 lines (recommended, unless current standards specify otherwise)
+- [ ] Supporting files are referenced appropriately (Level 3)
+- [ ] File references use clear section headers
+- [ ] Rarely used context is separated (Level 4)
+- [ ] Information loads only as needed
+
+**File Structure**:
+- [ ] Directory structure follows conventions
+- [ ] File names are descriptive and consistent
+- [ ] Supporting files are properly organized
+- [ ] File permissions are correct (644 for files, 755 for executable scripts)
+- [ ] No temporary or test files in distribution
+
+**Skill vs Workflow Appropriateness**:
+- [ ] If skill: appropriate for automatic invocation
+- [ ] If workflow: appropriate for manual invocation
+- [ ] Choice between skill/workflow is justified
+- [ ] Structure matches the type chosen
 
 ### Windsurf Standards Checklist
+
+**Note**: If Windsurf-specific standards were found during Step 0 research, apply those here. Otherwise, use the general framework above.
 
 **YAML Frontmatter**:
 - [ ] Contains required `name` field
@@ -56,6 +94,8 @@ This perspective evaluates compliance with:
 - [ ] Structure matches the type chosen
 
 ### Anthropic Agent Skills Guidelines Checklist
+
+**Note**: If Anthropic/Claude-specific standards were found during Step 0 research, apply those here. Otherwise, use the general framework above.
 
 **Progressive Disclosure Principles**:
 - [ ] Information loads only as needed

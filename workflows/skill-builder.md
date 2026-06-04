@@ -1,11 +1,11 @@
 ---
 name: skill-builder
-description: Walk through creating a highly performant and accurate AI skill/workflow that follows Windsurf and Anthropic best practices and standards
+description: Walk through creating a highly performant and accurate AI skill/workflow that follows current best practices and standards from all available sources
 ---
 
 # Skill Builder Workflow
 
-This workflow guides you through creating a highly performant and accurate AI skill or workflow for Cascade/Windsurf. It follows Windsurf and Anthropic's best practices and standards to ensure accurate and complete execution.
+This workflow guides you through creating a highly performant and accurate AI skill or workflow. It performs live research to retrieve and apply the most current best practices and standards from all available external sources, ensuring accurate and complete execution based on the latest industry standards.
 
 ## Prerequisites
 
@@ -33,6 +33,69 @@ Run this workflow from the root of your repository:
 
 The complete workflow is organized into phases to ensure comprehensive skill/workflow creation:
 
+### Dynamic Standards Lookup Phase (Step 0)
+
+**Step 0: Retrieve Current Best Practices**
+
+Before beginning the skill/workflow creation, perform comprehensive live research to retrieve the most current standards and best practices from all available external sources. This is a dynamic, adaptive process that discovers and applies standards from any relevant platform or source.
+
+**Research Strategy:**
+- Perform broad web searches for AI agent skill and workflow standards across all platforms
+- Discover and evaluate standards from any available source (not limited to specific platforms)
+- Identify the most current and authoritative sources
+- Adapt to whatever standards are found and applicable
+- Synthesize findings from multiple sources into a cohesive approach
+
+**Comprehensive Search Queries:**
+```
+- "AI agent skill development best practices 2025"
+- "AI workflow standards and guidelines"
+- "AI assistant skill creation standards"
+- "Progressive disclosure AI agents"
+- "AI skill documentation standards"
+- "Agent skill development framework"
+- "AI workflow best practices"
+- "Claude Anthropic skills guidelines"
+- "Windsurf AI skills standards"
+- "Devin AI workflow standards"
+- "Microsoft Copilot skills best practices"
+- "AI agent context management"
+- "AI skill execution patterns"
+- "agentskills.io specification"
+```
+
+**Dynamic Discovery Process:**
+1. Execute broad searches to identify all relevant sources
+2. Evaluate the recency and authority of each source found
+3. Identify common patterns and principles across sources
+4. Note platform-specific requirements when applicable
+5. Detect any conflicts or divergences between sources
+6. Prioritize the most current and widely-adopted standards
+
+**Integration of Research Findings:**
+- Document all relevant standards discovered from any source
+- Note the date and authority of each source
+- Identify consensus principles across multiple sources
+- Document platform-specific requirements when relevant
+- Use the synthesized findings to inform all subsequent steps
+- Reference specific sources when documenting compliance decisions
+- Adapt the approach based on what standards are actually available
+
+**Adaptive Application:**
+- Apply the most current standards found, regardless of source
+- If no current standards are found for a specific area, use general best practices
+- If sources conflict, document the conflict and choose the most authoritative or recent
+- Continuously update understanding as new information is discovered
+- Be prepared to adapt if standards change during the workflow execution
+
+**Why This Matters:**
+- The AI field evolves rapidly; static references become outdated quickly
+- New platforms and standards emerge regularly
+- Different platforms may have different but equally valid approaches
+- Comprehensive research ensures no relevant standards are missed
+- Dynamic adaptation ensures the workflow remains current and applicable
+- Generic approach allows the workflow to work with any available standards
+
 ### Planning Phase (Steps 1-5)
 See `{{DOCS_DIR}}/skill-builder/planning.md` for:
 1. **Determine Skill vs Workflow** - Decide whether to create a Skill (automatic invocation) or Workflow (manual invocation)
@@ -44,7 +107,7 @@ See `{{DOCS_DIR}}/skill-builder/planning.md` for:
 ### Creation Phase (Steps 6-12)
 See `{{DOCS_DIR}}/skill-builder/creation.md` for:
 6. **Create Skill/Workflow Directory** - Set up the proper directory structure
-7. **Write YAML Frontmatter** - Create proper name and description following Windsurf standards
+7. **Write YAML Frontmatter** - Create proper name and description following current standards retrieved in Step 0
 8. **Draft Core Content** - Write the main SKILL.md or workflow markdown content
 9. **Add Supporting Files** - Create reference documents, templates, scripts as needed
 10. **Implement Progressive Disclosure** - Structure content to load only when needed
@@ -53,7 +116,7 @@ See `{{DOCS_DIR}}/skill-builder/creation.md` for:
 
 ### Validation Phase (Steps 13-17)
 See `{{DOCS_DIR}}/skill-builder/validation.md` for:
-13. **Self-Review Against Standards** - Verify compliance with Windsurf and Anthropic best practices
+13. **Self-Review Against Standards** - Verify compliance with current standards retrieved in Step 0
 14. **Test Execution Path** - Walk through the skill/workflow step by step
 15. **Validate Progressive Disclosure** - Ensure information loads at appropriate levels
 16. **Check for Ambiguities** - Identify and clarify unclear instructions
@@ -68,12 +131,13 @@ See `{{DOCS_DIR}}/skill-builder/refinement.md` for:
 ## Reference Materials
 
 For detailed templates, guidelines, and best practices, see:
+- **Dynamic Standards Lookup**: Step 0 - Live research of current external standards
 - **Planning Phase**: `{{DOCS_DIR}}/skill-builder/planning.md` - Steps 1-5
 - **Creation Phase**: `{{DOCS_DIR}}/skill-builder/creation.md` - Steps 6-12
 - **Validation Phase**: `{{DOCS_DIR}}/skill-builder/validation.md` - Steps 13-17
 - **Refinement Phase**: `{{DOCS_DIR}}/skill-builder/refinement.md` - Steps 18-20
 - **Templates**: `{{DOCS_DIR}}/skill-builder/templates.md` - SKILL.md and workflow templates
-- **Guidelines**: `{{DOCS_DIR}}/skill-builder/guidelines.md` - Windsurf and Anthropic standards
+- **Guidelines**: `{{DOCS_DIR}}/skill-builder/guidelines.md` - Standards framework (use with Step 0 findings)
 
 ## Integration in Development Lifecycle
 

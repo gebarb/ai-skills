@@ -1,11 +1,11 @@
 ---
 name: skill-review
-description: Comprehensive 3-perspective review of AI skills/workflows ensuring standards compliance and execution success
+description: Comprehensive 3-perspective review of AI skills/workflows ensuring current standards compliance and execution success
 ---
 
 # Skill Review Workflow
 
-This workflow performs a comprehensive validation of AI skills or workflows using three distinct analytical perspectives (applied sequentially as conceptual subagents). Each perspective reviews the skill/workflow with fresh context to ensure it follows Windsurf and Anthropic best practices, is structured for optimal execution, and identifies any bugs, issues, or gaps.
+This workflow performs a comprehensive validation of AI skills or workflows using three distinct analytical perspectives (applied sequentially as conceptual subagents). Each perspective reviews the skill/workflow with fresh context to ensure it follows current best practices from all available sources, is structured for optimal execution, and identifies any bugs, issues, or gaps.
 
 **Note:** The "subagents" mentioned in this workflow are conceptual perspectives applied sequentially by the main agent, not actual parallel processes. This approach ensures comprehensive coverage from different analytical viewpoints while maintaining fresh context for each review.
 
@@ -39,6 +39,48 @@ The workflow will prompt you to specify which skill/workflow to review.
 
 ### Step-by-Step Execution
 
+0. **Dynamic Standards Lookup Phase (Step 0)**
+   - Perform comprehensive live research to retrieve the most current standards and best practices from all available external sources
+   - This is a dynamic, adaptive process that discovers and applies standards from any relevant platform or source
+   - Execute broad web searches for AI agent skill and workflow standards across all platforms
+   - Discover and evaluate standards from any available source (not limited to specific platforms)
+   - Identify the most current and authoritative sources
+   - Synthesize findings from multiple sources into a cohesive approach
+   - Use the retrieved information to inform all subsequent review steps
+   - Reference specific sources when documenting compliance decisions
+
+   **Comprehensive Search Queries:**
+   ```
+   - "AI agent skill development best practices 2025"
+   - "AI workflow standards and guidelines"
+   - "AI assistant skill creation standards"
+   - "Progressive disclosure AI agents"
+   - "AI skill documentation standards"
+   - "Agent skill development framework"
+   - "AI workflow best practices"
+   - "Claude Anthropic skills guidelines"
+   - "Windsurf AI skills standards"
+   - "Devin AI workflow standards"
+   - "Microsoft Copilot skills best practices"
+   - "AI agent context management"
+   - "AI skill execution patterns"
+   - "agentskills.io specification"
+   ```
+
+   **Dynamic Discovery Process:**
+   1. Execute broad searches to identify all relevant sources
+   2. Evaluate the recency and authority of each source found
+   3. Identify common patterns and principles across sources
+   4. Note platform-specific requirements when applicable
+   5. Detect any conflicts or divergences between sources
+   6. Prioritize the most current and widely-adopted standards
+
+   **Adaptive Application:**
+   - Apply the most current standards found, regardless of source
+   - If no current standards are found for a specific area, use general best practices
+   - If sources conflict, document the conflict and choose the most authoritative or recent
+   - Continuously update understanding as new information is discovered
+
 1. **Initial Assessment Phase (Steps 1-3)**
    - Read the skill/workflow file completely from start to finish
    - Read all supporting files referenced in the skill/workflow
@@ -48,7 +90,7 @@ The workflow will prompt you to specify which skill/workflow to review.
 
 2. **Multi-Perspective Review Phase (Steps 4-6)**
    - Apply each perspective sequentially with fresh context:
-     - **Subagent 1 (Standards)**: Use the checklists in `docs/skills-references/skill-review-perspectives.md` to verify compliance
+     - **Subagent 1 (Standards)**: Use the checklists in `docs/skills-references/skill-review-perspectives.md` to verify compliance with current standards retrieved in Step 0
      - **Subagent 2 (Execution)**: Walk through the skill/workflow execution mentally, identifying bottlenecks and ambiguities
      - **Subagent 3 (Completeness)**: Check for missing requirements, context gaps, and goal achievement
    - Document findings for each perspective independently
@@ -100,11 +142,12 @@ See `{{DOCS_DIR}}/skill-review/initial.md` for:
 See `{{DOCS_DIR}}/skill-review/perspectives.md` for:
 
 4. **Subagent 1**: Standards & Best Practices Review
-   - Verify compliance with Windsurf skill/workflow specifications
-   - Check adherence to Anthropic agent skill guidelines
+   - Verify compliance with current standards retrieved in Step 0 from all available sources
+   - Check adherence to platform-specific guidelines when applicable (Windsurf, Anthropic/Claude, Devin, Microsoft/CoPilot, etc.)
    - Validate YAML frontmatter structure and content
    - Assess progressive disclosure implementation
    - Review naming conventions and descriptions
+   - Apply the most current standards found, regardless of source
 
 5. **Subagent 2**: Execution & Structure Review
    - Analyze step-by-step execution flow
@@ -205,13 +248,14 @@ If the user rejects all recommendations:
 ## Reference Materials
 
 For detailed review criteria, templates, and guidelines, see:
+- **Dynamic Standards Lookup**: Step 0 - Live research of current external standards from all available sources
 - **Initial Assessment**: `{{DOCS_DIR}}/skill-review/initial.md` - Steps 1-3
 - **Multi-Perspective Review**: `{{DOCS_DIR}}/skill-review/perspectives.md` - Steps 4-6
 - **Synthesis**: `{{DOCS_DIR}}/skill-review/synthesis.md` - Steps 7-9
 - **User Interaction**: `{{DOCS_DIR}}/skill-review/interaction.md` - Steps 10-12
 - **Finalization**: `{{DOCS_DIR}}/skill-review/finalization.md` - Steps 13-14
 - **Templates**: `{{DOCS_DIR}}/skill-review/templates.md` - Review report templates
-- **Guidelines**: `{{DOCS_DIR}}/skill-review/guidelines.md` - Review criteria and best practices
+- **Guidelines**: `{{DOCS_DIR}}/skill-review/guidelines.md` - Review criteria framework (use with Step 0 findings)
 
 ## Integration in Development Lifecycle
 
