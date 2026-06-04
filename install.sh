@@ -13,24 +13,30 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Agent configuration
-# Each agent defines: base_dir, workflows_subdir, docs_subdir (relative to base_dir)
-# To add a new agent, add a new entry in the select_agent() function and update the prompt
-declare -A AGENT_BASE_DIR
-declare -A AGENT_WORKFLOWS_SUBDIR
-declare -A AGENT_DOCS_SUBDIR
-declare -A AGENT_NAME
+# Function to get agent configuration
+get_agent_config() {
+    local agent=$1
+    local config_type=$2
 
-# Configure Windsurf
-AGENT_NAME["windsurf"]="Windsurf"
-AGENT_BASE_DIR["windsurf"]="$HOME/.codeium/windsurf"
-AGENT_WORKFLOWS_SUBDIR["windsurf"]="global_workflows"
-AGENT_DOCS_SUBDIR["windsurf"]="docs"
-
-# Configure Claude
-AGENT_NAME["claude"]="Claude"
-AGENT_BASE_DIR["claude"]="$HOME/.claude"
-AGENT_WORKFLOWS_SUBDIR["claude"]="skills"
-AGENT_DOCS_SUBDIR["claude"]="docs"
+    case $agent in
+        windsurf)
+            case $config_type in
+                name) echo "Windsurf" ;;
+                base_dir) echo "$HOME/.codeium/windsurf" ;;
+                workflows_subdir) echo "global_workflows" ;;
+                docs_subdir) echo "docs" ;;
+            esac
+            ;;
+        claude)
+            case $config_type in
+                name) echo "Claude" ;;
+                base_dir) echo "$HOME/.claude" ;;
+                workflows_subdir) echo "skills" ;;
+                docs_subdir) echo "docs" ;;
+            esac
+            ;;
+    esac
+}
 
 # Function to prompt user for agent selection
 select_agent() {
@@ -52,16 +58,17 @@ select_agent() {
             ;;
     esac
 
-    echo -e "${GREEN}Selected: ${AGENT_NAME[$SELECTED_AGENT]}${NC}"
+    AGENT_NAME=$(get_agent_config "$SELECTED_AGENT" name)
+    echo -e "${GREEN}Selected: $AGENT_NAME${NC}"
 }
 
 # Select agent
 select_agent
 
 # Set directories based on selected agent
-BASE_DIR="${AGENT_BASE_DIR[$SELECTED_AGENT]}"
-WORKFLOWS_SUBDIR="${AGENT_WORKFLOWS_SUBDIR[$SELECTED_AGENT]}"
-DOCS_SUBDIR="${AGENT_DOCS_SUBDIR[$SELECTED_AGENT]}"
+BASE_DIR=$(get_agent_config "$SELECTED_AGENT" base_dir)
+WORKFLOWS_SUBDIR=$(get_agent_config "$SELECTED_AGENT" workflows_subdir)
+DOCS_SUBDIR=$(get_agent_config "$SELECTED_AGENT" docs_subdir)
 
 WORKFLOWS_DIR="$BASE_DIR/$WORKFLOWS_SUBDIR"
 DOCS_DIR="$BASE_DIR/$DOCS_SUBDIR"
@@ -115,4 +122,4 @@ fi
 
 echo -e "${GREEN}Installation complete!${NC}"
 echo -e "${YELLOW}You can now use the skills in Cascade AI.${NC}"
-echo -e "${YELLOW}Note: You may need to restart ${AGENT_NAME[$SELECTED_AGENT]} for the skills to appear.${NC}"
+echo -e "${YELLOW}Note: You may need to restart $AGENT_NAME for the skills to appear.${NC}"
