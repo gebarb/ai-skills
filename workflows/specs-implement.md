@@ -1,5 +1,5 @@
 ---
-name: implement-specs
+name: specs-implement
 description: Implement specs and phases from a repository with progress tracking and user confirmation
 ---
 
@@ -30,13 +30,13 @@ For systems without bash 4.0+ or with different shells (e.g., sh, dash), the cir
 Run this workflow from the root of your repository:
 
 ```
-/implement-specs
+/specs-implement
 ```
 
 Optional: Start from a specific phase:
 
 ```
-/implement-specs --from-phase 3
+/specs-implement --from-phase 3
 ```
 
 ## Workflow Steps
@@ -45,10 +45,10 @@ The complete workflow is split into two phases to keep each document under 500 l
 
 **Important**: All steps below are performed for EACH phase being implemented. The workflow loops through phases until all are complete.
 
-**Note**: Technology stack selection (language, frameworks, architecture, etc.) is handled in the create-specs workflow. This implementation workflow uses the technology decisions documented in the specs.
+**Note**: Technology stack selection (language, frameworks, architecture, etc.) is handled in the specs-create workflow. This implementation workflow uses the technology decisions documented in the specs.
 
 ### Preparation Phase (Steps 1-9)
-See `~/.codeium/windsurf/docs/specs-references/implement-specs-setup.md` for:
+See `{{DOCS_DIR}}/specs-implement/setup.md` for:
 1. **Check for Existing Progress State** - Determine if this is a fresh start or a resume operation from a previous checkpoint
 2. **Repository Review** - Deep review of all code, configuration, and other files in the codebase to understand how it works, its intent, and how to work in it. This is performed for each phase since the codebase state changes after implementation.
 3. Initialize Progress Tracking and Phase Selection
@@ -60,7 +60,7 @@ See `~/.codeium/windsurf/docs/specs-references/implement-specs-setup.md` for:
 9. **Request User Confirmation** - Present the summary and plan to the user for confirmation before proceeding
 
 ### Implementation Phase (Steps 10-19)
-See `~/.codeium/windsurf/docs/specs-references/implement-specs-implementation.md` for:
+See `{{DOCS_DIR}}/specs-implement/implementation.md` for:
 10. Create Implementation Checkpoint
 11. Implement Phase
 12. Run Code Quality Checks
@@ -75,7 +75,7 @@ See `~/.codeium/windsurf/docs/specs-references/implement-specs-implementation.md
 ## Reference Materials
 
 For detailed progress tracking, error handling, and guidelines, see:
-- **Setup Phase**: `~/.codeium/windsurf/docs/specs-references/implement-specs-setup.md` - Steps 1-9
-- **Implementation Phase**: `~/.codeium/windsurf/docs/specs-references/implement-specs-implementation.md` - Steps 10-19
-- **Progress Tracking**: `~/.codeium/windsurf/docs/specs-references/implement-specs-progress.md` - Progress file format and validation
-- **Error Handling**: `~/.codeium/windsurf/docs/specs-references/implement-specs-handling.md` - Error handling, rollback, and spec updates
+- **Setup Phase**: `{{DOCS_DIR}}/specs-implement/setup.md` - Steps 1-9
+- **Implementation Phase**: `{{DOCS_DIR}}/specs-implement/implementation.md` - Steps 10-19
+- **Progress Tracking**: `{{DOCS_DIR}}/specs-implement/progress.md` - Progress file format and validation
+- **Error Handling**: `{{DOCS_DIR}}/specs-implement/handling.md` - Error handling, rollback, and spec updates

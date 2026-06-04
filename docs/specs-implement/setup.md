@@ -4,13 +4,13 @@ description: Implement specs and phases from a repository - Setup Phase (Steps 1
 
 # Spec Implementation Workflow - Setup Phase
 
-This is the setup phase of the implement-specs workflow, covering Steps 1-9: Repository review, progress tracking, validation, parsing, dependencies, phase selection, display overview, user confirmation, and checkpoint creation.
+This is the setup phase of the specs-implement workflow, covering Steps 1-9: Repository review, progress tracking, validation, parsing, dependencies, phase selection, display overview, user confirmation, and checkpoint creation.
 
-**Note**: Technology stack selection (language, frameworks, architecture, etc.) is handled in the create-specs workflow. This implementation workflow uses the technology decisions documented in the specs.
+**Note**: Technology stack selection (language, frameworks, architecture, etc.) is handled in the specs-create workflow. This implementation workflow uses the technology decisions documented in the specs.
 
 For the complete workflow, see:
 - Setup Phase: This file (Steps 1-9)
-- Implementation Phase: `~/.codeium/windsurf/docs/specs-references/implement-specs-implementation.md` (Steps 10-19)
+- Implementation Phase: `{{DOCS_DIR}}/specs-implement/implementation.md` (Steps 10-19)
 
 ## Prerequisites
 
@@ -24,13 +24,13 @@ For the complete workflow, see:
 Run this workflow from the root of your repository:
 
 ```
-/implement-specs
+/specs-implement
 ```
 
 Optional: Start from a specific phase:
 
 ```
-/implement-specs --from-phase 3
+/specs-implement --from-phase 3
 ```
 
 ## Workflow Steps
@@ -112,7 +112,7 @@ After selection:
 - If dependencies not satisfied, warn user and suggest starting from earlier phase
 
 **Note on --from-phase flag:**
-The optional --from-phase flag (e.g., `/implement-specs --from-phase 3`) provides a shortcut to start from a specific phase. When this flag is used:
+The optional --from-phase flag (e.g., `/specs-implement --from-phase 3`) provides a shortcut to start from a specific phase. When this flag is used:
 1. The workflow skips the phase selection prompt
 2. All phases before the specified phase are marked as completed in the progress file
 3. The specified phase is set as "in-progress"
@@ -141,10 +141,10 @@ Before parsing, validate that the specs directory has the expected structure:
 - **Quality Score Validation**: Calculate and validate the spec quality score (recommended threshold: ≥ 90%)
 
 **Quality Score Validation:**
-Run the quality score calculation from the create-specs workflow to ensure specs meet quality standards:
+Run the quality score calculation from the specs-create workflow to ensure specs meet quality standards:
 ```bash
-# Calculate quality score using the same method as create-specs
-# See create-specs-execution.md Step 9 for the full implementation
+# Calculate quality score using the same method as specs-create
+# See specs-create-execution.md Step 9 for the full implementation
 # If score < 90%, warn user and ask for confirmation before proceeding
 ```
 
@@ -157,16 +157,16 @@ If quality score is below 90%:
 - Show the quality score and which metrics are below threshold
 - Ask user to confirm:
   - 'continue' to proceed with implementation despite low quality score
-  - 'exit' to return to create-specs workflow to improve specs
+  - 'exit' to return to specs-create workflow to improve specs
   - 'fix' to address specific quality issues interactively
 
 **Quality Score Threshold Enforcement:**
-The quality score threshold of 90% is consistent between create-specs and implement-specs workflows:
-- create-specs: Uses ≥90% as the readiness threshold (Step 9)
-- implement-specs: Validates and warns if score <90% (Step 3)
+The quality score threshold of 90% is consistent between specs-create and specs-implement workflows:
+- specs-create: Uses ≥90% as the readiness threshold (Step 9)
+- specs-implement: Validates and warns if score <90% (Step 3)
 - Both workflows use the same quality score calculation method
 - If score is 75-89%, implementation is allowed with warning
-- If score is <75%, strongly recommend returning to create-specs workflow
+- If score is <75%, strongly recommend returning to specs-create workflow
 
 ### 4. Parse Specs Structure
 
@@ -187,7 +187,7 @@ For **categorized** READMEs:
 - Expected format: Table with Phase, Screen/Component, Category, Dependencies columns
 
 **README Format Requirements:**
-- The README must include a "Phase List" section for implement-specs parsing
+- The README must include a "Phase List" section for specs-implement parsing
 - For sequential phases: Include a numbered list with phase names and file paths
 - For categorized phases: Include category sections with phase lists or tables
 - The Feature Matrix table must include a Dependencies column with explicit dependency references
@@ -198,7 +198,7 @@ For **categorized** READMEs:
 
 **Sequential README Example:**
 ```markdown
-## Phase List (for implement-specs parsing)
+## Phase List (for specs-implement parsing)
 Phase 1: Foundation - specs/phase-1-foundation.md
 Phase 2: User Authentication - specs/phase-2-auth.md
 Phase 3: Task Management - specs/phase-3-tasks.md
@@ -215,7 +215,7 @@ Phase 3: Task Management - specs/phase-3-tasks.md
 ```
 
 **Parsing Notes:**
-- The implement-specs workflow looks for the "Phase List" section or parses the Feature Matrix table
+- The specs-implement workflow looks for the "Phase List" section or parses the Feature Matrix table
 - Phase names in the Dependencies column must match the phase names exactly (including "Phase N:" prefix)
 - File paths must be relative to the repository root and start with `specs/`
 
@@ -606,4 +606,4 @@ This allows rollback if implementation fails.
 
 ## Continue to Part 2
 
-For Steps 10-19 (Implement Phase through Completion), see `~/.codeium/windsurf/docs/specs-references/implement-specs-implementation.md`.
+For Steps 10-19 (Implement Phase through Completion), see `{{DOCS_DIR}}/specs-implement/implementation.md`.

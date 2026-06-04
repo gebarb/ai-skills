@@ -4,18 +4,18 @@ description: Create comprehensive design and spec plans for a project - Part 1: 
 
 # Spec Creation Workflow - Part 1: Planning Phase
 
-This is Part 1 of the create-specs workflow, covering Steps 1-5: Repository review, new codebase detection, project overview gathering, phase organization strategy, and phase definition.
+This is Part 1 of the specs-create workflow, covering Steps 1-5: Repository review, new codebase detection, project overview gathering, phase organization strategy, and phase definition.
 
 For the complete workflow, see:
 - Planning Phase: This file (Steps 1-5)
-- Execution Phase: `~/.codeium/windsurf/docs/specs-references/create-specs-execution.md` (Steps 6-13)
+- Execution Phase: `{{DOCS_DIR}}/specs-create/execution.md` (Steps 6-13)
 
 ## Usage
 
 Run this workflow from the root of your repository:
 
 ```
-/create-specs
+/specs-create
 ```
 
 ## Workflow Steps
@@ -90,7 +90,7 @@ Document these decisions in the spec and ensure all subsequent phases align with
 - Add a "Technology Stack" section to the specs/README.md documenting all technology decisions
 - Include version information where applicable (e.g., React 18, Node.js 20, Python 3.11)
 - Document the rationale for each technology choice
-- This information will be used by the implement-specs workflow to ensure implementation aligns with decisions
+- This information will be used by the specs-implement workflow to ensure implementation aligns with decisions
 
 **If this is an existing codebase:**
 - Build upon existing technologies and patterns identified in the repository review
@@ -302,4 +302,4 @@ Phase N: [Phase Name]
 
 ## Continue to Part 2
 
-For Steps 6-13 (Phase Detail Gathering through Finalization), see `~/.codeium/windsurf/docs/specs-references/create-specs-execution.md`.
+For Steps 6-13 (Phase Detail Gathering through Finalization), see `{{DOCS_DIR}}/specs-create/execution.md`.

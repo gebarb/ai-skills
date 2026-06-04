@@ -4,21 +4,21 @@ description: Validate specs through comprehensive multi-perspective review - Par
 
 # Spec Validation Workflow - Part 3: Synthesis Phase
 
-This is Part 3 of the validate-specs workflow, covering Steps 7-9: Aggregating findings, prioritizing issues, and generating the validation report.
+This is Part 3 of the specs-validate workflow, covering Steps 7-9: Aggregating findings, prioritizing issues, and generating the validation report.
 
 For the complete workflow, see:
-- Initial Assessment: `~/.codeium/windsurf/docs/specs-references/validate-specs-initial.md` (Steps 1-3)
-- Multi-Perspective Review: `~/.codeium/windsurf/docs/specs-references/validate-specs-review.md` (Steps 4-6)
+- Initial Assessment: `{{DOCS_DIR}}/specs-validate/initial.md` (Steps 1-3)
+- Multi-Perspective Review: `{{DOCS_DIR}}/specs-validate/review.md` (Steps 4-6)
 - Synthesis: This file (Steps 7-9)
-- User Interaction: `~/.codeium/windsurf/docs/specs-references/validate-specs-interaction.md` (Steps 10-12)
-- Finalization: `~/.codeium/windsurf/docs/specs-references/validate-specs-finalization.md` (Steps 13-14)
+- User Interaction: `{{DOCS_DIR}}/specs-validate/interaction.md` (Steps 10-12)
+- Finalization: `{{DOCS_DIR}}/specs-validate/finalization.md` (Steps 13-14)
 
 ## Usage
 
 Run this workflow from the root of your repository:
 
 ```
-/validate-specs
+/specs-validate
 ```
 
 ## Workflow Steps
@@ -341,4 +341,4 @@ Low Value:
 
 ## Continue to Part 4
 
-For Steps 10-12 (User Interaction Phase), see `~/.codeium/windsurf/docs/specs-references/validate-specs-interaction.md`.
+For Steps 10-12 (User Interaction Phase), see `{{DOCS_DIR}}/specs-validate/interaction.md`.
