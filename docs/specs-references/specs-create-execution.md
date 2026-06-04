@@ -4,10 +4,10 @@ description: Create comprehensive design and spec plans for a project - Part 2: 
 
 # Spec Creation Workflow - Part 2: Execution Phase
 
-This is Part 2 of the create-specs workflow, covering Steps 6-13: Phase detail gathering, README generation, validation, spec readiness assessment, file generation, review and refine, iteration mode, and finalization.
+This is Part 2 of the specs-create workflow, covering Steps 6-13: Phase detail gathering, README generation, validation, spec readiness assessment, file generation, review and refine, iteration mode, and finalization.
 
 For the complete workflow, see:
-- Planning Phase: `~/.codeium/windsurf/docs/specs-references/create-specs-planning.md` (Steps 1-5)
+- Planning Phase: `~/.codeium/windsurf/docs/specs-references/specs-create-planning.md` (Steps 1-5)
 - Execution Phase: This file (Steps 6-13)
 
 ## Workflow Steps
@@ -409,7 +409,7 @@ Initialize the CHANGELOG.md with the initial spec version:
 ```
 
 **CHANGELOG Maintenance:**
-- Update CHANGELOG.md when specs are modified (see create-specs-maintenance.md for details)
+- Update CHANGELOG.md when specs are modified (see specs-create-maintenance.md for details)
 - Add entries for breaking changes, new phases, phase modifications, and removals
 - Increment spec version according to semantic versioning (major for breaking changes, minor for additions, patch for fixes)
 - The CHANGELOG provides a history of spec evolution and helps track changes between spec versions
@@ -633,7 +633,7 @@ After each modification, re-validate the spec structure and show updated summary
 
 ### 13. Finalization
 
-Once approved, the specs are ready for implementation using the `/implement-specs` workflow.
+Once approved, the specs are ready for implementation using the `/specs-implement` workflow.
 
 **Save the Specs:**
 - Ensure all spec files are saved in the `specs/` directory
@@ -641,10 +641,10 @@ Once approved, the specs are ready for implementation using the `/implement-spec
 - Confirm all phase files are present and properly formatted
 
 **Handoff to Implementation:**
-The specs created by this workflow are designed to work seamlessly with the `/implement-specs` workflow. Ensure the following for successful handoff:
+The specs created by this workflow are designed to work seamlessly with the `/specs-implement` workflow. Ensure the following for successful handoff:
 
-**README Requirements for implement-specs:**
-- The README must include a parseable phase list in the format expected by implement-specs
+**README Requirements for specs-implement:**
+- The README must include a parseable phase list in the format expected by specs-implement
 - For sequential phases: Include a numbered list (Phase 1, Phase 2, etc.) with file paths
 - For categorized phases: Include category sections with phase lists and explicit dependency information
 - The Feature Matrix table must include a Dependencies column with explicit dependency references
@@ -657,7 +657,7 @@ The specs created by this workflow are designed to work seamlessly with the `/im
 - **Dependency Format**: Use consistent phase name references (e.g., "Phase 1", "Phase 2: Foundation")
 - **Explicit Dependencies**: For sequential phases, dependencies are implicit (previous phases). For categorized phases, dependencies must be explicitly listed
 - **Dependency Column**: The Feature Matrix table must include a Dependencies column with comma-separated phase names
-- **Parsing Format**: The implement-specs workflow parses dependencies from the README Feature Matrix table. Ensure the Dependencies column uses the exact phase names as they appear in the phase file titles (e.g., "Phase 1: Foundation" not just "Phase 1")
+- **Parsing Format**: The specs-implement workflow parses dependencies from the README Feature Matrix table. Ensure the Dependencies column uses the exact phase names as they appear in the phase file titles (e.g., "Phase 1: Foundation" not just "Phase 1")
 
 **File Naming:**
 - Phase files must follow the `phase-*.md` pattern with numeric phase numbers
@@ -666,14 +666,14 @@ The specs created by this workflow are designed to work seamlessly with the `/im
 **Validation:**
 - All validation rules must pass before proceeding to implementation
 - Quality score should be ≥ 90% for best results
-- The implement-specs workflow will re-validate the spec structure before implementation
+- The specs-implement workflow will re-validate the spec structure before implementation
 
 ## Reference Materials
 
 For detailed templates, maintenance strategies, and guidelines, see:
-- **Templates**: `~/.codeium/windsurf/docs/specs-references/create-specs-templates.md` - Phase file and README templates
-- **Maintenance**: `~/.codeium/windsurf/docs/specs-references/create-specs-maintenance.md` - Migration, versioning, and import/export
-- **Guidelines**: `~/.codeium/windsurf/docs/specs-references/create-specs-guidelines.md` - Best practices and quality metrics
+- **Templates**: `~/.codeium/windsurf/docs/specs-references/specs-create-templates.md` - Phase file and README templates
+- **Maintenance**: `~/.codeium/windsurf/docs/specs-references/specs-create-maintenance.md` - Migration, versioning, and import/export
+- **Guidelines**: `~/.codeium/windsurf/docs/specs-references/specs-create-guidelines.md` - Best practices and quality metrics
 
 ## Error Handling
 
@@ -696,7 +696,7 @@ If an error occurs during spec creation:
 - **Warning**: Non-critical issue that should be addressed but doesn't block progress
 
 **Standardized Error Handling:**
-Both create-specs and implement-specs workflows use consistent error categorization and user interaction patterns to ensure a uniform user experience across workflows.
+Both specs-create and specs-implement workflows use consistent error categorization and user interaction patterns to ensure a uniform user experience across workflows.
 
 **Common Errors and Solutions:**
 

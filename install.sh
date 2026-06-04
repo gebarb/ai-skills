@@ -31,7 +31,7 @@ get_agent_config() {
             case $config_type in
                 name) echo "Claude" ;;
                 base_dir) echo "$HOME/.claude" ;;
-                workflows_subdir) echo "skills" ;;
+                workflows_subdir) echo "workflows" ;;
                 docs_subdir) echo "docs" ;;
             esac
             ;;

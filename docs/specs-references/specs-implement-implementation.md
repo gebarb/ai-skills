@@ -4,12 +4,12 @@ description: Implement specs and phases from a repository - Implementation Phase
 
 # Spec Implementation Workflow - Implementation Phase
 
-This is the implementation phase of the implement-specs workflow, covering Steps 10-19: Implement phase, code quality checks, test execution, verification, code review, progress update, save code, cleanup checkpoint, continue to next phase, and completion.
+This is the implementation phase of the specs-implement workflow, covering Steps 10-19: Implement phase, code quality checks, test execution, verification, code review, progress update, save code, cleanup checkpoint, continue to next phase, and completion.
 
-**Note**: Technology stack selection (language, frameworks, architecture, etc.) is handled in the create-specs workflow. This implementation workflow uses the technology decisions documented in the specs.
+**Note**: Technology stack selection (language, frameworks, architecture, etc.) is handled in the specs-create workflow. This implementation workflow uses the technology decisions documented in the specs.
 
 For the complete workflow, see:
-- Setup Phase: `~/.codeium/windsurf/docs/specs-references/implement-specs-setup.md` (Steps 1-9)
+- Setup Phase: `~/.codeium/windsurf/docs/specs-references/specs-implement-setup.md` (Steps 1-9)
 - Implementation Phase: This file (Steps 10-19)
 
 ## Workflow Steps
@@ -329,5 +329,5 @@ Next steps:
 ## Reference Materials
 
 For detailed progress tracking, error handling, and guidelines, see:
-- **Progress Tracking**: `~/.codeium/windsurf/docs/specs-references/implement-specs-progress.md` - Progress file format and validation
-- **Error Handling**: `~/.codeium/windsurf/docs/specs-references/implement-specs-handling.md` - Error handling, rollback, and spec updates
+- **Progress Tracking**: `~/.codeium/windsurf/docs/specs-references/specs-implement-progress.md` - Progress file format and validation
+- **Error Handling**: `~/.codeium/windsurf/docs/specs-references/specs-implement-handling.md` - Error handling, rollback, and spec updates

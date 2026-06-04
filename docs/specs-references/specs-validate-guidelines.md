@@ -1,5 +1,5 @@
 ---
-description: Guidelines and best practices for the validate-specs workflow
+description: Guidelines and best practices for the specs-validate workflow
 ---
 
 # Spec Validation Workflow - Guidelines and Best Practices
@@ -233,7 +233,7 @@ Overall Health = Average of all phase health scores
 - 90-100%: Ready for implementation
 - 70-89%: Ready with conditions
 - 50-69%: Needs work before implementation
-- <50%: Not ready, return to create-specs
+- <50%: Not ready, return to specs-create
 
 ## Readiness Assessment Criteria
 
@@ -247,7 +247,7 @@ Overall Health = Average of all phase health scores
 - Dependencies validated
 
 **Action:**
-Proceed to implement-specs workflow.
+Proceed to specs-implement workflow.
 
 ---
 
@@ -287,7 +287,7 @@ Address issues before implementation, then re-validate.
 - Unresolvable dependencies
 
 **Action:**
-Return to create-specs workflow for major rework.
+Return to specs-create workflow for major rework.
 
 ## Communication Guidelines
 

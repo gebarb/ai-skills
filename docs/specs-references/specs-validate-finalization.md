@@ -4,13 +4,13 @@ description: Validate specs through comprehensive multi-perspective review - Par
 
 # Spec Validation Workflow - Part 5: Finalization Phase
 
-This is Part 5 of the validate-specs workflow, covering Steps 13-14: Re-validating modified specs and generating the final validation summary.
+This is Part 5 of the specs-validate workflow, covering Steps 13-14: Re-validating modified specs and generating the final validation summary.
 
 For the complete workflow, see:
-- Initial Assessment: `~/.codeium/windsurf/docs/specs-references/validate-specs-initial.md` (Steps 1-3)
-- Multi-Perspective Review: `~/.codeium/windsurf/docs/specs-references/validate-specs-review.md` (Steps 4-6)
-- Synthesis: `~/.codeium/windsurf/docs/specs-references/validate-specs-synthesis.md` (Steps 7-9)
-- User Interaction: `~/.codeium/windsurf/docs/specs-references/validate-specs-interaction.md` (Steps 10-12)
+- Initial Assessment: `~/.codeium/windsurf/docs/specs-references/specs-validate-initial.md` (Steps 1-3)
+- Multi-Perspective Review: `~/.codeium/windsurf/docs/specs-references/specs-validate-review.md` (Steps 4-6)
+- Synthesis: `~/.codeium/windsurf/docs/specs-references/specs-validate-synthesis.md` (Steps 7-9)
+- User Interaction: `~/.codeium/windsurf/docs/specs-references/specs-validate-interaction.md` (Steps 10-12)
 - Finalization: This file (Steps 13-14)
 
 ## Usage
@@ -18,7 +18,7 @@ For the complete workflow, see:
 Run this workflow from the root of your repository:
 
 ```
-/validate-specs
+/specs-validate
 ```
 
 ## Workflow Steps
@@ -171,7 +171,7 @@ Overall Re-validation Status: [PASS / NEEDS ATTENTION / FAIL]
 
 **Ready for Implementation:**
 If specs are ready:
-- Confirm readiness for implement-specs workflow
+- Confirm readiness for specs-implement workflow
 - List any known limitations or accepted issues
 - Provide implementation guidance
 - Note any special considerations
@@ -258,7 +258,7 @@ If specs need more work:
 **If Ready:**
 The specs are ready for implementation. Run:
 ```
-/implement-specs
+/specs-implement
 ```
 
 **Special Considerations:**
@@ -272,7 +272,7 @@ Recommended next steps:
 
 Re-run validation after completing:
 ```
-/validate-specs
+/specs-validate
 ```
 
 ---
@@ -310,18 +310,18 @@ Re-run validation after completing:
 
 ## Workflow Complete
 
-The validate-specs workflow is now complete. Based on the final status:
+The specs-validate workflow is now complete. Based on the final status:
 
 **If READY:**
-- Proceed to `/implement-specs` workflow
+- Proceed to `/specs-implement` workflow
 - Specs are validated and ready for implementation
 
 **If NEEDS WORK:**
 - Address remaining issues
-- Re-run `/validate-specs` when ready
-- Or return to `/create-specs` if major rework needed
+- Re-run `/specs-validate` when ready
+- Or return to `/specs-create` if major rework needed
 
 **If NOT READY:**
-- Return to `/create-specs` workflow
+- Return to `/specs-create` workflow
 - Specs require significant rework
-- Re-run validation after create-specs completes
+- Re-run validation after specs-create completes

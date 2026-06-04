@@ -8,7 +8,7 @@ This repository contains skills/workflows that can be used with Cascade AI to st
 
 ## Available Skills
 
-### `/create-specs`
+### `/specs-create`
 **Description**: Create comprehensive design and spec plans for a project with phases and implementation details.
 
 **Use Case**: When starting a new project or when you need to create detailed specifications with phased implementation plans.
@@ -21,9 +21,9 @@ This repository contains skills/workflows that can be used with Cascade AI to st
 - Validation and quality assessment
 - Iteration mode for refinements
 
-**File**: `workflows/create-specs.md`
+**File**: `workflows/specs-create.md`
 
-### `/validate-specs`
+### `/specs-validate`
 **Description**: Validate specs through comprehensive multi-perspective review before implementation.
 
 **Use Case**: When you have completed spec creation and want to validate them before implementation to identify issues, bugs, or gaps.
@@ -36,9 +36,9 @@ This repository contains skills/workflows that can be used with Cascade AI to st
 - Implementation of approved changes
 - Re-validation of modified specs
 
-**File**: `workflows/validate-specs.md`
+**File**: `workflows/specs-validate.md`
 
-### `/implement-specs`
+### `/specs-implement`
 **Description**: Implement specs and phases from a repository with progress tracking and user confirmation.
 
 **Use Case**: When you have existing specs in a `specs/` directory and want to implement them systematically.
@@ -52,7 +52,7 @@ This repository contains skills/workflows that can be used with Cascade AI to st
 - Code quality checks and testing
 - User confirmation between phases
 
-**File**: `workflows/implement-specs.md`
+**File**: `workflows/specs-implement.md`
 
 ## Installation
 
@@ -85,19 +85,19 @@ This will copy the workflows to `~/.codeium/windsurf/global_workflows/` and the 
 Once installed, use the skills directly in Cascade by typing the slash command:
 
 ```
-/create-specs
+/specs-create
 ```
 
 Then validate your specs:
 
 ```
-/validate-specs
+/specs-validate
 ```
 
 Finally, implement your validated specs:
 
 ```
-/implement-specs
+/specs-implement
 ```
 
 ## Directory Structure
@@ -107,23 +107,23 @@ cascade-skills/
 ├── README.md              # This file
 ├── install.sh            # Installation script
 ├── workflows/            # Workflow/skill definitions
-│   ├── create-specs.md   # Spec creation workflow
-│   ├── validate-specs.md # Spec validation workflow
-│   └── implement-specs.md # Spec implementation workflow
+│   ├── specs-create.md   # Spec creation workflow
+│   ├── specs-validate.md # Spec validation workflow
+│   └── specs-implement.md # Spec implementation workflow
 └── docs/                 # Reference documentation
     └── specs-references/ # Detailed reference materials for spec workflows
-        ├── create-specs-guidelines.md
-        ├── create-specs-maintenance.md
-        ├── create-specs-templates.md
-        ├── implement-specs-handling.md
-        ├── implement-specs-progress.md
-        ├── validate-specs-guidelines.md
-        ├── validate-specs-initial.md
-        ├── validate-specs-interaction.md
-        ├── validate-specs-finalization.md
-        ├── validate-specs-review.md
-        ├── validate-specs-synthesis.md
-        └── validate-specs-templates.md
+        ├── specs-create-guidelines.md
+        ├── specs-create-maintenance.md
+        ├── specs-create-templates.md
+        ├── specs-implement-handling.md
+        ├── specs-implement-progress.md
+        ├── specs-validate-guidelines.md
+        ├── specs-validate-initial.md
+        ├── specs-validate-interaction.md
+        ├── specs-validate-finalization.md
+        ├── specs-validate-review.md
+        ├── specs-validate-synthesis.md
+        └── specs-validate-templates.md
 ```
 
 ## Contributing

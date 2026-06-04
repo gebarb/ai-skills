@@ -4,21 +4,21 @@ description: Validate specs through comprehensive multi-perspective review - Par
 
 # Spec Validation Workflow - Part 4: User Interaction Phase
 
-This is Part 4 of the validate-specs workflow, covering Steps 10-12: Presenting the validation report, gathering user feedback, and implementing approved changes.
+This is Part 4 of the specs-validate workflow, covering Steps 10-12: Presenting the validation report, gathering user feedback, and implementing approved changes.
 
 For the complete workflow, see:
-- Initial Assessment: `~/.codeium/windsurf/docs/specs-references/validate-specs-initial.md` (Steps 1-3)
-- Multi-Perspective Review: `~/.codeium/windsurf/docs/specs-references/validate-specs-review.md` (Steps 4-6)
-- Synthesis: `~/.codeium/windsurf/docs/specs-references/validate-specs-synthesis.md` (Steps 7-9)
+- Initial Assessment: `~/.codeium/windsurf/docs/specs-references/specs-validate-initial.md` (Steps 1-3)
+- Multi-Perspective Review: `~/.codeium/windsurf/docs/specs-references/specs-validate-review.md` (Steps 4-6)
+- Synthesis: `~/.codeium/windsurf/docs/specs-references/specs-validate-synthesis.md` (Steps 7-9)
 - User Interaction: This file (Steps 10-12)
-- Finalization: `~/.codeium/windsurf/docs/specs-references/validate-specs-finalization.md` (Steps 13-14)
+- Finalization: `~/.codeium/windsurf/docs/specs-references/specs-validate-finalization.md` (Steps 13-14)
 
 ## Usage
 
 Run this workflow from the root of your repository:
 
 ```
-/validate-specs
+/specs-validate
 ```
 
 ## Workflow Steps
@@ -130,7 +130,7 @@ Based on the validation findings, please choose:
 Option A: Proceed to Implementation
 - Address critical issues only
 - Accept medium/low priority issues as-is
-- Continue to implement-specs workflow
+- Continue to specs-implement workflow
 
 Option B: Fix Issues First
 - Address critical and high priority issues
@@ -142,9 +142,9 @@ Option C: Comprehensive Refinement
 - Re-validate after fixes
 - Then proceed to implementation
 
-Option D: Return to Create-Specs
+Option D: Return to Specs-Create
 - Specs need major rework
-- Start over with create-specs workflow
+- Start over with specs-create workflow
 
 Option E: Custom Approach
 - Specify which issues to address
@@ -293,18 +293,18 @@ Custom Instructions:
 - Ask for clarification if needed
 - Confirm completion of changes
 
-**If User Chose Option D (Return to Create-Specs):**
+**If User Chose Option D (Return to Specs-Create):**
 - Do not implement changes
-- Recommend returning to create-specs workflow
+- Recommend returning to specs-create workflow
 - Provide summary of why major rework is needed
-- Offer guidance for next create-specs run
+- Offer guidance for next specs-create run
 
 **If User Chose Option A (Proceed to Implementation):**
 - Document accepted issues as known limitations
 - Create implementation notes
-- Proceed to implement-specs workflow
+- Proceed to specs-implement workflow
 - Carry forward known issues to implementation phase
 
 ## Continue to Part 5
 
-For Steps 13-14 (Finalization Phase), see `~/.codeium/windsurf/docs/specs-references/validate-specs-finalization.md`.
+For Steps 13-14 (Finalization Phase), see `~/.codeium/windsurf/docs/specs-references/specs-validate-finalization.md`.
