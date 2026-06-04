@@ -54,6 +54,36 @@ This repository contains skills/workflows that can be used with Cascade AI to st
 
 **File**: `workflows/implement-specs.md`
 
+### `/skill-builder`
+**Description**: Walk through creating a highly performant and accurate AI skill/workflow that follows Windsurf and Anthropic best practices and standards.
+
+**Use Case**: When creating new skills or workflows for Cascade/Windsurf to ensure they follow best practices and are optimized for successful execution.
+
+**Features**:
+- Skill vs workflow decision framework
+- Progressive disclosure structure design
+- Windsurf and Anthropic standards compliance
+- Comprehensive validation and testing
+- Iterative refinement process
+- Templates and guidelines
+
+**File**: `workflows/skill-builder.md`
+
+### `/skill-review`
+**Description**: Perform comprehensive 3-perspective review of AI skills/workflows with fresh context to ensure standards compliance and optimize execution success.
+
+**Use Case**: When reviewing and refining skills/workflows after creation or modification. Run 3+ times for optimal results.
+
+**Features**:
+- Three distinct analytical perspectives (Standards, Execution, Completeness)
+- Fresh context for each review iteration
+- Comprehensive issue identification and prioritization
+- User interaction for feedback and decisions
+- Implementation of approved changes
+- Re-validation and finalization
+
+**File**: `workflows/skill-review.md`
+
 ## Installation
 
 ### Quick Install
@@ -100,6 +130,18 @@ Finally, implement your validated specs:
 /implement-specs
 ```
 
+For creating new skills or workflows:
+
+```
+/skill-builder
+```
+
+For reviewing and refining skills/workflows:
+
+```
+/skill-review
+```
+
 ## Directory Structure
 
 ```
@@ -109,21 +151,37 @@ cascade-skills/
 ├── workflows/            # Workflow/skill definitions
 │   ├── create-specs.md   # Spec creation workflow
 │   ├── validate-specs.md # Spec validation workflow
-│   └── implement-specs.md # Spec implementation workflow
+│   ├── implement-specs.md # Spec implementation workflow
+│   ├── skill-builder.md  # Skill/workflow creation workflow
+│   └── skill-review.md   # Skill/workflow review workflow
 └── docs/                 # Reference documentation
-    └── specs-references/ # Detailed reference materials for spec workflows
-        ├── create-specs-guidelines.md
-        ├── create-specs-maintenance.md
-        ├── create-specs-templates.md
-        ├── implement-specs-handling.md
-        ├── implement-specs-progress.md
-        ├── validate-specs-guidelines.md
-        ├── validate-specs-initial.md
-        ├── validate-specs-interaction.md
-        ├── validate-specs-finalization.md
-        ├── validate-specs-review.md
-        ├── validate-specs-synthesis.md
-        └── validate-specs-templates.md
+    ├── specs-references/ # Detailed reference materials for spec workflows
+    │   ├── create-specs-guidelines.md
+    │   ├── create-specs-maintenance.md
+    │   ├── create-specs-templates.md
+    │   ├── implement-specs-handling.md
+    │   ├── implement-specs-progress.md
+    │   ├── validate-specs-guidelines.md
+    │   ├── validate-specs-initial.md
+    │   ├── validate-specs-interaction.md
+    │   ├── validate-specs-finalization.md
+    │   ├── validate-specs-review.md
+    │   ├── validate-specs-synthesis.md
+    │   └── validate-specs-templates.md
+    └── skills-references/ # Detailed reference materials for skill workflows
+        ├── skill-builder-planning.md
+        ├── skill-builder-creation.md
+        ├── skill-builder-validation.md
+        ├── skill-builder-refinement.md
+        ├── skill-builder-templates.md
+        ├── skill-builder-guidelines.md
+        ├── skill-review-initial.md
+        ├── skill-review-perspectives.md
+        ├── skill-review-synthesis.md
+        ├── skill-review-interaction.md
+        ├── skill-review-finalization.md
+        ├── skill-review-templates.md
+        └── skill-review-guidelines.md
 ```
 
 ## Contributing
