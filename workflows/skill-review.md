@@ -14,6 +14,7 @@ This workflow performs a comprehensive validation of AI skills or workflows usin
 - A skill or workflow file to review (SKILL.md or workflow markdown file)
 - Supporting files and documentation for the skill/workflow
 - Understanding of the intended use case and execution goals
+- **Important**: Understanding of the `{{DOCS_DIR}}` placeholder pattern for path resolution (see guidelines below)
 
 ## Platform Requirements
 
@@ -83,7 +84,7 @@ The workflow will prompt you to specify which skill/workflow to review.
 The complete workflow is organized into review phases that simulate multiple analytical perspectives:
 
 ### Initial Assessment Phase (Steps 1-3)
-See `~/.codeium/windsurf/docs/skills-references/skill-review-initial.md` for:
+See `{{DOCS_DIR}}/skill-review/initial.md` for:
 1. **Load Skill/Workflow with Fresh Context** - Read the skill/workflow and supporting files as if encountering them for the first time
 2. **Understand Intent and Goals** - Analyze the stated purpose and intended execution outcomes
 3. **Identify Scope and Boundaries** - Determine what the skill/workflow should and should not do
@@ -96,7 +97,7 @@ See `~/.codeium/windsurf/docs/skills-references/skill-review-initial.md` for:
 - Initial assessment summary created
 
 ### Multi-Perspective Review Phase (Steps 4-6)
-See `~/.codeium/windsurf/docs/skills-references/skill-review-perspectives.md` for:
+See `{{DOCS_DIR}}/skill-review/perspectives.md` for:
 
 4. **Subagent 1**: Standards & Best Practices Review
    - Verify compliance with Windsurf skill/workflow specifications
@@ -127,7 +128,7 @@ See `~/.codeium/windsurf/docs/skills-references/skill-review-perspectives.md` fo
 - Findings from each perspective documented separately
 
 ### Synthesis Phase (Steps 7-9)
-See `~/.codeium/windsurf/docs/skills-references/skill-review-synthesis.md` for:
+See `{{DOCS_DIR}}/skill-review/synthesis.md` for:
 7. **Aggregate Findings** - Compile issues and recommendations from all three perspectives
 8. **Prioritize Issues** - Categorize findings by severity (critical, high, medium, low)
 9. **Generate Review Report** - Create a comprehensive report with actionable recommendations
@@ -140,7 +141,7 @@ See `~/.codeium/windsurf/docs/skills-references/skill-review-synthesis.md` for:
 - Quick wins identified
 
 ### User Interaction Phase (Steps 10-12)
-See `~/.codeium/windsurf/docs/skills-references/skill-review-interaction.md` for:
+See `{{DOCS_DIR}}/skill-review/interaction.md` for:
 10. **Present Review Report** - Display findings with clear categorization and priorities
 11. **Gather User Feedback** - Collect user decisions on which recommendations to implement
 12. **Implement Approved Changes** - Apply the agreed-upon improvements to the skill/workflow
@@ -153,7 +154,7 @@ See `~/.codeium/windsurf/docs/skills-references/skill-review-interaction.md` for
 - User confirms satisfaction with changes
 
 ### Finalization Phase (Steps 13-14)
-See `~/.codeium/windsurf/docs/skills-references/skill-review-finalization.md` for:
+See `{{DOCS_DIR}}/skill-review/finalization.md` for:
 13. **Re-review Modified Skill/Workflow** - Validate that changes address the identified issues
 14. **Generate Final Summary** - Provide a summary of improvements made and remaining recommendations
 
@@ -204,13 +205,13 @@ If the user rejects all recommendations:
 ## Reference Materials
 
 For detailed review criteria, templates, and guidelines, see:
-- **Initial Assessment**: `~/.codeium/windsurf/docs/skills-references/skill-review-initial.md` - Steps 1-3
-- **Multi-Perspective Review**: `~/.codeium/windsurf/docs/skills-references/skill-review-perspectives.md` - Steps 4-6
-- **Synthesis**: `~/.codeium/windsurf/docs/skills-references/skill-review-synthesis.md` - Steps 7-9
-- **User Interaction**: `~/.codeium/windsurf/docs/skills-references/skill-review-interaction.md` - Steps 10-12
-- **Finalization**: `~/.codeium/windsurf/docs/skills-references/skill-review-finalization.md` - Steps 13-14
-- **Templates**: `~/.codeium/windsurf/docs/skills-references/skill-review-templates.md` - Review report templates
-- **Guidelines**: `~/.codeium/windsurf/docs/skills-references/skill-review-guidelines.md` - Review criteria and best practices
+- **Initial Assessment**: `{{DOCS_DIR}}/skill-review/initial.md` - Steps 1-3
+- **Multi-Perspective Review**: `{{DOCS_DIR}}/skill-review/perspectives.md` - Steps 4-6
+- **Synthesis**: `{{DOCS_DIR}}/skill-review/synthesis.md` - Steps 7-9
+- **User Interaction**: `{{DOCS_DIR}}/skill-review/interaction.md` - Steps 10-12
+- **Finalization**: `{{DOCS_DIR}}/skill-review/finalization.md` - Steps 13-14
+- **Templates**: `{{DOCS_DIR}}/skill-review/templates.md` - Review report templates
+- **Guidelines**: `{{DOCS_DIR}}/skill-review/guidelines.md` - Review criteria and best practices
 
 ## Integration in Development Lifecycle
 

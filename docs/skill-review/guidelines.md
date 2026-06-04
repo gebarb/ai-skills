@@ -2,6 +2,50 @@
 
 This document provides comprehensive guidelines for conducting effective skill/workflow reviews.
 
+## Path Resolution Pattern
+
+**Critical**: All skills and workflows MUST use the `{{DOCS_DIR}}` placeholder pattern for referencing their **internal reference documentation files**. This ensures compatibility across different AI agents and execution contexts.
+
+### When to Use {{DOCS_DIR}}
+
+Use `{{DOCS_DIR}}` ONLY for:
+- **Internal reference docs**: Documentation files that belong to the skill/workflow itself (e.g., `{{DOCS_DIR}}/skill-name/guidelines.md`)
+- **Cascade-skills repository docs**: Reference materials that are part of this repository's documentation structure
+- **Skill's own supporting files**: Documentation files that are bundled with the skill/workflow
+
+### When NOT to Use {{DOCS_DIR}}
+
+DO NOT use `{{DOCS_DIR}}` for:
+- **External URLs**: Keep URLs as-is (e.g., `https://example.com/docs`)
+- **User-provided files**: Keep user file paths as provided (e.g., `/path/to/user/file.md`)
+- **Absolute paths to external resources**: Keep external absolute paths unchanged
+- **Files from prompts**: Keep file references from user prompts unchanged
+- **System paths**: Keep system-specific paths unchanged
+
+### Path Format
+
+When referencing internal documentation files from a workflow or skill:
+- Use: `{{DOCS_DIR}}/skill-name/file-name.md`
+- Example: `{{DOCS_DIR}}/skill-review/guidelines.md`
+- Example: `{{DOCS_DIR}}/specs-create/planning.md`
+
+### Why This Pattern Matters
+
+- AI agents execute workflows from the user's repository root, not from the workflows directory
+- Relative paths (e.g., `../docs/`) would resolve incorrectly
+- Absolute paths are agent-specific and not portable
+- The `{{DOCS_DIR}}` placeholder is replaced at install time with the correct absolute path for the selected agent
+- Ensures internal doc references work regardless of execution context
+
+### Enforcement
+
+- All workflow files MUST use `{{DOCS_DIR}}` for **internal doc references only**
+- All doc files that reference **other internal docs** MUST use `{{DOCS_DIR}}`
+- The install.sh script automatically replaces placeholders during installation
+- Skills reviewed using this workflow MUST follow this pattern for internal docs
+- Reviewers MUST verify that skills/workflows use the correct path pattern for internal docs
+- External references, URLs, and user-provided paths MUST remain unchanged
+
 ## Review Philosophy
 
 ### Fresh Context Principle

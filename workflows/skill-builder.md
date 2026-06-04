@@ -12,6 +12,7 @@ This workflow guides you through creating a highly performant and accurate AI sk
 - Clear understanding of the task or process you want to automate
 - Basic familiarity with Cascade/Windsurf skills and workflows
 - Understanding of the difference between Skills (automatic invocation) and Workflows (manual invocation)
+- **Important**: Understanding of the `{{DOCS_DIR}}` placeholder pattern for path resolution (see guidelines below)
 
 ## Platform Requirements
 
@@ -33,7 +34,7 @@ Run this workflow from the root of your repository:
 The complete workflow is organized into phases to ensure comprehensive skill/workflow creation:
 
 ### Planning Phase (Steps 1-5)
-See `~/.codeium/windsurf/docs/skills-references/skill-builder-planning.md` for:
+See `{{DOCS_DIR}}/skill-builder/planning.md` for:
 1. **Determine Skill vs Workflow** - Decide whether to create a Skill (automatic invocation) or Workflow (manual invocation)
 2. **Define Purpose and Scope** - Clearly articulate what the skill/workflow should accomplish and its boundaries
 3. **Identify Use Cases** - Map out specific scenarios where this skill/workflow will be used
@@ -41,7 +42,7 @@ See `~/.codeium/windsurf/docs/skills-references/skill-builder-planning.md` for:
 5. **Design Progressive Disclosure Structure** - Plan how to organize information across SKILL.md and supporting files
 
 ### Creation Phase (Steps 6-12)
-See `~/.codeium/windsurf/docs/skills-references/skill-builder-creation.md` for:
+See `{{DOCS_DIR}}/skill-builder/creation.md` for:
 6. **Create Skill/Workflow Directory** - Set up the proper directory structure
 7. **Write YAML Frontmatter** - Create proper name and description following Windsurf standards
 8. **Draft Core Content** - Write the main SKILL.md or workflow markdown content
@@ -51,7 +52,7 @@ See `~/.codeium/windsurf/docs/skills-references/skill-builder-creation.md` for:
 12. **Include Examples and Usage Instructions** - Make the skill/workflow easy to understand and use
 
 ### Validation Phase (Steps 13-17)
-See `~/.codeium/windsurf/docs/skills-references/skill-builder-validation.md` for:
+See `{{DOCS_DIR}}/skill-builder/validation.md` for:
 13. **Self-Review Against Standards** - Verify compliance with Windsurf and Anthropic best practices
 14. **Test Execution Path** - Walk through the skill/workflow step by step
 15. **Validate Progressive Disclosure** - Ensure information loads at appropriate levels
@@ -59,7 +60,7 @@ See `~/.codeium/windsurf/docs/skills-references/skill-builder-validation.md` for
 17. **Verify Completeness** - Ensure all necessary context is provided
 
 ### Refinement Phase (Steps 18-20)
-See `~/.codeium/windsurf/docs/skills-references/skill-builder-refinement.md` for:
+See `{{DOCS_DIR}}/skill-builder/refinement.md` for:
 18. **Iterate Based on Review** - Make improvements identified during validation
 19. **Add Documentation** - Create supporting documentation if needed
 20. **Final Polish** - Ensure clarity, consistency, and professional quality
@@ -67,12 +68,12 @@ See `~/.codeium/windsurf/docs/skills-references/skill-builder-refinement.md` for
 ## Reference Materials
 
 For detailed templates, guidelines, and best practices, see:
-- **Planning Phase**: `~/.codeium/windsurf/docs/skills-references/skill-builder-planning.md` - Steps 1-5
-- **Creation Phase**: `~/.codeium/windsurf/docs/skills-references/skill-builder-creation.md` - Steps 6-12
-- **Validation Phase**: `~/.codeium/windsurf/docs/skills-references/skill-builder-validation.md` - Steps 13-17
-- **Refinement Phase**: `~/.codeium/windsurf/docs/skills-references/skill-builder-refinement.md` - Steps 18-20
-- **Templates**: `~/.codeium/windsurf/docs/skills-references/skill-builder-templates.md` - SKILL.md and workflow templates
-- **Guidelines**: `~/.codeium/windsurf/docs/skills-references/skill-builder-guidelines.md` - Windsurf and Anthropic standards
+- **Planning Phase**: `{{DOCS_DIR}}/skill-builder/planning.md` - Steps 1-5
+- **Creation Phase**: `{{DOCS_DIR}}/skill-builder/creation.md` - Steps 6-12
+- **Validation Phase**: `{{DOCS_DIR}}/skill-builder/validation.md` - Steps 13-17
+- **Refinement Phase**: `{{DOCS_DIR}}/skill-builder/refinement.md` - Steps 18-20
+- **Templates**: `{{DOCS_DIR}}/skill-builder/templates.md` - SKILL.md and workflow templates
+- **Guidelines**: `{{DOCS_DIR}}/skill-builder/guidelines.md` - Windsurf and Anthropic standards
 
 ## Integration in Development Lifecycle
 

@@ -194,13 +194,28 @@ cascade-skills/
     │   ├── progress.md
     │   ├── setup.md
     │   └── implementation.md
-    └── specs-validate/  # Spec validation references
+    ├── specs-validate/  # Spec validation references
+    │   ├── guidelines.md
+    │   ├── initial.md
+    │   ├── interaction.md
+    │   ├── finalization.md
+    │   ├── review.md
+    │   ├── synthesis.md
+    │   └── templates.md
+    ├── skill-builder/  # Skill/workflow creation references
+    │   ├── guidelines.md
+    │   ├── planning.md
+    │   ├── creation.md
+    │   ├── validation.md
+    │   ├── refinement.md
+    │   └── templates.md
+    └── skill-review/  # Skill/workflow review references
         ├── guidelines.md
         ├── initial.md
+        ├── perspectives.md
+        ├── synthesis.md
         ├── interaction.md
         ├── finalization.md
-        ├── review.md
-        ├── synthesis.md
         └── templates.md
 ```
 
@@ -213,6 +228,7 @@ To add a new skill:
 3. Add the YAML frontmatter with a description:
    ```yaml
    ---
+   name: skill-name
    description: Brief description of what this skill does
    ---
    ```
