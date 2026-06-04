@@ -8,7 +8,7 @@ This repository contains skills/workflows that can be used with Cascade AI to st
 
 ## Available Skills
 
-### `/create-specs`
+### `/specs-create`
 **Description**: Create comprehensive design and spec plans for a project with phases and implementation details.
 
 **Use Case**: When starting a new project or when you need to create detailed specifications with phased implementation plans.
@@ -21,9 +21,9 @@ This repository contains skills/workflows that can be used with Cascade AI to st
 - Validation and quality assessment
 - Iteration mode for refinements
 
-**File**: `workflows/create-specs.md`
+**File**: `workflows/specs-create.md`
 
-### `/validate-specs`
+### `/specs-validate`
 **Description**: Validate specs through comprehensive multi-perspective review before implementation.
 
 **Use Case**: When you have completed spec creation and want to validate them before implementation to identify issues, bugs, or gaps.
@@ -36,9 +36,9 @@ This repository contains skills/workflows that can be used with Cascade AI to st
 - Implementation of approved changes
 - Re-validation of modified specs
 
-**File**: `workflows/validate-specs.md`
+**File**: `workflows/specs-validate.md`
 
-### `/implement-specs`
+### `/specs-implement`
 **Description**: Implement specs and phases from a repository with progress tracking and user confirmation.
 
 **Use Case**: When you have existing specs in a `specs/` directory and want to implement them systematically.
@@ -52,7 +52,7 @@ This repository contains skills/workflows that can be used with Cascade AI to st
 - Code quality checks and testing
 - User confirmation between phases
 
-**File**: `workflows/implement-specs.md`
+**File**: `workflows/specs-implement.md`
 
 ### `/skill-builder`
 **Description**: Walk through creating a highly performant and accurate AI skill/workflow that follows Windsurf and Anthropic best practices and standards.
@@ -88,16 +88,21 @@ This repository contains skills/workflows that can be used with Cascade AI to st
 
 ### Quick Install
 
-Run the installation script to copy all skills to the global Windsurf directory:
+Run the installation script to copy all skills to the global directory for your AI agent:
 
 ```bash
 ./install.sh
 ```
 
-This will copy the workflows to `~/.codeium/windsurf/global_workflows/` and the docs to `~/.codeium/windsurf/docs/`, making them available in every workspace on your machine.
+The script will prompt you to select your AI agent (Windsurf or Claude) and copy the workflows and docs to the appropriate directories, making them available in every workspace on your machine.
+
+**Supported Agents:**
+- **Windsurf**: Workflows to `~/.codeium/windsurf/global_workflows/`, Docs to `~/.codeium/windsurf/docs/`
+- **Claude**: Workflows to `~/.claude/workflows/`, Docs to `~/.claude/docs/`
 
 ### Manual Installation
 
+For Windsurf:
 1. Copy the workflow files to the global Windsurf workflows directory:
    ```bash
    mkdir -p ~/.codeium/windsurf/global_workflows
@@ -110,24 +115,47 @@ This will copy the workflows to `~/.codeium/windsurf/global_workflows/` and the 
    cp -r docs/* ~/.codeium/windsurf/docs/
    ```
 
+For Claude:
+1. Copy the workflow files to the Claude workflows directory:
+   ```bash
+   mkdir -p ~/.claude/workflows
+   cp -r workflows/* ~/.claude/workflows/
+   ```
+
+2. Copy the documentation files to the Claude docs directory:
+   ```bash
+   mkdir -p ~/.claude/docs
+   cp -r docs/* ~/.claude/docs/
+   ```
+
+### Path Resolution
+
+Workflow files use **placeholder paths** (`{{DOCS_DIR}}`) that are replaced with absolute paths during installation. This ensures compatibility across different AI agents and execution contexts:
+
+- **Source files** in this repository use `{{DOCS_DIR}}` placeholders
+- **During installation**, the install.sh script replaces `{{DOCS_DIR}}` with the actual absolute path to the docs directory for the selected agent
+- **Installed files** contain absolute paths (e.g., `~/.codeium/windsurf/docs/` or `~/.claude/docs/`) that work regardless of where the AI agent executes from
+
+This approach ensures that paths are correct whether the agent executes from the workflows directory, the repository root, or any other location.
+
 ## Usage
 
 Once installed, use the skills directly in Cascade by typing the slash command:
 
 ```
-/create-specs
+/specs-create
 ```
 
 Then validate your specs:
 
 ```
-/validate-specs
+/specs-validate
 ```
 
 Finally, implement your validated specs:
 
 ```
-/implement-specs
+/specs-implement
 ```
 
 For creating new skills or workflows:
@@ -149,39 +177,31 @@ cascade-skills/
 ├── README.md              # This file
 ├── install.sh            # Installation script
 ├── workflows/            # Workflow/skill definitions
-│   ├── create-specs.md   # Spec creation workflow
-│   ├── validate-specs.md # Spec validation workflow
-│   ├── implement-specs.md # Spec implementation workflow
+│   ├── specs-create.md   # Spec creation workflow
+│   ├── specs-validate.md # Spec validation workflow
+│   ├── specs-implement.md # Spec implementation workflow
 │   ├── skill-builder.md  # Skill/workflow creation workflow
 │   └── skill-review.md   # Skill/workflow review workflow
 └── docs/                 # Reference documentation
-    ├── specs-references/ # Detailed reference materials for spec workflows
-    │   ├── create-specs-guidelines.md
-    │   ├── create-specs-maintenance.md
-    │   ├── create-specs-templates.md
-    │   ├── implement-specs-handling.md
-    │   ├── implement-specs-progress.md
-    │   ├── validate-specs-guidelines.md
-    │   ├── validate-specs-initial.md
-    │   ├── validate-specs-interaction.md
-    │   ├── validate-specs-finalization.md
-    │   ├── validate-specs-review.md
-    │   ├── validate-specs-synthesis.md
-    │   └── validate-specs-templates.md
-    └── skills-references/ # Detailed reference materials for skill workflows
-        ├── skill-builder-planning.md
-        ├── skill-builder-creation.md
-        ├── skill-builder-validation.md
-        ├── skill-builder-refinement.md
-        ├── skill-builder-templates.md
-        ├── skill-builder-guidelines.md
-        ├── skill-review-initial.md
-        ├── skill-review-perspectives.md
-        ├── skill-review-synthesis.md
-        ├── skill-review-interaction.md
-        ├── skill-review-finalization.md
-        ├── skill-review-templates.md
-        └── skill-review-guidelines.md
+    ├── specs-create/  # Spec creation references
+    │   ├── guidelines.md
+    │   ├── maintenance.md
+    │   ├── templates.md
+    │   ├── execution.md
+    │   └── planning.md
+    ├── specs-implement/  # Spec implementation references
+    │   ├── handling.md
+    │   ├── progress.md
+    │   ├── setup.md
+    │   └── implementation.md
+    └── specs-validate/  # Spec validation references
+        ├── guidelines.md
+        ├── initial.md
+        ├── interaction.md
+        ├── finalization.md
+        ├── review.md
+        ├── synthesis.md
+        └── templates.md
 ```
 
 ## Contributing

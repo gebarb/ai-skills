@@ -140,7 +140,7 @@ ls -la specs/
 - Use separate spec proposal files for spec proposal workflows
 
 **Backup/Restore Coordination with Implementation:**
-- Spec backups (create-specs) and implementation checkpoints (implement-specs) serve different purposes
+- Spec backups (specs-create) and implementation checkpoints (specs-implement) serve different purposes
 - Spec backups preserve the design and specification documents
 - Implementation checkpoints preserve the code state during phase implementation
 - When restoring from a spec backup, ensure it aligns with the current implementation state

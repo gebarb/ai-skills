@@ -8,7 +8,7 @@ This file contains templates for the spec creation workflow.
 
 ## Phase File Template
 
-Each phase file will follow this standardized structure (compatible with `/implement-specs` workflow):
+Each phase file will follow this standardized structure (compatible with `/specs-implement` workflow):
 
 ```markdown
 # Phase [N]: [Phase Name]
@@ -84,7 +84,7 @@ List any phases that must be completed before this phase can be implemented:
   - `[slug]` is a lowercase, hyphenated description (e.g., foundation, user-auth)
   - Examples: `phase-1-foundation.md`, `phase-2-user-auth.md`
   - **NOT** valid: `phase-1a-*.md`, `phase-A-foundation.md`
-- This naming pattern is required for compatibility with the `/implement-specs` workflow
+- This naming pattern is required for compatibility with the `/specs-implement` workflow
 
 **Phase Numbering for Categorized Phases:**
 - For Option B (Categorized phases): Phase numbers must be globally sequential (1, 2, 3, 4...) regardless of category
@@ -99,9 +99,9 @@ List any phases that must be completed before this phase can be implemented:
 - Technical requirements should use bold labels with colons
 - Success criteria must be specific and measurable
 - Optional sections can be added as needed
-- This format is compatible with the `/implement-specs` workflow
+- This format is compatible with the `/specs-implement` workflow
 
-**Required for implement-specs compatibility:**
+**Required for specs-implement compatibility:**
 - All required sections (Overview, Context, Implementation Tasks, Technical Requirements, Success Criteria) must be present
 - Phase file naming must follow the `phase-[N]-[slug].md` pattern with numeric phase number
 - Success criteria should use action verbs (verify, confirm, ensure, validate) for measurability
@@ -131,7 +131,7 @@ The README will be generated with sections appropriate to your project structure
 ### Critical Path
 [Dependency tree or diagram]
 
-### Phase List (for implement-specs parsing)
+### Phase List (for specs-implement parsing)
 ```
 Phase 1: [Phase Name] - specs/phase-1-[slug].md
 Phase 2: [Phase Name] - specs/phase-2-[slug].md
