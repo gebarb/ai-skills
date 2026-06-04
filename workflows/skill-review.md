@@ -1,6 +1,6 @@
 ---
 name: skill-review
-description: Perform comprehensive 3-perspective review of AI skills/workflows with fresh context to ensure standards compliance and optimize execution success
+description: Comprehensive 3-perspective review of AI skills/workflows ensuring standards compliance and execution success
 ---
 
 # Skill Review Workflow
@@ -34,6 +34,50 @@ The workflow will prompt you to specify which skill/workflow to review.
 
 **Recommended:** Run this workflow 3+ times after creating or modifying a skill/workflow to ensure thorough refinement. Each run provides fresh context and can identify different issues.
 
+## How to Execute This Workflow
+
+### Step-by-Step Execution
+
+1. **Initial Assessment Phase (Steps 1-3)**
+   - Read the skill/workflow file completely from start to finish
+   - Read all supporting files referenced in the skill/workflow
+   - Document your initial observations using the template in `docs/skills-references/skill-review-initial.md`
+   - Identify the stated purpose, goals, and scope
+   - Note any unclear sections or missing information
+
+2. **Multi-Perspective Review Phase (Steps 4-6)**
+   - Apply each perspective sequentially with fresh context:
+     - **Subagent 1 (Standards)**: Use the checklists in `docs/skills-references/skill-review-perspectives.md` to verify compliance
+     - **Subagent 2 (Execution)**: Walk through the skill/workflow execution mentally, identifying bottlenecks and ambiguities
+     - **Subagent 3 (Completeness)**: Check for missing requirements, context gaps, and goal achievement
+   - Document findings for each perspective independently
+   - Don't let findings from one perspective influence another
+
+3. **Synthesis Phase (Steps 7-9)**
+   - Aggregate all findings from the three perspectives
+   - Identify related issues and root causes
+   - Prioritize issues by severity using the framework in `docs/skills-references/skill-review-synthesis.md`
+   - Generate a comprehensive validation report using the templates provided
+
+4. **User Interaction Phase (Steps 10-12)**
+   - Present the validation report to the user with clear prioritization
+   - Gather user decisions on which recommendations to implement
+   - Implement approved changes to the skill/workflow
+   - Document all changes made
+
+5. **Finalization Phase (Steps 13-14)**
+   - Re-review the modified skill/workflow with fresh context
+   - Verify that changes address the identified issues
+   - Check for regressions (new issues introduced by changes)
+   - Generate a final summary of improvements and remaining recommendations
+
+### Key Principles
+
+- **Fresh Context**: Approach each perspective as if reviewing for the first time
+- **Independence**: Each perspective should operate independently without cross-referencing
+- **Depth**: Go beyond surface-level checks, provide specific examples and explanations
+- **Balance**: Note strengths as well as weaknesses, provide constructive feedback
+
 ## Workflow Steps
 
 The complete workflow is organized into review phases that simulate multiple analytical perspectives:
@@ -43,6 +87,13 @@ See `~/.codeium/windsurf/docs/skills-references/skill-review-initial.md` for:
 1. **Load Skill/Workflow with Fresh Context** - Read the skill/workflow and supporting files as if encountering them for the first time
 2. **Understand Intent and Goals** - Analyze the stated purpose and intended execution outcomes
 3. **Identify Scope and Boundaries** - Determine what the skill/workflow should and should not do
+
+**Success Criteria**:
+- Skill/workflow file read completely
+- All supporting files located and read
+- Intent and goals documented
+- Scope and boundaries identified
+- Initial assessment summary created
 
 ### Multi-Perspective Review Phase (Steps 4-6)
 See `~/.codeium/windsurf/docs/skills-references/skill-review-perspectives.md` for:
@@ -68,11 +119,25 @@ See `~/.codeium/windsurf/docs/skills-references/skill-review-perspectives.md` fo
    - Validate success criteria and acceptance criteria
    - Assess whether the skill/workflow achieves its stated goals
 
+**Success Criteria**:
+- All three perspectives applied independently with fresh context
+- Standards compliance verified with checklist
+- Execution flow analyzed and documented
+- Completeness gaps identified and documented
+- Findings from each perspective documented separately
+
 ### Synthesis Phase (Steps 7-9)
 See `~/.codeium/windsurf/docs/skills-references/skill-review-synthesis.md` for:
 7. **Aggregate Findings** - Compile issues and recommendations from all three perspectives
 8. **Prioritize Issues** - Categorize findings by severity (critical, high, medium, low)
 9. **Generate Review Report** - Create a comprehensive report with actionable recommendations
+
+**Success Criteria**:
+- All findings from three perspectives aggregated
+- Related issues identified and correlated
+- Issues prioritized by severity using framework
+- Comprehensive validation report generated
+- Quick wins identified
 
 ### User Interaction Phase (Steps 10-12)
 See `~/.codeium/windsurf/docs/skills-references/skill-review-interaction.md` for:
@@ -80,10 +145,61 @@ See `~/.codeium/windsurf/docs/skills-references/skill-review-interaction.md` for
 11. **Gather User Feedback** - Collect user decisions on which recommendations to implement
 12. **Implement Approved Changes** - Apply the agreed-upon improvements to the skill/workflow
 
+**Success Criteria**:
+- Validation report presented with clear prioritization
+- User feedback collected on recommendations
+- Approved changes implemented
+- Changes documented in change log
+- User confirms satisfaction with changes
+
 ### Finalization Phase (Steps 13-14)
 See `~/.codeium/windsurf/docs/skills-references/skill-review-finalization.md` for:
 13. **Re-review Modified Skill/Workflow** - Validate that changes address the identified issues
 14. **Generate Final Summary** - Provide a summary of improvements made and remaining recommendations
+
+**Success Criteria**:
+- Modified skill/workflow re-reviewed with fresh context
+- Issue resolution verified
+- No regressions introduced
+- Final summary generated
+- Readiness assessment provided
+
+## Troubleshooting
+
+### Reference Files Not Found
+If reference files are not at the expected location:
+- Check if they exist in `docs/skills-references/` relative to the repository root
+- Verify you're running the workflow from the repository root directory
+- Adjust paths based on your workspace structure if needed
+- Contact workflow maintainer if files are missing
+
+### Skill/Workflow File Won't Load
+If the skill/workflow file cannot be read:
+- Verify the file exists and has correct permissions (644 for files)
+- Check if the file is valid markdown format
+- Ensure YAML frontmatter is properly formatted (starts and ends with `---`)
+- Verify the file is not corrupted or truncated
+
+### Review Seems Incomplete
+If the review feels incomplete or rushed:
+- Ensure you're applying each perspective with fresh context
+- Don't skip steps or phases - follow the workflow sequentially
+- Use the checklists in the reference materials systematically
+- Take time to document specific evidence for each issue
+
+### No Issues Found
+If you find no issues during review:
+- Consider running the workflow again with fresh context (recommended 3+ times)
+- Check if you're being too lenient - review the severity guidelines
+- Verify you're using all three perspectives independently
+- Consider if the skill/workflow is truly perfect or if you missed something
+
+### User Rejects All Recommendations
+If the user rejects all recommendations:
+- Present issues with more specific evidence and examples
+- Explain the impact and severity more clearly
+- Offer to implement quick wins first to build trust
+- Respect user decisions but document the rationale
 
 ## Reference Materials
 
