@@ -112,18 +112,25 @@ cascade-skills/
 │   └── specs-implement.md # Spec implementation workflow
 └── docs/                 # Reference documentation
     └── specs-references/ # Detailed reference materials for spec workflows
-        ├── specs-create-guidelines.md
-        ├── specs-create-maintenance.md
-        ├── specs-create-templates.md
-        ├── specs-implement-handling.md
-        ├── specs-implement-progress.md
-        ├── specs-validate-guidelines.md
-        ├── specs-validate-initial.md
-        ├── specs-validate-interaction.md
-        ├── specs-validate-finalization.md
-        ├── specs-validate-review.md
-        ├── specs-validate-synthesis.md
-        └── specs-validate-templates.md
+        ├── specs-create/  # Spec creation references
+        │   ├── guidelines.md
+        │   ├── maintenance.md
+        │   ├── templates.md
+        │   ├── execution.md
+        │   └── planning.md
+        ├── specs-implement/  # Spec implementation references
+        │   ├── handling.md
+        │   ├── progress.md
+        │   ├── setup.md
+        │   └── implementation.md
+        └── specs-validate/  # Spec validation references
+            ├── guidelines.md
+            ├── initial.md
+            ├── interaction.md
+            ├── finalization.md
+            ├── review.md
+            ├── synthesis.md
+            └── templates.md
 ```
 
 ## Contributing

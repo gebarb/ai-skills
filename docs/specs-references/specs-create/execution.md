@@ -7,7 +7,7 @@ description: Create comprehensive design and spec plans for a project - Part 2: 
 This is Part 2 of the specs-create workflow, covering Steps 6-13: Phase detail gathering, README generation, validation, spec readiness assessment, file generation, review and refine, iteration mode, and finalization.
 
 For the complete workflow, see:
-- Planning Phase: `~/.codeium/windsurf/docs/specs-references/specs-create-planning.md` (Steps 1-5)
+- Planning Phase: `~/.codeium/windsurf/docs/specs-references/specs-create/planning.md` (Steps 1-5)
 - Execution Phase: This file (Steps 6-13)
 
 ## Workflow Steps
@@ -671,9 +671,9 @@ The specs created by this workflow are designed to work seamlessly with the `/sp
 ## Reference Materials
 
 For detailed templates, maintenance strategies, and guidelines, see:
-- **Templates**: `~/.codeium/windsurf/docs/specs-references/specs-create-templates.md` - Phase file and README templates
-- **Maintenance**: `~/.codeium/windsurf/docs/specs-references/specs-create-maintenance.md` - Migration, versioning, and import/export
-- **Guidelines**: `~/.codeium/windsurf/docs/specs-references/specs-create-guidelines.md` - Best practices and quality metrics
+- **Templates**: `~/.codeium/windsurf/docs/specs-references/specs-create/templates.md` - Phase file and README templates
+- **Maintenance**: `~/.codeium/windsurf/docs/specs-references/specs-create/maintenance.md` - Migration, versioning, and import/export
+- **Guidelines**: `~/.codeium/windsurf/docs/specs-references/specs-create/guidelines.md` - Best practices and quality metrics
 
 ## Error Handling
 

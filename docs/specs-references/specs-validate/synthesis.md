@@ -7,11 +7,11 @@ description: Validate specs through comprehensive multi-perspective review - Par
 This is Part 3 of the specs-validate workflow, covering Steps 7-9: Aggregating findings, prioritizing issues, and generating the validation report.
 
 For the complete workflow, see:
-- Initial Assessment: `~/.codeium/windsurf/docs/specs-references/specs-validate-initial.md` (Steps 1-3)
-- Multi-Perspective Review: `~/.codeium/windsurf/docs/specs-references/specs-validate-review.md` (Steps 4-6)
+- Initial Assessment: `~/.codeium/windsurf/docs/specs-references/specs-validate/initial.md` (Steps 1-3)
+- Multi-Perspective Review: `~/.codeium/windsurf/docs/specs-references/specs-validate/review.md` (Steps 4-6)
 - Synthesis: This file (Steps 7-9)
-- User Interaction: `~/.codeium/windsurf/docs/specs-references/specs-validate-interaction.md` (Steps 10-12)
-- Finalization: `~/.codeium/windsurf/docs/specs-references/specs-validate-finalization.md` (Steps 13-14)
+- User Interaction: `~/.codeium/windsurf/docs/specs-references/specs-validate/interaction.md` (Steps 10-12)
+- Finalization: `~/.codeium/windsurf/docs/specs-references/specs-validate/finalization.md` (Steps 13-14)
 
 ## Usage
 
@@ -341,4 +341,4 @@ Low Value:
 
 ## Continue to Part 4
 
-For Steps 10-12 (User Interaction Phase), see `~/.codeium/windsurf/docs/specs-references/specs-validate-interaction.md`.
+For Steps 10-12 (User Interaction Phase), see `~/.codeium/windsurf/docs/specs-references/specs-validate/interaction.md`.
