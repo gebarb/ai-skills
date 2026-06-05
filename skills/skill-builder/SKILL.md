@@ -3,7 +3,7 @@ name: skill-builder
 description: Create AI skills/workflows following current best practices. Use when creating skills, building workflows, writing SKILL.md, or needing skill development guidance.
 when_to_use: | - User asks to create a skill, build a workflow, or write a SKILL.md - User mentions skill development, workflow creation, or AI agent capabilities - User needs guidance on current best practices for skills/workflows - Do NOT use for: modifying existing skills/workflows (use skill-review)
 argument-hint: Provide the task or process you want to automate, along with any specific requirements or constraints.
-version: 1.1.0
+version: 1.3.0
 compatibility: Requires repository root access, ability to create and edit markdown files, standard file system tools, and web access for Step 0 (optional but recommended)
 ---
 
@@ -34,26 +34,13 @@ This workflow guides you through creating AI skills or workflows that follow cur
 - Advanced debugging or troubleshooting of agent behavior
 - Integration with specific external tools or services (unless part of skill design)
 
+**Directory Structure:**
+- Skills are stored in `skills/skill-name/` directories
+- Workflows are stored as single files in `workflows/` directory
+
 ## Quick Start
 
-To get started immediately with creating a skill:
-
-1. Run `/skill-builder` from your repository root
-2. Follow Step 0 to research current standards (5 minutes basic mode)
-3. Use the Planning Phase (Steps 1-5) to define your skill
-4. Follow the Creation Phase (Steps 6-12) to build it
-5. Validate with the Validation Phase (Steps 13-17)
-6. Refine with the Refinement Phase (Steps 18-20)
-
-**Example**: Creating a deployment skill
-- Step 1: Choose Skill (automatic invocation)
-- Step 2: Define purpose: "Automate web application deployment"
-- Step 3: Use cases: Deploy to production, staging, dev environments
-- Step 4: Requirements: Docker, CI/CD pipeline, deployment scripts
-- Step 5: Progressive disclosure: Main SKILL.md + deployment templates
-- Steps 6-12: Create the skill following the workflow
-- Steps 13-17: Validate against standards
-- Steps 18-20: Refine based on testing
+For a fast path to creating a skill or workflow, see `references/quick-start.md` for step-by-step guidance and examples.
 
 ## Platform Requirements
 
@@ -88,95 +75,29 @@ The complete workflow is organized into phases to ensure comprehensive skill/wor
 - **Refinement Phase (Steps 18-20)**: 15-30 minutes
 - **Total**: 80-165 minutes (1.5-2.75 hours)
 
+**Note**: Time estimates assume familiarity with markdown files and basic AI agent concepts. If you have never created a skill/workflow before, add 100% to the estimates above. If you have created 1-2 skills/workflows, add 50%.
+
 **Success Criteria for Each Phase:**
-- **Step 0 (Dynamic Standards Lookup)**: Patterns emerge across sources OR time limit reached
-- **Planning Phase (Steps 1-5)**: Purpose, scope, use cases, requirements, and progressive disclosure structure defined
-- **Creation Phase (Steps 6-12)**: Skill/workflow directory created, SKILL.md written, supporting files added
-- **Validation Phase (Steps 13-17)**: All checklists completed, execution path tested, ambiguities resolved
-- **Refinement Phase (Steps 18-20)**: Issues addressed, documentation added, final polish complete
+- **Step 0 (Dynamic Standards Lookup)**: 3+ key principles identified from sources OR time limit reached
+- **Planning Phase (Steps 1-5)**: All 5 planning steps completed with documented outputs (purpose statement, scope boundaries, use case mappings, requirements inventory, progressive disclosure structure)
+- **Creation Phase (Steps 6-12)**: Skill/workflow directory created, SKILL.md written with proper YAML frontmatter, all supporting files added
+- **Validation Phase (Steps 13-17)**: All validation checklists completed with documented results, execution path walkthrough performed, all identified ambiguities resolved
+- **Refinement Phase (Steps 18-20)**: All critical and high-priority issues addressed, documentation added, quality checklist passed
 
 **Error Handling:**
 - If Step 0 web searches fail: Proceed with general best practices and document the limitation
 - If supporting files are missing: Create them using templates in `references/templates.md`
 - If validation fails: Use `references/validation.md` checklists to identify and fix issues
-- If user gets stuck: Consult `references/troubleshooting.md` (if available) or review relevant reference file
+- If user gets stuck: Review relevant reference file or consult the specific phase documentation
 - For detailed error handling guidance, see `references/validation.md` and `references/refinement.md`
 
 ### Dynamic Standards Lookup Phase (Step 0)
 
 **Step 0: Retrieve Current Best Practices**
 
-Before beginning the skill/workflow creation, perform comprehensive live research to retrieve the most current standards and best practices from all available external sources. This is a dynamic, adaptive process that discovers and applies standards from any relevant platform or source.
+Before beginning the skill/workflow creation, perform research to retrieve current standards and best practices. This ensures your skill follows the most up-to-date guidelines.
 
-**Research Strategy:**
-- Perform broad web searches for AI agent skill and workflow standards
-- Discover and evaluate standards from any available source
-- Identify the most current and authoritative sources
-- Adapt to whatever standards are found and applicable
-- Synthesize findings from multiple sources into a cohesive approach
-- Directly consult known specification documents
-
-**Direct Source Consultation:**
-- Read and analyze https://agentskills.io/specification
-- Read and analyze https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
-
-**Broad Search Queries:**
-```
-- "AI agent skill development best practices"
-- "AI workflow standards and guidelines"
-- "AI assistant skill creation standards"
-- "Progressive disclosure AI agents"
-- "AI skill documentation standards"
-- "Agent skill development framework"
-- "AI workflow best practices"
-- "AI agent context management"
-- "AI skill execution patterns"
-```
-
-**Dynamic Discovery Process:**
-1. Execute broad searches to identify all relevant sources
-2. Evaluate the recency and authority of each source found
-3. Identify common patterns and principles across sources
-4. Note platform-specific requirements when applicable
-5. Detect any conflicts or divergences between sources
-6. Prioritize the most current and widely-adopted standards
-
-**Stop When:**
-- Patterns emerge across multiple sources (requirements appearing in 2+ sources). Example: If both agentskills.io and Anthropic's skill-creator specify that descriptions must include trigger phrases, that's a pattern.
-- After 5 minutes for Basic Mode
-- After 10-15 minutes for Advanced Mode
-- Sufficient standards identified to proceed with skill/workflow creation (typically 3-5 key principles found)
-
-**Handling Conflicting Standards:**
-If sources conflict, document the conflict and choose the most authoritative or recent source based on:
-- Recency of publication
-- Platform adoption and usage
-- Authority of the source (official specifications > blog posts > forum discussions)
-- Consensus across multiple sources
-
-**Integration of Research Findings:**
-- Document all relevant standards discovered from any source
-- Note the date and authority of each source
-- Identify consensus principles across multiple sources
-- Document platform-specific requirements when relevant
-- Use the synthesized findings to inform all subsequent steps
-- Reference specific sources when documenting compliance decisions
-- Adapt the approach based on what standards are actually available
-
-**Adaptive Application:**
-- Apply the most current standards found, regardless of source
-- If no current standards are found for a specific area, use general best practices
-- If sources conflict, document the conflict and choose the most authoritative or recent
-- Continuously update understanding as new information is discovered
-- Be prepared to adapt if standards change during the workflow execution
-
-**Why This Matters:**
-- The AI field evolves rapidly; static references become outdated quickly
-- New platforms and standards emerge regularly
-- Different platforms may have different but equally valid approaches
-- Comprehensive research ensures no relevant standards are missed
-- Dynamic adaptation ensures the workflow remains current and applicable
-- Generic approach allows the workflow to work with any available standards
+For detailed guidance on Step 0, including mode selection criteria and research strategies, see `references/standards-lookup.md`.
 
 ### Planning Phase (Steps 1-5)
 See `references/planning.md` for:
@@ -212,23 +133,81 @@ See `references/refinement.md` for:
 
 ### Testing and Integration Phase (Step 21)
 21. **Test the Created Skill/Workflow** - Verify the skill/workflow works as intended
-   - Test with realistic scenarios matching the use cases identified in Step 3
-   - Verify the skill triggers appropriately (for skills) or the workflow executes correctly (for workflows)
-   - Check that all steps are clear and actionable
-   - Validate that error handling works as expected
-   - If issues are found, return to the Refinement Phase to address them
-   - After successful testing, consider running `/skill-review` on the created skill/workflow for additional validation
+
+**Testing Procedure:**
+
+1. **Test with Realistic Scenarios**
+   - Select 2-3 use cases identified in Step 3
+   - For each use case, simulate the trigger context
+   - Execute the skill/workflow step by step
+   - Document any deviations from expected behavior
+
+2. **Verify Skill Triggering (Skills Only)**
+   - Test automatic invocation: Provide context that should trigger the skill
+   - Test manual invocation: Use @mention to invoke the skill
+   - Verify the skill name and description enable accurate triggering
+   - Confirm the skill loads appropriate progressive disclosure levels
+
+3. **Verify Workflow Execution (Workflows Only)**
+   - Test slash command invocation: Run `/workflow-name`
+   - Verify all steps execute in correct order
+   - Confirm the workflow completes successfully
+   - Test with different input variations
+
+4. **Validate Step Clarity**
+   - Read each step as if encountering it for the first time
+   - Verify each step has clear starting and ending points
+   - Check that transitions between steps are smooth
+   - Ensure all commands are complete and executable
+   - Verify file paths are correct and accessible
+
+5. **Validate Error Handling**
+   - Test common error scenarios (missing files, invalid inputs, permission issues)
+   - Verify error messages are clear and actionable
+   - Check that recovery procedures work as documented
+   - Confirm validation steps catch issues appropriately
+
+6. **Test Edge Cases**
+   - Test with minimal prerequisites (bare minimum to function)
+   - Test with maximum complexity (all features enabled)
+   - Test with unusual or unexpected inputs
+   - Verify behavior when supporting files are missing
+
+7. **Document Test Results**
+   - Record which scenarios passed/failed
+   - Note any issues or ambiguities found
+   - Document required fixes or improvements
+   - Track time taken for each test scenario
+
+**If Issues Are Found:**
+- Return to the Refinement Phase (Steps 18-20) to address issues
+- Fix critical issues (blocking execution) immediately
+- Fix high-priority issues (affecting usability) before common use
+- Document low-priority issues for future iterations
+- Re-test after fixes are applied
+
+**After Successful Testing:**
+- Consider running `/skill-review` on the created skill/workflow for additional validation
+- Update documentation based on test findings
+- Add new examples or use cases discovered during testing
+- Mark the skill/workflow as ready for distribution
+
+## Troubleshooting
+
+For common issues and solutions during the skill-builder workflow, see `references/troubleshooting.md`.
 
 ## Reference Materials
 
 For detailed templates, guidelines, and best practices, see:
-- **Dynamic Standards Lookup**: Step 0 - Live research of current external standards
+- **Dynamic Standards Lookup**: `references/standards-lookup.md` - Step 0 guidance
 - **Planning Phase**: `references/planning.md` - Steps 1-5
 - **Creation Phase**: `references/creation.md` - Steps 6-12
 - **Validation Phase**: `references/validation.md` - Steps 13-17
 - **Refinement Phase**: `references/refinement.md` - Steps 18-20
 - **Templates**: `references/templates.md` - SKILL.md and workflow templates
 - **Guidelines**: `references/guidelines.md` - Standards framework (use with Step 0 findings)
+- **Troubleshooting**: `references/troubleshooting.md` - Common issues and solutions
+- **Lifecycle Example**: `references/lifecycle-example.md` - Complete development example
 
 ## Integration in Development Lifecycle
 
@@ -239,3 +218,22 @@ This workflow is designed to be used when creating new skills or workflows:
 3. Install and test the skill/workflow in your environment
 
 This ensures that skills and workflows are built to high standards from the start, reducing the need for extensive rework later.
+
+### Full Lifecycle Example
+
+For a concrete example of the complete skill/workflow development lifecycle, including the recommended review cadence, see `references/lifecycle-example.md`.
+
+## Revision History
+
+### v1.3.0 - 2025-06-05
+- Moved Quick Start section to separate `references/quick-start.md` file to reduce SKILL.md length
+- Added fallback mechanism for Step 0 if web access fails
+- Added concrete full lifecycle example showing integration with skill-review
+- Added note about time estimate assumptions for new users
+- Added troubleshooting section for common workflow issues
+
+### v1.2.0 - 2025-05-XX
+- Initial comprehensive workflow structure
+- Dynamic standards lookup phase
+- Progressive disclosure implementation
+- Comprehensive reference materials

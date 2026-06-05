@@ -161,7 +161,7 @@ Based on agent skills design principles:
 
 **For Skills**:
 ```
-skill-directory/
+skills/skill-name/
 ├── SKILL.md              # Core content (Level 2)
 ├── reference.md          # Reference material (Level 3)
 ├── templates/            # Templates (Level 3)

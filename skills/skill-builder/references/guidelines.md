@@ -1,30 +1,9 @@
 # Skill Builder - Guidelines
 
-This document provides a comprehensive framework for creating skills and workflows. **Important**: This framework should be used in conjunction with the dynamic standards lookup performed in Step 0 of the skill-builder workflow, which retrieves the most current best practices from all available external sources.
+This document provides a comprehensive framework for creating skills and workflows. **Important**: This framework should be used in conjunction with the dynamic standards lookup performed in Step 0 of the skill-builder workflow (see `references/standards-lookup.md`), which retrieves the most current best practices from all available external sources.
 
-## External Standards Integration
+## How to Use This Document
 
-**Critical**: The standards sections below provide a framework for skill/workflow creation. However, you MUST perform comprehensive live research during workflow execution (Step 0) to retrieve the most current standards from all available external sources. This is a dynamic, adaptive process that discovers and applies standards from any relevant platform or source.
-
-**Required Live Research Strategy:**
-- Perform broad web searches for AI agent skill and workflow standards
-- Discover and evaluate standards from any available source
-- Identify the most current and authoritative sources
-- Adapt to whatever standards are found and applicable
-- Synthesize findings from multiple sources into a cohesive approach
-- Directly consult known specification documents
-
-**Direct Source Consultation:**
-- Read and analyze https://agentskills.io/specification
-- Read and analyze https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
-
-**Broad Search Approach:**
-- Search for general AI agent skill development best practices
-- Search for AI workflow standards and guidelines
-- Search for progressive disclosure patterns in AI agents
-- Search for any other relevant platforms or sources discovered during research
-
-**How to Use This Document:**
 1. Perform Step 0 of the workflow to retrieve current external standards from all available sources
 2. Use the sections below as a structural framework
 3. Apply the specific requirements found during live research, regardless of source
@@ -32,21 +11,6 @@ This document provides a comprehensive framework for creating skills and workflo
 5. Update your understanding based on retrieved findings
 6. Reference specific sources when documenting compliance decisions
 7. Adapt the approach based on what standards are actually available
-
-**Adaptive Application Principles:**
-- Apply the most current standards found, regardless of source
-- If no current standards are found for a specific area, use general best practices
-- If sources conflict, document the conflict and choose the most authoritative or recent
-- Continuously update understanding as new information is discovered
-- Be prepared to adapt if standards change during the workflow execution
-
-**Why Live Research Matters:**
-- The AI field evolves rapidly; static references become outdated quickly
-- New platforms and standards emerge regularly
-- Different platforms may have different but equally valid approaches
-- Comprehensive research ensures no relevant standards are missed
-- Dynamic adaptation ensures the workflow remains current and applicable
-- Generic approach allows the workflow to work with any available standards
 
 ## AI Agent Skills Standards
 
@@ -122,7 +86,7 @@ description: Brief description (1-2 sentences)
 
 **Directory structure**:
 ```
-skill-name/
+skills/skill-name/
 ├── SKILL.md              # Core content
 ├── reference.md          # Reference material
 ├── templates/            # Templates
@@ -427,7 +391,6 @@ description: Brief description (1-2 sentences)
 **Change tracking**:
 - Document all changes
 - Use version numbers
-- Maintain changelog
 - Tag releases
 
 ### Documentation
@@ -477,7 +440,6 @@ description: Brief description (1-2 sentences)
 **Documentation**:
 - Update README
 - Update examples
-- Update changelog
 - Add release notes
 
 **Testing**:
