@@ -635,7 +635,7 @@ Select option (1-4):
 
 ### Common Issues and Solutions
 
-#### create-specs Workflow Issues
+#### specs-create Workflow Issues
 
 **Issue: Quality score is below 90%**
 - **Cause**: Missing required fields, unclear success criteria, or too many/few tasks per phase
@@ -675,18 +675,18 @@ Select option (1-4):
   - If jq unavailable, workflow will use fallback parsing with basic tools
   - If draft file corrupted, delete `.specs-draft.json` and start fresh
 
-#### implement-specs Workflow Issues
+#### specs-implement Workflow Issues
 
 **Issue: Specs directory not found**
-- **Cause**: create-specs workflow hasn't been run yet
+- **Cause**: specs-create workflow hasn't been run yet
 - **Solution**:
-  - Run `/create-specs` workflow first to generate specs
+  - Run `/specs-create` workflow first to generate specs
   - Ensure specs/ directory exists in repository root
 
 **Issue: Quality score validation fails**
 - **Cause**: Specs don't meet quality threshold (≥90%)
 - **Solution**:
-  - Return to create-specs workflow to improve specs
+  - Return to specs-create workflow to improve specs
   - Review which metrics are below threshold
   - Address specific quality issues interactively
 
@@ -751,13 +751,13 @@ Select option (1-4):
   - Ensure README has "Phase List" section
   - Ensure Feature Matrix table has Dependencies column
   - Use phase names exactly as they appear in phase file titles
-  - Re-run create-specs to regenerate README if needed
+  - Re-run specs-create to regenerate README if needed
 
 **Issue: Phase file format incompatibility**
 - **Cause**: Phase file doesn't match standardized format
 - **Solution**:
   - Ensure all required sections are present (Overview, Context, Implementation Tasks, Technical Requirements, Success Criteria)
-  - Use phase file template from create-specs-templates.md
+  - Use phase file template from specs-create-templates.md
   - Re-generate phase files if needed
 
 #### Performance Issues
@@ -796,31 +796,31 @@ Select option (1-4):
 ### Getting Help
 
 If you encounter issues not covered here:
-1. Review workflow documentation in ~/.codeium/windsurf/docs/specs-references/
+1. Review workflow documentation in {{DOCS_DIR}}/
 2. Check error messages for specific guidance
 3. Review progress file for current state
 4. Use rollback to recover from failed implementations
-5. Consider re-running create-specs if specs are problematic
+5. Consider re-running specs-create if specs are problematic
 
 ## Workflow Integration
 
-This workflow is designed to work seamlessly with the `/create-specs` workflow:
+This workflow is designed to work seamlessly with the `/specs-create` workflow:
 
 **Handoff Process:**
-1. Complete spec creation using `/create-specs` workflow
+1. Complete spec creation using `/specs-create` workflow
 2. Ensure specs are saved to the specs/ directory
-3. Run `/implement-specs` to begin implementation
+3. Run `/specs-implement` to begin implementation
 4. This workflow parses the specs/ directory and tracks progress
 5. Implementation proceeds phase by phase with user confirmation
 
 **Cross-Workflow References:**
-- Spec creation: `/create-specs` workflow
-- Implementation: `/implement-specs` workflow
+- Spec creation: `/specs-create` workflow
+- Implementation: `/specs-implement` workflow
 - Progress tracking: `.specs-progress.json` (created and updated by this workflow)
 
 **Data Flow:**
 ```
-/create-specs → specs/ directory → /implement-specs → implementation
+/specs-create → specs/ directory → /specs-implement → implementation
                     ↓
               .specs-progress.json (created during implementation)
 ```
@@ -835,7 +835,7 @@ This workflow is designed to work seamlessly with the `/create-specs` workflow:
 
 ## Integration Testing
 
-Validate that specs created by `/create-specs` work correctly with `/implement-specs`:
+Validate that specs created by `/specs-create` work correctly with `/specs-implement`:
 
 **Pre-Implementation Validation:**
 - Verify specs/ directory exists with README.md and phase files
@@ -843,13 +843,13 @@ Validate that specs created by `/create-specs` work correctly with `/implement-s
 - Check that phase files follow standardized format
 - Verify phase file naming follows `phase-[N]-[slug].md` pattern
 - Ensure dependencies are documented in README Feature Matrix
-- Run quality score validation (should match create-specs score)
+- Run quality score validation (should match specs-create score)
 - Test dependency resolution logic
 - Verify no circular dependencies exist
 
 **Integration Test Procedure:**
-1. Run `/create-specs` to generate test specs
-2. Run `/implement-specs` with validation only (skip actual implementation)
+1. Run `/specs-create` to generate test specs
+2. Run `/specs-implement` with validation only (skip actual implementation)
 3. Verify README parsing extracts correct phase information
 4. Check that dependency resolution identifies correct next phase
 5. Confirm progress file initialization succeeds

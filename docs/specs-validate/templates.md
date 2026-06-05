@@ -1,10 +1,10 @@
 ---
-description: Templates and checklists for the validate-specs workflow
+description: Templates and checklists for the specs-validate workflow
 ---
 
 # Spec Validation Workflow - Templates and Checklists
 
-This document provides templates and checklists used throughout the validate-specs workflow.
+This document provides templates and checklists used throughout the specs-validate workflow.
 
 ## Validation Report Template
 
@@ -494,7 +494,7 @@ Based on the validation findings, the recommended path is:
 **If Ready:**
 The specs are ready for implementation. Run:
 ```
-/implement-specs
+/specs-implement
 ```
 
 **Special Considerations:**
@@ -508,7 +508,7 @@ Recommended next steps:
 
 Re-run validation after completing:
 ```
-/validate-specs
+/specs-validate
 ```
 
 ---

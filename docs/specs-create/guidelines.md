@@ -45,7 +45,7 @@ This file contains guidelines and best practices for the spec creation workflow.
 - Archive deprecated specs rather than deleting
 
 **Unified Documentation Maintenance Strategy:**
-Both create-specs and implement-specs workflows should follow a coordinated documentation maintenance approach:
+Both specs-create and specs-implement workflows should follow a coordinated documentation maintenance approach:
 
 - **Review Schedule**: Review all documentation (specs, phase files, README, CHANGELOG) monthly or at each major milestone
 - **Update Coordination**: When updating specs during implementation, coordinate changes with the progress file to maintain consistency
@@ -87,7 +87,7 @@ Calculate overall spec quality score:
 
 ## Notes
 
-- This workflow creates spec files that work with the `/implement-specs` workflow
+- This workflow creates spec files that work with the `/specs-implement` workflow
 - Specs can be updated after creation if project requirements change
 - Update specs as implementation reveals new requirements
 - Use iteration mode for refinements without starting over
@@ -96,10 +96,10 @@ Calculate overall spec quality score:
 
 ## Integration Testing
 
-After creating specs with `/create-specs`, validate they will work correctly with `/implement-specs`:
+After creating specs with `/specs-create`, validate they will work correctly with `/specs-implement`:
 
 **Pre-Implementation Validation Checklist:**
-- [ ] Run `/create-specs` workflow to generate specs
+- [ ] Run `/specs-create` workflow to generate specs
 - [ ] Verify specs/ directory exists with README.md and phase files
 - [ ] Validate all phase files follow the standardized format
 - [ ] Check that README.md includes "Phase List" section or Feature Matrix table
@@ -112,7 +112,7 @@ After creating specs with `/create-specs`, validate they will work correctly wit
 
 **Integration Test Steps:**
 1. Create a test spec set using the workflow
-2. Run the implement-specs workflow in validation mode (without actual implementation)
+2. Run the specs-implement workflow in validation mode (without actual implementation)
 3. Verify that phases are parsed correctly from the README
 4. Check that dependency resolution works as expected
 5. Confirm that progress file initialization succeeds
@@ -130,9 +130,9 @@ After creating specs with `/create-specs`, validate they will work correctly wit
 
 ### Complete Example: Creating and Implementing a Simple Web Application
 
-**Step 1: Run create-specs workflow**
+**Step 1: Run specs-create workflow**
 ```
-/create-specs
+/specs-create
 ```
 
 **Step 2: Repository Review**
@@ -244,9 +244,9 @@ Workflow creates:
 **Step 11: Review and Approve**
 Review generated specs and approve.
 
-**Step 12: Run implement-specs workflow**
+**Step 12: Run specs-implement workflow**
 ```
-/implement-specs
+/specs-implement
 ```
 
 **Step 13: Repository Review**
@@ -256,7 +256,7 @@ Review codebase to understand current state.
 - Check specs/ directory exists
 - Verify README.md is present
 - Validate phase files exist
-- Calculate quality score (should match create-specs score)
+- Calculate quality score (should match specs-create score)
 
 **Step 15: Parse Specs**
 Parse README.md to extract phase structure and dependencies.
@@ -317,23 +317,23 @@ All phases complete. Workflow reports success.
 
 ## Workflow Integration
 
-This workflow is designed to work seamlessly with the `/implement-specs` workflow:
+This workflow is designed to work seamlessly with the `/specs-implement` workflow:
 
 **Handoff Process:**
 1. Complete spec creation using this workflow
 2. Ensure all validation rules pass and quality score ≥ 90%
 3. Save specs to the specs/ directory
-4. Run `/implement-specs` to begin implementation
+4. Run `/specs-implement` to begin implementation
 5. The implementation workflow will parse the specs and track progress
 
 **Cross-Workflow References:**
-- Spec creation: `/create-specs` workflow
-- Implementation: `/implement-specs` workflow
+- Spec creation: `/specs-create` workflow
+- Implementation: `/specs-implement` workflow
 - Progress tracking: `.specs-progress.json` (created by implementation workflow)
 
 **Data Flow:**
 ```
-/create-specs → specs/ directory → /implement-specs → implementation
+/specs-create → specs/ directory → /specs-implement → implementation
                     ↓
               .specs-progress.json (created during implementation)
 ```
