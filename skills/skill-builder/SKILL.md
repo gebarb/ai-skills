@@ -12,7 +12,6 @@ This workflow guides you through creating a highly performant and accurate AI sk
 - Clear understanding of the task or process you want to automate
 - Basic familiarity with AI agent skills and workflows
 - Understanding of the difference between Skills (automatic invocation) and Workflows (manual invocation)
-- **Important**: Understanding of the `{{DOCS_DIR}}` placeholder pattern for path resolution (see guidelines below)
 
 ## Platform Requirements
 
@@ -49,7 +48,7 @@ Before beginning the skill/workflow creation, perform comprehensive live researc
 
 **Direct Source Consultation:**
 - Read and analyze https://agentskills.io/specification
-- Read and analyze https://github.com/anthropics/skills/blob/main/skills/docx/SKILL.md
+- Read and analyze https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
 
 **Broad Search Queries:**
 ```
@@ -97,7 +96,7 @@ Before beginning the skill/workflow creation, perform comprehensive live researc
 - Generic approach allows the workflow to work with any available standards
 
 ### Planning Phase (Steps 1-5)
-See `{{DOCS_DIR}}/skill-builder/planning.md` for:
+See `references/planning.md` for:
 1. **Determine Skill vs Workflow** - Decide whether to create a Skill (automatic invocation) or Workflow (manual invocation)
 2. **Define Purpose and Scope** - Clearly articulate what the skill/workflow should accomplish and its boundaries
 3. **Identify Use Cases** - Map out specific scenarios where this skill/workflow will be used
@@ -105,7 +104,7 @@ See `{{DOCS_DIR}}/skill-builder/planning.md` for:
 5. **Design Progressive Disclosure Structure** - Plan how to organize information across SKILL.md and supporting files
 
 ### Creation Phase (Steps 6-12)
-See `{{DOCS_DIR}}/skill-builder/creation.md` for:
+See `references/creation.md` for:
 6. **Create Skill/Workflow Directory** - Set up the proper directory structure
 7. **Write YAML Frontmatter** - Create proper name and description following current standards retrieved in Step 0
 8. **Draft Core Content** - Write the main SKILL.md or workflow markdown content
@@ -115,7 +114,7 @@ See `{{DOCS_DIR}}/skill-builder/creation.md` for:
 12. **Include Examples and Usage Instructions** - Make the skill/workflow easy to understand and use
 
 ### Validation Phase (Steps 13-17)
-See `{{DOCS_DIR}}/skill-builder/validation.md` for:
+See `references/validation.md` for:
 13. **Self-Review Against Standards** - Verify compliance with current standards retrieved in Step 0
 14. **Test Execution Path** - Walk through the skill/workflow step by step
 15. **Validate Progressive Disclosure** - Ensure information loads at appropriate levels
@@ -123,7 +122,7 @@ See `{{DOCS_DIR}}/skill-builder/validation.md` for:
 17. **Verify Completeness** - Ensure all necessary context is provided
 
 ### Refinement Phase (Steps 18-20)
-See `{{DOCS_DIR}}/skill-builder/refinement.md` for:
+See `references/refinement.md` for:
 18. **Iterate Based on Review** - Make improvements identified during validation
 19. **Add Documentation** - Create supporting documentation if needed
 20. **Final Polish** - Ensure clarity, consistency, and professional quality
@@ -132,12 +131,12 @@ See `{{DOCS_DIR}}/skill-builder/refinement.md` for:
 
 For detailed templates, guidelines, and best practices, see:
 - **Dynamic Standards Lookup**: Step 0 - Live research of current external standards
-- **Planning Phase**: `{{DOCS_DIR}}/skill-builder/planning.md` - Steps 1-5
-- **Creation Phase**: `{{DOCS_DIR}}/skill-builder/creation.md` - Steps 6-12
-- **Validation Phase**: `{{DOCS_DIR}}/skill-builder/validation.md` - Steps 13-17
-- **Refinement Phase**: `{{DOCS_DIR}}/skill-builder/refinement.md` - Steps 18-20
-- **Templates**: `{{DOCS_DIR}}/skill-builder/templates.md` - SKILL.md and workflow templates
-- **Guidelines**: `{{DOCS_DIR}}/skill-builder/guidelines.md` - Standards framework (use with Step 0 findings)
+- **Planning Phase**: `references/planning.md` - Steps 1-5
+- **Creation Phase**: `references/creation.md` - Steps 6-12
+- **Validation Phase**: `references/validation.md` - Steps 13-17
+- **Refinement Phase**: `references/refinement.md` - Steps 18-20
+- **Templates**: `references/templates.md` - SKILL.md and workflow templates
+- **Guidelines**: `references/guidelines.md` - Standards framework (use with Step 0 findings)
 
 ## Integration in Development Lifecycle
 

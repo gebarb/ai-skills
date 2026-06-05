@@ -21,7 +21,7 @@ This repository contains skills/workflows that can be used with AI agents to str
 - Validation and quality assessment
 - Iteration mode for refinements
 
-**File**: `workflows/specs-create.md`
+**File**: `skills/specs-create/SKILL.md`
 
 ### `/specs-validate`
 **Description**: Validate specs through comprehensive multi-perspective review before implementation.
@@ -36,7 +36,7 @@ This repository contains skills/workflows that can be used with AI agents to str
 - Implementation of approved changes
 - Re-validation of modified specs
 
-**File**: `workflows/specs-validate.md`
+**File**: `skills/specs-validate/SKILL.md`
 
 ### `/specs-implement`
 **Description**: Implement specs and phases from a repository with progress tracking and user confirmation.
@@ -56,7 +56,7 @@ This repository contains skills/workflows that can be used with AI agents to str
 - Code quality checks and testing
 - User confirmation between phases
 
-**File**: `workflows/specs-implement.md`
+**File**: `skills/specs-implement/SKILL.md`
 
 ### `/skill-builder`
 **Description**: Walk through creating a highly performant and accurate AI skill/workflow that follows current best practices and standards from all available sources.
@@ -72,7 +72,7 @@ This repository contains skills/workflows that can be used with AI agents to str
 - Iterative refinement process
 - Templates and guidelines
 
-**File**: `workflows/skill-builder.md`
+**File**: `skills/skill-builder/SKILL.md`
 
 ### `/skill-review`
 **Description**: Perform comprehensive 3-perspective review of AI skills/workflows with fresh context to ensure standards compliance and optimize execution success.
@@ -87,7 +87,7 @@ This repository contains skills/workflows that can be used with AI agents to str
 - Implementation of approved changes
 - Re-validation and finalization
 
-**File**: `workflows/skill-review.md`
+**File**: `skills/skill-review/SKILL.md`
 
 ## Installation
 
@@ -153,65 +153,69 @@ For reviewing and refining skills/workflows:
 ## Directory Structure
 
 ```
-ai-agent-skills/
+ai-skills/
 ├── README.md              # This file
 ├── install.sh             # Installation script
-├── workflows/             # Workflow/skill definitions
-│   ├── specs-create.md    # Spec creation workflow
-│   ├── specs-implement.md # Spec implementation workflow
-│   ├── specs-validate.md  # Spec validation workflow
-│   ├── skill-builder.md   # Skill/workflow creation workflow
-│   └── skill-review.md    # Skill/workflow review workflow
-└── docs/                  # Reference documentation
-    ├── specs-create/      # Spec creation references
-    │   ├── guidelines.md
-    │   ├── maintenance.md
-    │   ├── templates.md
-    │   ├── execution.md
-    │   └── planning.md
-    ├── specs-implement/   # Spec implementation references
-    │   ├── handling.md
-    │   ├── progress.md
-    │   ├── setup.md
-    │   └── implementation.md
-    ├── specs-validate/    # Spec validation references
-    │   ├── guidelines.md
-    │   ├── initial.md
-    │   ├── interaction.md
-    │   ├── finalization.md
-    │   ├── review.md
-    │   ├── synthesis.md
-    │   └── templates.md
-    ├── skill-builder/     # Skill/workflow creation references
-    │   ├── guidelines.md
-    │   ├── planning.md
-    │   ├── creation.md
-    │   ├── validation.md
-    │   ├── refinement.md
-    │   └── templates.md
-    └── skill-review/      # Skill/workflow review references
-        ├── guidelines.md
-        ├── initial.md
-        ├── perspectives.md
-        ├── synthesis.md
-        ├── interaction.md
-        ├── finalization.md
-        └── templates.md
+└── skills/                # Skill definitions with bundled resources
+    ├── skill-builder/     # Skill/workflow creation workflow
+    │   ├── SKILL.md       # Main skill file
+    │   └── references/    # Reference documentation
+    │       ├── guidelines.md
+    │       ├── planning.md
+    │       ├── creation.md
+    │       ├── validation.md
+    │       ├── refinement.md
+    │       └── templates.md
+    ├── skill-review/      # Skill/workflow review workflow
+    │   ├── SKILL.md       # Main skill file
+    │   └── references/    # Reference documentation
+    │       ├── guidelines.md
+    │       ├── initial.md
+    │       ├── perspectives.md
+    │       ├── synthesis.md
+    │       ├── interaction.md
+    │       ├── finalization.md
+    │       └── templates.md
+    ├── specs-create/      # Spec creation workflow
+    │   ├── SKILL.md       # Main skill file
+    │   └── references/    # Reference documentation
+    │       ├── guidelines.md
+    │       ├── maintenance.md
+    │       ├── templates.md
+    │       ├── execution.md
+    │       └── planning.md
+    ├── specs-implement/   # Spec implementation workflow
+    │   ├── SKILL.md       # Main skill file
+    │   └── references/    # Reference documentation
+    │       ├── handling.md
+    │       ├── progress.md
+    │       ├── setup.md
+    │       └── implementation.md
+    └── specs-validate/    # Spec validation workflow
+        ├── SKILL.md       # Main skill file
+        └── references/    # Reference documentation
+            ├── guidelines.md
+            ├── initial.md
+            ├── interaction.md
+            ├── finalization.md
+            ├── review.md
+            ├── synthesis.md
+            └── templates.md
 ```
 
 ## Contributing
 
 To add a new skill:
 
-1. Create a new markdown file in the `workflows/` directory
-2. Follow the naming convention: `skill-name.md`
-3. Add the YAML frontmatter with a description:
+1. Create a new directory in the `skills/` directory following the naming convention: `skill-name/`
+2. Create a `SKILL.md` file in that directory with YAML frontmatter:
    ```yaml
    ---
    name: skill-name
    description: Brief description of what this skill does
    ---
    ```
+3. Optionally add a `references/` subdirectory for reference documentation
 4. Update this README with the new skill details
 5. Submit a pull request
 

@@ -7,10 +7,10 @@ description: Validate specs through comprehensive multi-perspective review - Par
 This is Part 5 of the specs-validate workflow, covering Steps 13-14: Re-validating modified specs and generating the final validation summary.
 
 For the complete workflow, see:
-- Initial Assessment: `{{DOCS_DIR}}/specs-validate/initial.md` (Steps 1-3)
-- Multi-Perspective Review: `{{DOCS_DIR}}/specs-validate/review.md` (Steps 4-6)
-- Synthesis: `{{DOCS_DIR}}/specs-validate/synthesis.md` (Steps 7-9)
-- User Interaction: `{{DOCS_DIR}}/specs-validate/interaction.md` (Steps 10-12)
+- Initial Assessment: `initial.md` (Steps 1-3)
+- Multi-Perspective Review: `review.md` (Steps 4-6)
+- Synthesis: `synthesis.md` (Steps 7-9)
+- User Interaction: `interaction.md` (Steps 10-12)
 - Finalization: This file (Steps 13-14)
 
 ## Usage

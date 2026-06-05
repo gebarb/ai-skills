@@ -7,11 +7,11 @@ description: Validate specs through comprehensive multi-perspective review - Par
 This is Part 2 of the specs-validate workflow, covering Steps 4-6: Three subagent reviews (Technical/Architecture, Implementation Feasibility, Completeness/Gaps).
 
 For the complete workflow, see:
-- Initial Assessment: `{{DOCS_DIR}}/specs-validate/initial.md` (Steps 1-3)
+- Initial Assessment: `initial.md` (Steps 1-3)
 - Multi-Perspective Review: This file (Steps 4-6)
-- Synthesis: `{{DOCS_DIR}}/specs-validate/synthesis.md` (Steps 7-9)
-- User Interaction: `{{DOCS_DIR}}/specs-validate/interaction.md` (Steps 10-12)
-- Finalization: `{{DOCS_DIR}}/specs-validate/finalization.md` (Steps 13-14)
+- Synthesis: `synthesis.md` (Steps 7-9)
+- User Interaction: `interaction.md` (Steps 10-12)
+- Finalization: `finalization.md` (Steps 13-14)
 
 ## Usage
 
@@ -287,4 +287,4 @@ After all subagents complete:
 
 ## Continue to Part 3
 
-For Steps 7-9 (Synthesis Phase), see `{{DOCS_DIR}}/specs-validate/synthesis.md`.
+For Steps 7-9 (Synthesis Phase), see `synthesis.md`.

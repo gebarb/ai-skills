@@ -7,11 +7,11 @@ description: Validate specs through comprehensive multi-perspective review - Par
 This is Part 3 of the specs-validate workflow, covering Steps 7-9: Aggregating findings, prioritizing issues, and generating the validation report.
 
 For the complete workflow, see:
-- Initial Assessment: `{{DOCS_DIR}}/specs-validate/initial.md` (Steps 1-3)
-- Multi-Perspective Review: `{{DOCS_DIR}}/specs-validate/review.md` (Steps 4-6)
+- Initial Assessment: `initial.md` (Steps 1-3)
+- Multi-Perspective Review: `review.md` (Steps 4-6)
 - Synthesis: This file (Steps 7-9)
-- User Interaction: `{{DOCS_DIR}}/specs-validate/interaction.md` (Steps 10-12)
-- Finalization: `{{DOCS_DIR}}/specs-validate/finalization.md` (Steps 13-14)
+- User Interaction: `interaction.md` (Steps 10-12)
+- Finalization: `finalization.md` (Steps 13-14)
 
 ## Usage
 
@@ -341,4 +341,4 @@ Low Value:
 
 ## Continue to Part 4
 
-For Steps 10-12 (User Interaction Phase), see `{{DOCS_DIR}}/specs-validate/interaction.md`.
+For Steps 10-12 (User Interaction Phase), see `interaction.md`.

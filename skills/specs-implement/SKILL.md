@@ -56,7 +56,7 @@ The complete workflow is split into two phases to keep each document under 500 l
 - **Automatic Documentation**: Generates documentation automatically after code review
 
 ### Preparation Phase (Steps 1-11)
-See `{{DOCS_DIR}}/specs-implement/setup.md` for:
+See `references/setup.md` for:
 1. **Repository Review** - Deep review of all code, configuration, and other files in the codebase to understand how it works, its intent, and how to work in it. This is performed for each phase since the codebase state changes after implementation.
 2. **Check for Specs and Determine Implementation Approach** - Check if specs exist, and if not, ask user for direction or recommend create-specs
 3. Initialize Progress Tracking and Phase Selection
@@ -70,7 +70,7 @@ See `{{DOCS_DIR}}/specs-implement/setup.md` for:
 11. Create Implementation Checkpoint
 
 ### Implementation Phase (Steps 12-22)
-See `{{DOCS_DIR}}/specs-implement/implementation.md` for:
+See `references/implementation.md` for:
 12. Implement Phase (with TDD support if selected)
 13. Run Code Quality Checks
 14. Execute Tests
@@ -86,7 +86,7 @@ See `{{DOCS_DIR}}/specs-implement/implementation.md` for:
 ## Reference Materials
 
 For detailed progress tracking, error handling, and guidelines, see:
-- **Setup Phase**: `{{DOCS_DIR}}/specs-implement/setup.md` - Steps 1-11
-- **Implementation Phase**: `{{DOCS_DIR}}/specs-implement/implementation.md` - Steps 12-22
-- **Progress Tracking**: `{{DOCS_DIR}}/specs-implement/progress.md` - Progress file format and validation
-- **Error Handling**: `{{DOCS_DIR}}/specs-implement/handling.md` - Error handling, rollback, and spec updates
+- **Setup Phase**: `references/setup.md` - Steps 1-11
+- **Implementation Phase**: `references/implementation.md` - Steps 12-22
+- **Progress Tracking**: `references/progress.md` - Progress file format and validation
+- **Error Handling**: `references/handling.md` - Error handling, rollback, and spec updates
