@@ -1,9 +1,111 @@
 #!/bin/bash
 
+################################################################################
 # AI Agent Skills Installation Script
-# This script copies skills, rules, and workflows to the global directory for the selected AI agent
+################################################################################
+# A comprehensive installer for AI agent skills, rules, and workflows.
+#
+# FEATURES:
+#   - Multi-agent support: Windsurf and Claude
+#   - Interactive menu with arrow key navigation
+#   - Multi-select capabilities for agents and components
+#   - Flexible installation: Global (recommended) or repository-specific
+#   - Granular component selection: Choose specific skills, rules, or workflows
+#   - Automatic directory creation and file copying
+#
+# USAGE:
+#   ./install.sh              - Run interactive installation
+#   ./install.sh -h|--help    - Display this help message
+#
+# INSTALLATION TYPES:
+#   - Global: Installs to agent's global directory (recommended for use across all projects)
+#     * Windsurf: ~/.codeium/windsurf/
+#     * Claude:   ~/.claude/
+#
+#   - Repository: Installs to a specific repository's agent directory
+#     * Windsurf: <repo>/.codeium/windsurf/
+#     * Claude:   <repo>/.claude/
+#
+# COMPONENTS:
+#   - Skills: Reusable AI agent capabilities and workflows
+#   - Rules: Project-specific guidelines and constraints
+#   - Workflows: Pre-defined task execution patterns
+#
+# NOTES:
+#   - You may need to restart the agent(s) after installation for changes to take effect
+#   - The script creates directories automatically if they don't exist
+#   - Existing files will be overwritten during installation
+################################################################################
 
 set -e
+
+# Display help message
+show_help() {
+    cat << EOF
+################################################################################
+# AI Agent Skills Installation Script - HELP
+################################################################################
+A comprehensive installer for AI agent skills, rules, and workflows.
+
+USAGE:
+  ./install.sh              - Run interactive installation
+  ./install.sh -h|--help    - Display this help message
+
+FEATURES:
+  - Multi-agent support: Windsurf and Claude
+  - Interactive menu with arrow key navigation
+  - Multi-select capabilities for agents and components
+  - Flexible installation: Global (recommended) or repository-specific
+  - Granular component selection: Choose specific skills, rules, or workflows
+  - Automatic directory creation and file copying
+
+INSTALLATION TYPES:
+  - Global: Installs to agent's global directory (recommended for use across all projects)
+    * Windsurf: ~/.codeium/windsurf/
+    * Claude:   ~/.claude/
+
+  - Repository: Installs to a specific repository's agent directory
+    * Windsurf: <repo>/.codeium/windsurf/
+    * Claude:   <repo>/.claude/
+
+COMPONENTS:
+  - Skills: Reusable AI agent capabilities and workflows
+  - Rules: Project-specific guidelines and constraints
+  - Workflows: Pre-defined task execution patterns
+
+NOTES:
+  - You may need to restart the agent(s) after installation for changes to take effect
+  - The script creates directories automatically if they don't exist
+  - Existing files will be overwritten during installation
+
+EXAMPLES:
+  # Install all components to global directories for all agents
+  ./install.sh
+  # Select "ALL" for agents, "Global" for location, and "ALL" for components
+
+  # Install specific skills to a repository
+  ./install.sh
+  # Select "Windsurf" for agent, "Specific repository" for location,
+  # then choose specific skills from the menu
+
+EOF
+}
+
+# Parse command line arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -h|--help)
+            show_help
+            exit 0
+            ;;
+        *)
+            echo -e "${RED}Unknown option: $1${NC}"
+            echo -e "${YELLOW}Use -h or --help for usage information${NC}"
+            exit 1
+            ;;
+    esac
+    shift
+done
 
 # Colors for output
 RED='\033[0;31m'
@@ -17,7 +119,15 @@ NC='\033[0m' # No Color
 # Global variable for multi-select result
 SELECT_OPTION_RESULT=""
 
-# Arrow key navigation menu function
+# Interactive arrow key navigation menu
+# Supports both single-select and multi-select modes with header support
+# Args:
+#   $1 - multi_select: "true" for multi-select, "false" for single-select
+#   $2 - context: Optional context string to display above the menu
+#   $3+ - options: Array of menu options (prefix with "HEADER:" for category headers)
+# Returns:
+#   For single-select: Returns the index of the selected option
+#   For multi-select: Sets SELECT_OPTION_RESULT global variable with selected indices
 select_option() {
     local multi_select="$1"
     local context="$2"
@@ -177,7 +287,12 @@ select_option() {
 }
 
 # Agent configuration
-# Function to get agent configuration
+# Get configuration details for a specific AI agent
+# Args:
+#   $1 - agent: Agent identifier (windsurf or claude)
+#   $2 - config_type: Type of configuration to retrieve (name, base_dir, or workflows_subdir)
+# Returns:
+#   The requested configuration value for the specified agent
 get_agent_config() {
     local agent=$1
     local config_type=$2
@@ -200,7 +315,11 @@ get_agent_config() {
     esac
 }
 
-# Function to prompt user for agent selection
+# Prompt user for agent selection using multi-select menu
+# Supports selecting "ALL" or specific agents (Windsurf, Claude)
+# Sets global variables:
+#   SELECTED_AGENTS - Array of selected agent identifiers
+#   AGENT_NAMES - Array of selected agent display names
 select_agent() {
     select_option "true" "" "ALL" "Windsurf" "Claude"
     local selected_indices=($SELECT_OPTION_RESULT)
@@ -238,7 +357,10 @@ select_agent() {
     fi
 }
 
-# Function to prompt for installation location
+# Prompt user for installation location (global or repository-specific)
+# Sets global variables:
+#   INSTALL_TYPE - Either "global" or "repository"
+#   REPO_PATH - Repository path (only set if INSTALL_TYPE is "repository")
 select_install_location() {
     set +e  # Disable exit on error for this function
     local agent_list="${AGENT_NAMES[*]}"
@@ -273,7 +395,16 @@ select_install_location() {
     set -e  # Re-enable exit on error
 }
 
-# Function to prompt for component selection
+# Prompt user for component selection (skills, rules, workflows)
+# Dynamically discovers available components from the script directory
+# Supports selecting "ALL" or specific items with category headers
+# Sets global variables:
+#   SELECTED_SKILLS - Array of selected skill names
+#   SELECTED_RULES - Array of selected rule names
+#   SELECTED_WORKFLOWS - Array of selected workflow names
+#   INSTALL_SKILLS - Boolean flag for skills installation
+#   INSTALL_RULES - Boolean flag for rules installation
+#   INSTALL_WORKFLOWS - Boolean flag for workflows installation
 select_components() {
     # Get the script directory
     SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -431,7 +562,10 @@ select_components() {
     INSTALL_WORKFLOWS=$([ ${#SELECTED_WORKFLOWS[@]} -gt 0 ] && echo true || echo false)
 }
 
-# Function to install for a specific agent
+# Install selected components for a specific AI agent
+# Creates necessary directories and copies selected skills, rules, and workflows
+# Args:
+#   $1 - agent: Agent identifier (windsurf or claude)
 install_for_agent() {
     local agent="$1"
     local agent_name=$(get_agent_config "$agent" name)
