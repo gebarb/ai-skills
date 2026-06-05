@@ -9,8 +9,8 @@ This document provides detailed guidance for Steps 7-9 of the skill-review workf
 Gather all findings from the three perspectives:
 
 **From Standards & Best Practices Review**:
-- Windsurf standards compliance issues
-- Anthropic guidelines compliance issues
+- Platform standards compliance issues
+- Agent skills guidelines compliance issues
 - Best practices violations
 - Critical standards violations
 

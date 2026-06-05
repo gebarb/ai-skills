@@ -48,7 +48,7 @@ description: Brief description of what this skill does (1-2 sentences)
 
 ### Description Best Practices
 
-Based on Windsurf and Anthropic standards:
+Based on current standards retrieved in Step 0:
 - **Clear**: State exactly what the skill/workflow does
 - **Concise**: Keep to 1-2 sentences maximum
 - **Action-oriented**: Start with a verb
@@ -227,7 +227,7 @@ Validation script to check deployment readiness. Run this before deploying.
 
 ### Level 1: Name and Description
 
-Always visible to Cascade. This is the YAML frontmatter.
+Always visible to the AI agent. This is the YAML frontmatter.
 
 ### Level 2: Core SKILL.md Content
 

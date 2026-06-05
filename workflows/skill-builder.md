@@ -10,7 +10,7 @@ This workflow guides you through creating a highly performant and accurate AI sk
 ## Prerequisites
 
 - Clear understanding of the task or process you want to automate
-- Basic familiarity with Cascade/Windsurf skills and workflows
+- Basic familiarity with AI agent skills and workflows
 - Understanding of the difference between Skills (automatic invocation) and Workflows (manual invocation)
 - **Important**: Understanding of the `{{DOCS_DIR}}` placeholder pattern for path resolution (see guidelines below)
 
@@ -40,28 +40,28 @@ The complete workflow is organized into phases to ensure comprehensive skill/wor
 Before beginning the skill/workflow creation, perform comprehensive live research to retrieve the most current standards and best practices from all available external sources. This is a dynamic, adaptive process that discovers and applies standards from any relevant platform or source.
 
 **Research Strategy:**
-- Perform broad web searches for AI agent skill and workflow standards across all platforms
-- Discover and evaluate standards from any available source (not limited to specific platforms)
+- Perform broad web searches for AI agent skill and workflow standards
+- Discover and evaluate standards from any available source
 - Identify the most current and authoritative sources
 - Adapt to whatever standards are found and applicable
 - Synthesize findings from multiple sources into a cohesive approach
+- Directly consult known specification documents
 
-**Comprehensive Search Queries:**
+**Direct Source Consultation:**
+- Read and analyze https://agentskills.io/specification
+- Read and analyze https://github.com/anthropics/skills/blob/main/skills/docx/SKILL.md
+
+**Broad Search Queries:**
 ```
-- "AI agent skill development best practices 2025"
+- "AI agent skill development best practices"
 - "AI workflow standards and guidelines"
 - "AI assistant skill creation standards"
 - "Progressive disclosure AI agents"
 - "AI skill documentation standards"
 - "Agent skill development framework"
 - "AI workflow best practices"
-- "Claude Anthropic skills guidelines"
-- "Windsurf AI skills standards"
-- "Devin AI workflow standards"
-- "Microsoft Copilot skills best practices"
 - "AI agent context management"
 - "AI skill execution patterns"
-- "agentskills.io specification"
 ```
 
 **Dynamic Discovery Process:**

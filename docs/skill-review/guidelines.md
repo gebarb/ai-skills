@@ -10,7 +10,7 @@ This document provides a comprehensive framework for conducting effective skill/
 
 Use `{{DOCS_DIR}}` ONLY for:
 - **Internal reference docs**: Documentation files that belong to the skill/workflow itself (e.g., `{{DOCS_DIR}}/skill-name/guidelines.md`)
-- **Cascade-skills repository docs**: Reference materials that are part of this repository's documentation structure
+- **This repository's docs**: Reference materials that are part of this repository's documentation structure
 - **Skill's own supporting files**: Documentation files that are bundled with the skill/workflow
 
 ### When NOT to Use {{DOCS_DIR}}
@@ -51,18 +51,21 @@ When referencing internal documentation files from a workflow or skill:
 **Critical**: The review criteria sections below provide a framework for skill/workflow review. However, you MUST perform comprehensive live research during workflow execution (Step 0) to retrieve the most current standards from all available external sources. This is a dynamic, adaptive process that discovers and applies standards from any relevant platform or source.
 
 **Required Live Research Strategy:**
-- Perform broad web searches for AI agent skill and workflow standards across all platforms
-- Discover and evaluate standards from any available source (not limited to specific platforms)
+- Perform broad web searches for AI agent skill and workflow standards
+- Discover and evaluate standards from any available source
 - Identify the most current and authoritative sources
 - Adapt to whatever standards are found and applicable
 - Synthesize findings from multiple sources into a cohesive approach
+- Directly consult known specification documents
 
-**Comprehensive Search Approach:**
+**Direct Source Consultation:**
+- Read and analyze https://agentskills.io/specification
+- Read and analyze https://github.com/anthropics/skills/blob/main/skills/docx/SKILL.md
+
+**Broad Search Approach:**
 - Search for general AI agent skill development best practices
 - Search for AI workflow standards and guidelines
 - Search for progressive disclosure patterns in AI agents
-- Search for platform-specific standards when applicable (Windsurf, Anthropic/Claude, Devin, Microsoft/CoPilot, etc.)
-- Search for agentskills.io specification
 - Search for any other relevant platforms or sources discovered during research
 
 **How to Use This Document:**
@@ -187,8 +190,8 @@ Run reviews multiple times (3+ recommended):
 ### Standards & Best Practices Review
 
 **Focus areas**:
-- Windsurf specifications compliance
-- Anthropic guidelines compliance
+- Platform specifications compliance
+- Agent skills guidelines compliance
 - Industry best practices
 - Project-specific standards
 

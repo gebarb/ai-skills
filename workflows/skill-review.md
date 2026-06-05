@@ -42,29 +42,29 @@ The workflow will prompt you to specify which skill/workflow to review.
 0. **Dynamic Standards Lookup Phase (Step 0)**
    - Perform comprehensive live research to retrieve the most current standards and best practices from all available external sources
    - This is a dynamic, adaptive process that discovers and applies standards from any relevant platform or source
-   - Execute broad web searches for AI agent skill and workflow standards across all platforms
-   - Discover and evaluate standards from any available source (not limited to specific platforms)
+   - Execute broad web searches for AI agent skill and workflow standards
+   - Discover and evaluate standards from any available source
    - Identify the most current and authoritative sources
    - Synthesize findings from multiple sources into a cohesive approach
+   - Directly consult known specification documents
    - Use the retrieved information to inform all subsequent review steps
    - Reference specific sources when documenting compliance decisions
 
-   **Comprehensive Search Queries:**
+   **Direct Source Consultation:**
+   - Read and analyze https://agentskills.io/specification
+   - Read and analyze https://github.com/anthropics/skills/blob/main/skills/docx/SKILL.md
+
+   **Broad Search Queries:**
    ```
-   - "AI agent skill development best practices 2025"
+   - "AI agent skill development best practices"
    - "AI workflow standards and guidelines"
    - "AI assistant skill creation standards"
    - "Progressive disclosure AI agents"
    - "AI skill documentation standards"
    - "Agent skill development framework"
    - "AI workflow best practices"
-   - "Claude Anthropic skills guidelines"
-   - "Windsurf AI skills standards"
-   - "Devin AI workflow standards"
-   - "Microsoft Copilot skills best practices"
    - "AI agent context management"
    - "AI skill execution patterns"
-   - "agentskills.io specification"
    ```
 
    **Dynamic Discovery Process:**
@@ -143,7 +143,7 @@ See `{{DOCS_DIR}}/skill-review/perspectives.md` for:
 
 4. **Subagent 1**: Standards & Best Practices Review
    - Verify compliance with current standards retrieved in Step 0 from all available sources
-   - Check adherence to platform-specific guidelines when applicable (Windsurf, Anthropic/Claude, Devin, Microsoft/CoPilot, etc.)
+   - Check adherence to platform-specific guidelines when applicable
    - Validate YAML frontmatter structure and content
    - Assess progressive disclosure implementation
    - Review naming conventions and descriptions

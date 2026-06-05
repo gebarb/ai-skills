@@ -1,6 +1,6 @@
 # Skill Builder - Guidelines
 
-This document provides a comprehensive framework for creating skills and workflows. **Important**: This framework should be used in conjunction with the dynamic standards lookup performed in Step 0 of the skill-builder workflow, which retrieves the most current best practices from external sources (Windsurf, Anthropic/Claude, Devin, Microsoft/CoPilot, and industry standards).
+This document provides a comprehensive framework for creating skills and workflows. **Important**: This framework should be used in conjunction with the dynamic standards lookup performed in Step 0 of the skill-builder workflow, which retrieves the most current best practices from all available external sources.
 
 ## Path Resolution Pattern
 
@@ -10,7 +10,7 @@ This document provides a comprehensive framework for creating skills and workflo
 
 Use `{{DOCS_DIR}}` ONLY for:
 - **Internal reference docs**: Documentation files that belong to the skill/workflow itself (e.g., `{{DOCS_DIR}}/skill-name/guidelines.md`)
-- **Cascade-skills repository docs**: Reference materials that are part of this repository's documentation structure
+- **This repository's docs**: Reference materials that are part of this repository's documentation structure
 - **Skill's own supporting files**: Documentation files that are bundled with the skill/workflow
 
 ### When NOT to Use {{DOCS_DIR}}
@@ -50,18 +50,21 @@ When referencing internal documentation files from a workflow or skill:
 **Critical**: The standards sections below provide a framework for skill/workflow creation. However, you MUST perform comprehensive live research during workflow execution (Step 0) to retrieve the most current standards from all available external sources. This is a dynamic, adaptive process that discovers and applies standards from any relevant platform or source.
 
 **Required Live Research Strategy:**
-- Perform broad web searches for AI agent skill and workflow standards across all platforms
-- Discover and evaluate standards from any available source (not limited to specific platforms)
+- Perform broad web searches for AI agent skill and workflow standards
+- Discover and evaluate standards from any available source
 - Identify the most current and authoritative sources
 - Adapt to whatever standards are found and applicable
 - Synthesize findings from multiple sources into a cohesive approach
+- Directly consult known specification documents
 
-**Comprehensive Search Approach:**
+**Direct Source Consultation:**
+- Read and analyze https://agentskills.io/specification
+- Read and analyze https://github.com/anthropics/skills/blob/main/skills/docx/SKILL.md
+
+**Broad Search Approach:**
 - Search for general AI agent skill development best practices
 - Search for AI workflow standards and guidelines
 - Search for progressive disclosure patterns in AI agents
-- Search for platform-specific standards when applicable (Windsurf, Anthropic/Claude, Devin, Microsoft/CoPilot, etc.)
-- Search for agentskills.io specification
 - Search for any other relevant platforms or sources discovered during research
 
 **How to Use This Document:**
@@ -88,7 +91,7 @@ When referencing internal documentation files from a workflow or skill:
 - Dynamic adaptation ensures the workflow remains current and applicable
 - Generic approach allows the workflow to work with any available standards
 
-## Windsurf Skills Standards
+## AI Agent Skills Standards
 
 ### Core Principles
 
@@ -99,8 +102,8 @@ When referencing internal documentation files from a workflow or skill:
 - Keeps context window lean
 
 **Automatic Invocation**:
-- Skills can be invoked automatically by Cascade
-- Cascade decides when to use based on task context
+- Skills can be invoked automatically by the AI agent
+- The AI agent decides when to use based on task context
 - Users can also @mention skills manually
 - Name and description are critical for triggering
 
@@ -136,7 +139,7 @@ description: Brief description (1-2 sentences)
 ### Progressive Disclosure Implementation
 
 **Level 1: Name + Description**
-- Always visible to Cascade
+- Always visible to the AI agent
 - Used for decision-making
 - Should be sufficient for triggering
 
@@ -179,13 +182,13 @@ skill-name/
 - Appropriate extensions
 - Group related files
 
-## Windsurf Workflows Standards
+## AI Agent Workflows Standards
 
 ### Core Principles
 
 **Manual Invocation Only**:
 - Invoked via slash command only
-- Cascade never invokes automatically
+- The AI agent never invokes automatically
 - User-controlled execution
 - Simpler structure than skills
 
@@ -214,12 +217,12 @@ description: Brief description (1-2 sentences)
 - Simpler, linear process
 
 **Use Skills when**:
-- Cascade should recognize context
+- The AI agent should recognize context
 - Automatic invocation desired
 - Complex multi-step process
 - Progressive disclosure beneficial
 
-## Anthropic Agent Skills Guidelines
+## Agent Skills Guidelines
 
 ### Progressive Disclosure Principles
 
@@ -232,8 +235,8 @@ description: Brief description (1-2 sentences)
 **Implementation**:
 - Start with evaluation
 - Structure for scale
-- Think from Claude's perspective
-- Iterate with Claude
+- Think from the AI agent's perspective
+- Iterate based on usage observations
 
 ### Development Guidelines
 
@@ -249,13 +252,13 @@ description: Brief description (1-2 sentences)
 - Keep rarely used content separate
 - Code as executable and documentation
 
-**Think from Claude's Perspective**:
+**Think from AI Agent's Perspective**:
 - Monitor real usage
 - Iterate based on observations
 - Watch for unexpected trajectories
 - Pay attention to name and description
 
-**Iterate with Claude**:
+**Iterate Based on Usage**:
 - Capture successful approaches
 - Document common mistakes
 - Self-reflect on failures

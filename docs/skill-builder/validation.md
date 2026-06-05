@@ -4,7 +4,7 @@ This document provides detailed guidance for Steps 13-17 of the skill-builder wo
 
 ## Step 13: Self-Review Against Standards
 
-### Windsurf Standards Checklist
+### Platform Standards Checklist
 
 **YAML Frontmatter**:
 - [ ] Contains `name` field
@@ -26,7 +26,7 @@ This document provides detailed guidance for Steps 13-17 of the skill-builder wo
 - [ ] Supporting files are properly organized
 - [ ] File permissions are correct
 
-### Anthropic Agent Skills Guidelines Checklist
+### Agent Skills Guidelines Checklist
 
 **Progressive Disclosure**:
 - [ ] Information loads only as needed
@@ -38,7 +38,7 @@ This document provides detailed guidance for Steps 13-17 of the skill-builder wo
 **Content Quality**:
 - [ ] Skill addresses specific capability gaps
 - [ ] Content is structured for scale
-- [ ] Instructions are clear from Claude's perspective
+- [ ] Instructions are clear from the AI agent's perspective
 - [ ] Name and description enable accurate triggering
 - [ ] Skill can be iterated based on usage observations
 
@@ -112,7 +112,7 @@ Simulate executing the skill/workflow step by step:
 Test that information loads at appropriate levels:
 
 **Level 1 (Name + Description)**:
-- [ ] Cascade can understand when to use this from name/description alone
+- [ ] The AI agent can understand when to use this from name/description alone
 - [ ] Description is sufficient for decision-making
 - [ ] No critical information is missing from Level 1
 

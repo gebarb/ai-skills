@@ -1,10 +1,10 @@
-# Cascade Skills
+# AI Agent Skills
 
-A collection of reusable workflows and documentation for Cascade AI development.
+A collection of reusable workflows and documentation for AI agent development.
 
 ## Overview
 
-This repository contains skills/workflows that can be used with Cascade AI to streamline development processes. These skills are designed to be copied to your local Cascade/Windsurf configuration directory for immediate use.
+This repository contains skills/workflows that can be used with AI agents to streamline development processes. These skills are designed to be copied to your local AI agent configuration directory for immediate use.
 
 ## Available Skills
 
@@ -55,14 +55,15 @@ This repository contains skills/workflows that can be used with Cascade AI to st
 **File**: `workflows/specs-implement.md`
 
 ### `/skill-builder`
-**Description**: Walk through creating a highly performant and accurate AI skill/workflow that follows Windsurf and Anthropic best practices and standards.
+**Description**: Walk through creating a highly performant and accurate AI skill/workflow that follows current best practices and standards from all available sources.
 
-**Use Case**: When creating new skills or workflows for Cascade/Windsurf to ensure they follow best practices and are optimized for successful execution.
+**Use Case**: When creating new skills or workflows for AI agents to ensure they follow best practices and are optimized for successful execution.
 
 **Features**:
+- Dynamic standards lookup from all available sources
 - Skill vs workflow decision framework
 - Progressive disclosure structure design
-- Windsurf and Anthropic standards compliance
+- Current standards compliance
 - Comprehensive validation and testing
 - Iterative refinement process
 - Templates and guidelines
@@ -94,39 +95,14 @@ Run the installation script to copy all skills to the global directory for your 
 ./install.sh
 ```
 
-The script will prompt you to select your AI agent (Windsurf or Claude) and copy the workflows and docs to the appropriate directories, making them available in every workspace on your machine.
+The script will prompt you to select your AI agent and copy the workflows and docs to the appropriate directories, making them available in every workspace on your machine.
 
 **Supported Agents:**
-- **Windsurf**: Workflows to `~/.codeium/windsurf/global_workflows/`, Docs to `~/.codeium/windsurf/docs/`
-- **Claude**: Workflows to `~/.claude/workflows/`, Docs to `~/.claude/docs/`
+The install.sh script supports installation for various AI agents. Run the script to see the full list of supported agents and their installation paths.
 
 ### Manual Installation
 
-For Windsurf:
-1. Copy the workflow files to the global Windsurf workflows directory:
-   ```bash
-   mkdir -p ~/.codeium/windsurf/global_workflows
-   cp -r workflows/* ~/.codeium/windsurf/global_workflows/
-   ```
-
-2. Copy the documentation files to the global Windsurf docs directory:
-   ```bash
-   mkdir -p ~/.codeium/windsurf/docs
-   cp -r docs/* ~/.codeium/windsurf/docs/
-   ```
-
-For Claude:
-1. Copy the workflow files to the Claude workflows directory:
-   ```bash
-   mkdir -p ~/.claude/workflows
-   cp -r workflows/* ~/.claude/workflows/
-   ```
-
-2. Copy the documentation files to the Claude docs directory:
-   ```bash
-   mkdir -p ~/.claude/docs
-   cp -r docs/* ~/.claude/docs/
-   ```
+For manual installation instructions specific to your AI agent, please refer to your agent's documentation or run the install.sh script for guidance.
 
 ### Path Resolution
 
@@ -134,13 +110,13 @@ Workflow files use **placeholder paths** (`{{DOCS_DIR}}`) that are replaced with
 
 - **Source files** in this repository use `{{DOCS_DIR}}` placeholders
 - **During installation**, the install.sh script replaces `{{DOCS_DIR}}` with the actual absolute path to the docs directory for the selected agent
-- **Installed files** contain absolute paths (e.g., `~/.codeium/windsurf/docs/` or `~/.claude/docs/`) that work regardless of where the AI agent executes from
+- **Installed files** contain absolute paths that work regardless of where the AI agent executes from
 
 This approach ensures that paths are correct whether the agent executes from the workflows directory, the repository root, or any other location.
 
 ## Usage
 
-Once installed, use the skills directly in Cascade by typing the slash command:
+Once installed, use the skills directly in your AI agent by typing the slash command:
 
 ```
 /specs-create
@@ -173,7 +149,7 @@ For reviewing and refining skills/workflows:
 ## Directory Structure
 
 ```
-cascade-skills/
+ai-agent-skills/
 ├── README.md              # This file
 ├── install.sh             # Installation script
 ├── workflows/             # Workflow/skill definitions
@@ -237,7 +213,7 @@ To add a new skill:
 
 ## License
 
-This repository is public and intended for use with Cascade AI. Feel free to use, modify, and distribute these skills as needed.
+This repository is public and intended for use with AI agents. Feel free to use, modify, and distribute these skills as needed.
 
 ## Support
 

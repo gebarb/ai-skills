@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Cascade Skills Installation Script
+# AI Agent Skills Installation Script
 # This script copies all workflow files to the global directory for the selected AI agent
 
 set -e
@@ -140,5 +140,5 @@ else
 fi
 
 echo -e "${GREEN}Installation complete!${NC}"
-echo -e "${YELLOW}You can now use the skills in Cascade AI.${NC}"
+echo -e "${YELLOW}You can now use the skills in $AGENT_NAME.${NC}"
 echo -e "${YELLOW}Note: You may need to restart $AGENT_NAME for the skills to appear.${NC}"

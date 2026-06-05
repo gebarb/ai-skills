@@ -7,15 +7,15 @@ This document provides detailed guidance for Steps 1-5 of the skill-builder work
 ### Understanding the Difference
 
 **Skills** (automatic invocation):
-- Cascade can invoke them automatically based on task context
+- The AI agent can invoke them automatically based on task context
 - Use progressive disclosure (name/description shown first, full content loaded when invoked)
-- Best for: complex multi-step tasks that Cascade should recognize and execute on its own
+- Best for: complex multi-step tasks that the AI agent should recognize and execute on its own
 - Stored in skill directories with SKILL.md and supporting files
 - Can be @mentioned by users for manual invocation
 
 **Workflows** (manual invocation):
 - Only invoked via slash command by users
-- Cascade never invokes them automatically
+- The AI agent never invokes them automatically
 - Best for: repetitive processes that users want to trigger manually
 - Stored as single markdown files in workflows directories
 - Simpler structure, no progressive disclosure needed
@@ -23,7 +23,7 @@ This document provides detailed guidance for Steps 1-5 of the skill-builder work
 ### Decision Framework
 
 Ask these questions:
-1. Should Cascade recognize when to use this automatically? → Skill
+1. Should the AI agent recognize when to use this automatically? → Skill
 2. Is this a process I want to trigger manually every time? → Workflow
 3. Does this require complex context that should load progressively? → Skill
 4. Is this a straightforward step-by-step guide I want to run on command? → Workflow
@@ -31,10 +31,10 @@ Ask these questions:
 ### Examples
 
 **Use a Skill when:**
-- Deploying a service (Cascade should recognize deployment context)
-- Code review guidelines (Cascade should apply during code changes)
-- Testing procedures (Cascade should invoke when testing is needed)
-- Debugging workflows (Cascade should recognize error patterns)
+- Deploying a service (the AI agent should recognize deployment context)
+- Code review guidelines (the AI agent should apply during code changes)
+- Testing procedures (the AI agent should invoke when testing is needed)
+- Debugging workflows (the AI agent should recognize error patterns)
 
 **Use a Workflow when:**
 - Creating project specifications (user-driven planning process)
@@ -119,7 +119,7 @@ For each use case, document:
 - Compatibility requirements
 
 **Context Requirements**:
-- What information Cascade needs
+- What information the AI agent needs
 - What files or resources must be available
 - What state must exist before invocation
 
@@ -144,7 +144,7 @@ Plan how to organize information:
 
 ### Progressive Disclosure Principles
 
-Based on Anthropic's Agent Skills design:
+Based on agent skills design principles:
 - Start with minimal context (name + description)
 - Load more detail only when needed
 - Split large content into separate files

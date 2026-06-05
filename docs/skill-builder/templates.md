@@ -12,7 +12,7 @@ description: Brief description (1-2 sentences) of what this skill does
 
 # Skill Name
 
-Brief overview of what this skill does and when Cascade should use it.
+Brief overview of what this skill does and when the AI agent should use it.
 
 ## When to Use This Skill
 
@@ -188,7 +188,7 @@ To get started immediately:
 
 ## Usage
 
-This skill is automatically invoked by Cascade when [condition].
+This skill is automatically invoked by the AI agent when [condition].
 
 You can also manually invoke it by @mentioning the skill name.
 

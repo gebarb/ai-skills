@@ -18,7 +18,7 @@ Each perspective reviews the skill/workflow independently, then findings are syn
 
 This perspective evaluates compliance with current standards retrieved in Step 0 from all available external sources:
 - AI agent skill/workflow standards from any platform
-- Platform-specific guidelines when applicable (Windsurf, Anthropic/Claude, Devin, Microsoft/CoPilot, etc.)
+- Platform-specific guidelines when applicable
 - Industry best practices
 - Project-specific standards
 - Apply the most current standards found, regardless of source
@@ -58,9 +58,9 @@ This perspective evaluates compliance with current standards retrieved in Step 0
 - [ ] Choice between skill/workflow is justified
 - [ ] Structure matches the type chosen
 
-### Windsurf Standards Checklist
+### Platform-Specific Standards Checklist
 
-**Note**: If Windsurf-specific standards were found during Step 0 research, apply those here. Otherwise, use the general framework above.
+**Note**: If platform-specific standards were found during Step 0 research, apply those here. Otherwise, use the general framework above.
 
 **YAML Frontmatter**:
 - [ ] Contains required `name` field
@@ -93,9 +93,9 @@ This perspective evaluates compliance with current standards retrieved in Step 0
 - [ ] Choice between skill/workflow is justified
 - [ ] Structure matches the type chosen
 
-### Anthropic Agent Skills Guidelines Checklist
+### Agent Skills Guidelines Checklist
 
-**Note**: If Anthropic/Claude-specific standards were found during Step 0 research, apply those here. Otherwise, use the general framework above.
+**Note**: If agent skills-specific standards were found during Step 0 research (including from agentskills.io specification or other sources), apply those here. Otherwise, use the general framework above.
 
 **Progressive Disclosure Principles**:
 - [ ] Information loads only as needed
@@ -108,14 +108,14 @@ This perspective evaluates compliance with current standards retrieved in Step 0
 **Content Quality**:
 - [ ] Skill addresses specific capability gaps
 - [ ] Content is structured for scale
-- [ ] Instructions are clear from Claude's perspective
+- [ ] Instructions are clear from the AI agent's perspective
 - [ ] Name and description enable accurate triggering
 - [ ] Skill can be iterated based on usage observations
 
 **Development Best Practices**:
 - [ ] Started with evaluation (evidence of gap identification)
 - [ ] Structured for scale (evidence of planning)
-- [ ] Considers Claude's perspective (clear instructions)
+- [ ] Considers the AI agent's perspective (clear instructions)
 - [ ] Designed for iteration (extensible structure)
 
 ### Industry Best Practices Checklist
@@ -149,12 +149,12 @@ Document findings as:
 ```
 ## Standards & Best Practices Review
 
-### Windsurf Standards Compliance
+### Platform Standards Compliance
 - **Compliant**: [List compliant items]
 - **Non-compliant**: [List issues with severity]
 - **Needs Review**: [Items requiring clarification]
 
-### Anthropic Guidelines Compliance
+### Agent Skills Guidelines Compliance
 - **Compliant**: [List compliant items]
 - **Non-compliant**: [List issues with severity]
 - **Needs Review**: [Items requiring clarification]
