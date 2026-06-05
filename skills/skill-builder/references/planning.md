@@ -42,6 +42,12 @@ Ask these questions:
 - Generating documentation (user-triggered documentation process)
 - Setting up new projects (user-controlled setup process)
 
+**Concrete Example:**
+- **Task**: "I want to automate running security audits on my code"
+- **Decision**: Workflow - This is a specific audit check that the user wants to trigger manually on demand, not something the AI agent should automatically invoke during normal coding
+- **Task**: "I want the AI agent to automatically apply code style fixes whenever it edits files"
+- **Decision**: Skill - This should happen automatically whenever the AI agent edits code, without the user needing to explicitly trigger it
+
 ## Step 2: Define Purpose and Scope
 
 ### Purpose Statement Template

@@ -1,6 +1,10 @@
 ---
 name: specs-implement
 description: Implement specs and phases from a repository with progress tracking and user confirmation
+when_to_use: | - User asks to implement specs, execute project phases, or work through a specs/ directory - User mentions spec implementation, phase execution, or needs to follow a project plan - User wants to track progress through implementation phases with confirmation
+argument-hint: Provide the repository path containing the specs/ directory, or specify the phase to start from if resuming.
+version: 1.0.0
+compatibility: Requires repository access with specs/ directory, ability to read and write files, and user confirmation capability
 ---
 
 # Spec Implementation Workflow
