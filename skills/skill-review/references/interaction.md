@@ -323,3 +323,14 @@ If issues arise during implementation:
 - Adjust approach if needed
 - Document any deviations
 - Update change log
+
+### If User Rejects All Recommendations
+
+If the user rejects all recommendations:
+- Present issues with more specific evidence and examples
+- Explain the impact and severity more clearly
+- Offer to implement quick wins first to build trust
+- Ask for specific concerns about the recommendations
+- Consider adjusting the review approach or prioritization based on user feedback
+- Respect user decisions but document the rationale
+- Document which recommendations were rejected and why

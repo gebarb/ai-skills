@@ -17,7 +17,7 @@ The key to effective review is to approach the skill/workflow as if encountering
 ### Loading Process
 
 **Read the main file**:
-- Read SKILL.md or workflow markdown file completely
+- Read SKILL.md or workflow markdown file completely (read the entire file, paying attention to structure, content, and organization)
 - Note the structure and organization
 - Identify the overall flow
 - Mark sections that are unclear

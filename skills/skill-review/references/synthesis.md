@@ -42,6 +42,12 @@ Identify relationships between findings:
 - Issues with different recommended solutions
 - Issues that require trade-off decisions
 
+**Conflict resolution framework**:
+- If perspectives disagree, prioritize by severity: Critical > High > Medium > Low
+- If severity is equal, prioritize by impact on execution: affects many > affects some > affects few
+- If impact is equal, prioritize by fix effort: easy fixes first > medium effort > complex fixes
+- Document the conflict resolution decision in the report
+
 **Independent findings**:
 - Issues unique to one perspective
 - Issues that don't relate to others

@@ -516,3 +516,43 @@ Priority = Severity × Impact × Frequency
 | E-001    | Execution   | Flow     | S-002          | Unclear step ordering | 15 |
 | C-001    | Completeness| Context  | None           | Missing reference file | 8 |
 ```
+
+## Standards Conflicts Template
+
+```markdown
+## Standards Conflicts
+
+### Conflict 1: [Description of conflict]
+- **Source A**: [Standard from source A, e.g., "agentskills.io recommends X"]
+- **Source B**: [Standard from source B, e.g., "Anthropic skill-creator recommends Y"]
+- **Decision**: [Which standard was chosen and why]
+- **Rationale**: [Explanation of the decision, e.g., "Chose Source A because it's more recent (within last 12 months) and is an official specification document"]
+
+### Conflict 2: [Description of conflict]
+- **Source A**: [Standard from source A]
+- **Source B**: [Standard from source B]
+- **Decision**: [Which standard was chosen and why]
+- **Rationale**: [Explanation of the decision]
+```
+
+## Prioritization Guidance Template
+
+```markdown
+## Prioritization Guidance
+
+When multiple issues have the same severity level, use this order to prioritize:
+
+1. **By Impact** (within same severity):
+   - Affects many users > Affects some users > Affects few users
+
+2. **By Fix Effort** (within same impact):
+   - Easy fixes first (quick wins) > Medium effort > Complex fixes
+
+3. **By Risk** (if applicable):
+   - High risk if not fixed > Medium risk > Low risk
+
+**Example**: If you have 3 high-priority issues:
+- Issue A: Affects many users, easy fix → Fix first
+- Issue B: Affects some users, medium fix → Fix second
+- Issue C: Affects few users, complex fix → Fix third
+```

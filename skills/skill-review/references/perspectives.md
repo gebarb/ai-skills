@@ -385,6 +385,13 @@ Each perspective should be applied with fresh context:
 - Document findings independently
 - Don't be influenced by previous perspectives
 
+**Techniques for achieving fresh context:**
+- Take a 5-minute break between perspectives
+- Re-read the file from start to end before starting next perspective
+- Do not refer to previous notes or findings
+- Clear mental context by focusing on a different task briefly
+- **Measurable criteria**: Fresh context achieved when you can answer "What is this skill/workflow about?" without referring to previous notes
+
 ### Perspective Independence
 
 Each perspective should operate independently:
@@ -408,3 +415,18 @@ Each perspective should be balanced:
 - Provide constructive feedback
 - Prioritize issues by severity
 - Focus on actionable recommendations
+
+## Example Fresh Context Application
+
+**Example: After completing Standards Review**
+1. Take a 5-minute break (step away from the task)
+2. Clear your mental context by focusing on something unrelated
+3. Re-read SKILL.md from line 1 to end
+4. Start Execution Review without looking at Standards Review findings
+5. Document findings as if this is your first time reviewing the skill
+
+**Example: After completing Execution Review**
+1. Take a 5-minute break
+2. Re-read SKILL.md from line 1 to end
+3. Start Completeness Review without looking at previous findings
+4. Document findings independently
