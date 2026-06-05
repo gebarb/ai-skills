@@ -10,7 +10,7 @@ This is the setup phase of the specs-implement workflow, covering Steps 1-9: Rep
 
 For the complete workflow, see:
 - Setup Phase: This file (Steps 1-9)
-- Implementation Phase: `{{DOCS_DIR}}/specs-implement/implementation.md` (Steps 10-19)
+- Implementation Phase: `implementation.md` (Steps 10-19)
 
 ## Prerequisites
 
@@ -712,4 +712,4 @@ This allows rollback if implementation fails.
 
 ## Continue to Part 2
 
-For Steps 12-21 (Implement Phase through Completion), see `{{DOCS_DIR}}/specs-implement/implementation.md`.
+For Steps 12-21 (Implement Phase through Completion), see `implementation.md`.

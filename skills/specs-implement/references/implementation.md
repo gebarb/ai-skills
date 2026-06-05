@@ -9,7 +9,7 @@ This is the implementation phase of the specs-implement workflow, covering Steps
 **Note**: Technology stack selection (language, frameworks, architecture, etc.) is handled in the specs-create workflow. This implementation workflow uses the technology decisions documented in the specs.
 
 For the complete workflow, see:
-- Setup Phase: `{{DOCS_DIR}}/specs-implement/setup.md` (Steps 1-11)
+- Setup Phase: `setup.md` (Steps 1-11)
 - Implementation Phase: This file (Steps 12-21)
 
 ## Workflow Steps
@@ -482,5 +482,5 @@ Next steps:
 ## Reference Materials
 
 For detailed progress tracking, error handling, and guidelines, see:
-- **Progress Tracking**: `{{DOCS_DIR}}/specs-implement/progress.md` - Progress file format and validation
-- **Error Handling**: `{{DOCS_DIR}}/specs-implement/handling.md` - Error handling, rollback, and spec updates
+- **Progress Tracking**: `progress.md` - Progress file format and validation
+- **Error Handling**: `handling.md` - Error handling, rollback, and spec updates

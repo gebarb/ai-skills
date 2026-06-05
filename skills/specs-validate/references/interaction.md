@@ -7,11 +7,11 @@ description: Validate specs through comprehensive multi-perspective review - Par
 This is Part 4 of the specs-validate workflow, covering Steps 10-12: Presenting the validation report, gathering user feedback, and implementing approved changes.
 
 For the complete workflow, see:
-- Initial Assessment: `{{DOCS_DIR}}/specs-validate/initial.md` (Steps 1-3)
-- Multi-Perspective Review: `{{DOCS_DIR}}/specs-validate/review.md` (Steps 4-6)
-- Synthesis: `{{DOCS_DIR}}/specs-validate/synthesis.md` (Steps 7-9)
+- Initial Assessment: `initial.md` (Steps 1-3)
+- Multi-Perspective Review: `review.md` (Steps 4-6)
+- Synthesis: `synthesis.md` (Steps 7-9)
 - User Interaction: This file (Steps 10-12)
-- Finalization: `{{DOCS_DIR}}/specs-validate/finalization.md` (Steps 13-14)
+- Finalization: `finalization.md` (Steps 13-14)
 
 ## Usage
 
@@ -307,4 +307,4 @@ Custom Instructions:
 
 ## Continue to Part 5
 
-For Steps 13-14 (Finalization Phase), see `{{DOCS_DIR}}/specs-validate/finalization.md`.
+For Steps 13-14 (Finalization Phase), see `finalization.md`.

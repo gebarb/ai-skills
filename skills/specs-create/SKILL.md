@@ -36,7 +36,7 @@ Run this workflow from the root of your repository:
 The complete workflow is split into two phases to keep each document under 500 lines:
 
 ### Planning Phase (Steps 1-5)
-See `{{DOCS_DIR}}/specs-create/planning.md` for:
+See `references/planning.md` for:
 1. Repository Review (Required First Step)
 2. New Codebase Detection and Technology Guidance
 3. Project Overview Gathering
@@ -44,7 +44,7 @@ See `{{DOCS_DIR}}/specs-create/planning.md` for:
 5. Phase Definition
 
 ### Execution Phase (Steps 6-13)
-See `{{DOCS_DIR}}/specs-create/execution.md` for:
+See `references/execution.md` for:
 6. Phase Detail Gathering
 7. README.md Generation
 8. Validate Spec Structure
@@ -57,8 +57,8 @@ See `{{DOCS_DIR}}/specs-create/execution.md` for:
 ## Reference Materials
 
 For detailed templates, maintenance strategies, and guidelines, see:
-- **Planning Phase**: `{{DOCS_DIR}}/specs-create/planning.md` - Steps 1-5
-- **Execution Phase**: `{{DOCS_DIR}}/specs-create/execution.md` - Steps 6-13
-- **Templates**: `{{DOCS_DIR}}/specs-create/templates.md` - Phase file and README templates
-- **Maintenance**: `{{DOCS_DIR}}/specs-create/maintenance.md` - Migration, versioning, and import/export
-- **Guidelines**: `{{DOCS_DIR}}/specs-create/guidelines.md` - Best practices and quality metrics
+- **Planning Phase**: `references/planning.md` - Steps 1-5
+- **Execution Phase**: `references/execution.md` - Steps 6-13
+- **Templates**: `references/templates.md` - Phase file and README templates
+- **Maintenance**: `references/maintenance.md` - Migration, versioning, and import/export
+- **Guidelines**: `references/guidelines.md` - Best practices and quality metrics

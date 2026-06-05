@@ -8,7 +8,7 @@ This is Part 1 of the specs-create workflow, covering Steps 1-5: Repository revi
 
 For the complete workflow, see:
 - Planning Phase: This file (Steps 1-5)
-- Execution Phase: `{{DOCS_DIR}}/specs-create/execution.md` (Steps 6-13)
+- Execution Phase: `execution.md` (Steps 6-13)
 
 ## Usage
 
@@ -302,4 +302,4 @@ Phase N: [Phase Name]
 
 ## Continue to Part 2
 
-For Steps 6-13 (Phase Detail Gathering through Finalization), see `{{DOCS_DIR}}/specs-create/execution.md`.
+For Steps 6-13 (Phase Detail Gathering through Finalization), see `execution.md`.

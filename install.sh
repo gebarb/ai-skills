@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # AI Agent Skills Installation Script
-# This script copies all workflow files to the global directory for the selected AI agent
+# This script copies skills, rules, and workflows to the global directory for the selected AI agent
 
 set -e
 
@@ -24,7 +24,6 @@ get_agent_config() {
                 name) echo "Windsurf" ;;
                 base_dir) echo "$HOME/.codeium/windsurf" ;;
                 workflows_subdir) echo "global_workflows" ;;
-                docs_subdir) echo "docs" ;;
             esac
             ;;
         claude)
@@ -32,7 +31,6 @@ get_agent_config() {
                 name) echo "Claude" ;;
                 base_dir) echo "$HOME/.claude" ;;
                 workflows_subdir) echo "workflows" ;;
-                docs_subdir) echo "docs" ;;
             esac
             ;;
     esac
@@ -68,10 +66,8 @@ select_agent
 # Set directories based on selected agent
 BASE_DIR=$(get_agent_config "$SELECTED_AGENT" base_dir)
 WORKFLOWS_SUBDIR=$(get_agent_config "$SELECTED_AGENT" workflows_subdir)
-DOCS_SUBDIR=$(get_agent_config "$SELECTED_AGENT" docs_subdir)
 
 WORKFLOWS_DIR="$BASE_DIR/$WORKFLOWS_SUBDIR"
-DOCS_DIR="$BASE_DIR/$DOCS_SUBDIR"
 
 # Create the workflows directory if it doesn't exist
 if [ ! -d "$WORKFLOWS_DIR" ]; then
@@ -81,62 +77,38 @@ fi
 
 # Get the script directory
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LOCAL_WORKFLOWS_DIR="$SCRIPT_DIR/workflows"
 
-# Check if local workflows directory exists
-if [ ! -d "$LOCAL_WORKFLOWS_DIR" ]; then
-    echo -e "${RED}Error: Local workflows directory not found at $LOCAL_WORKFLOWS_DIR${NC}"
-    exit 1
-fi
-
-# Copy all workflow files and replace placeholders
-echo -e "${GREEN}Copying workflow files to $WORKFLOWS_DIR${NC}"
-for file in "$LOCAL_WORKFLOWS_DIR"/*.md; do
-    if [ -f "$file" ]; then
-        # Replace {{DOCS_DIR}} placeholder with actual docs directory
-        sed "s|{{DOCS_DIR}}|$DOCS_DIR|g" "$file" > "$WORKFLOWS_DIR/$(basename "$file")"
-    fi
-done
-
-# Count copied workflow files
-WORKFLOW_COPIED_COUNT=$(ls -1 "$LOCAL_WORKFLOWS_DIR"/*.md 2>/dev/null | wc -l)
-
-echo -e "${GREEN}Successfully copied $WORKFLOW_COPIED_COUNT workflow file(s)${NC}"
-
-# Create docs directory if it doesn't exist
-if [ ! -d "$DOCS_DIR" ]; then
-    echo -e "${YELLOW}Creating docs directory at $DOCS_DIR${NC}"
-    mkdir -p "$DOCS_DIR"
-fi
-
-LOCAL_DOCS_DIR="$SCRIPT_DIR/docs"
-
-# Check if local docs directory exists
-if [ -d "$LOCAL_DOCS_DIR" ]; then
-    # Copy all docs files and replace placeholders
-    echo -e "${GREEN}Copying docs files to $DOCS_DIR${NC}"
-    
-    # Create a temporary directory for processing
-    TEMP_DOCS_DIR=$(mktemp -d)
-    
-    # Copy docs to temp directory
-    cp -r "$LOCAL_DOCS_DIR"/* "$TEMP_DOCS_DIR/"
-    
-    # Replace {{DOCS_DIR}} placeholder in all markdown files
-    find "$TEMP_DOCS_DIR" -type f -name "*.md" -exec sed -i '' "s|{{DOCS_DIR}}|$DOCS_DIR|g" {} \;
-    
-    # Copy processed docs to destination
-    cp -r "$TEMP_DOCS_DIR"/* "$DOCS_DIR/"
-    
-    # Clean up temp directory
-    rm -rf "$TEMP_DOCS_DIR"
-    
-    # Count copied docs files
-    DOCS_COPIED_COUNT=$(find "$LOCAL_DOCS_DIR" -type f | wc -l)
-
-    echo -e "${GREEN}Successfully copied $DOCS_COPIED_COUNT docs file(s)${NC}"
+# Copy skills directory
+LOCAL_SKILLS_DIR="$SCRIPT_DIR/skills"
+if [ -d "$LOCAL_SKILLS_DIR" ]; then
+    echo -e "${GREEN}Copying skills directory to $WORKFLOWS_DIR${NC}"
+    cp -r "$LOCAL_SKILLS_DIR"/* "$WORKFLOWS_DIR/"
+    SKILL_COPIED_COUNT=$(ls -1 "$LOCAL_SKILLS_DIR"/*/ 2>/dev/null | wc -l)
+    echo -e "${GREEN}Successfully copied $SKILL_COPIED_COUNT skill(s)${NC}"
 else
-    echo -e "${YELLOW}No local docs directory found, skipping docs installation${NC}"
+    echo -e "${YELLOW}No local skills directory found, skipping skills installation${NC}"
+fi
+
+# Copy rules directory
+LOCAL_RULES_DIR="$SCRIPT_DIR/rules"
+if [ -d "$LOCAL_RULES_DIR" ] && [ "$(ls -A "$LOCAL_RULES_DIR" 2>/dev/null)" ]; then
+    echo -e "${GREEN}Copying rules directory to $BASE_DIR${NC}"
+    cp -r "$LOCAL_RULES_DIR"/* "$BASE_DIR/"
+    RULES_COPIED_COUNT=$(ls -1 "$LOCAL_RULES_DIR" 2>/dev/null | wc -l)
+    echo -e "${GREEN}Successfully copied $RULES_COPIED_COUNT rule(s)${NC}"
+else
+    echo -e "${YELLOW}No local rules directory found or empty, skipping rules installation${NC}"
+fi
+
+# Copy workflows directory
+LOCAL_WORKFLOWS_DIR="$SCRIPT_DIR/workflows"
+if [ -d "$LOCAL_WORKFLOWS_DIR" ] && [ "$(ls -A "$LOCAL_WORKFLOWS_DIR" 2>/dev/null)" ]; then
+    echo -e "${GREEN}Copying workflows directory to $WORKFLOWS_DIR${NC}"
+    cp -r "$LOCAL_WORKFLOWS_DIR"/* "$WORKFLOWS_DIR/"
+    WORKFLOWS_COPIED_COUNT=$(ls -1 "$LOCAL_WORKFLOWS_DIR" 2>/dev/null | wc -l)
+    echo -e "${GREEN}Successfully copied $WORKFLOWS_COPIED_COUNT workflow file(s)${NC}"
+else
+    echo -e "${YELLOW}No local workflows directory found or empty, skipping workflows installation${NC}"
 fi
 
 echo -e "${GREEN}Installation complete!${NC}"
