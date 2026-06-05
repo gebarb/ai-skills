@@ -1,24 +1,50 @@
 ---
-description: Implement specs and phases from a repository - Implementation Phase (Steps 10-19)
+description: Implement specs and phases from a repository - Implementation Phase (Steps 12-21)
 ---
 
 # Spec Implementation Workflow - Implementation Phase
 
-This is the implementation phase of the specs-implement workflow, covering Steps 10-19: Implement phase, code quality checks, test execution, verification, code review, progress update, save code, cleanup checkpoint, continue to next phase, and completion.
+This is the implementation phase of the specs-implement workflow, covering Steps 12-21: Implement phase (with TDD support if selected), code quality checks, test execution, verification, automatic code review, documentation generation, progress update, save code, cleanup checkpoint, continue to next phase, and completion.
 
 **Note**: Technology stack selection (language, frameworks, architecture, etc.) is handled in the specs-create workflow. This implementation workflow uses the technology decisions documented in the specs.
 
 For the complete workflow, see:
-- Setup Phase: `{{DOCS_DIR}}/specs-implement/setup.md` (Steps 1-9)
-- Implementation Phase: This file (Steps 10-19)
+- Setup Phase: `{{DOCS_DIR}}/specs-implement/setup.md` (Steps 1-11)
+- Implementation Phase: This file (Steps 12-21)
 
 ## Workflow Steps
 
-### 10. Implement Phase
+### 12. Implement Phase
 
 If user confirms, read the phase file and implement it using the following methodology:
 
 **Implementation Methodology:**
+
+**Check Testing Approach:**
+Before implementing, check the testing approach selected in Step 10 (Setup Phase):
+- If TDD mode: Write tests first, then implement code to make tests pass
+- If standard mode: Write implementation first, then write tests
+- If no tests: Skip test creation entirely
+
+**TDD Implementation Flow (if selected):**
+1. Write failing tests for the implementation tasks
+2. Run tests to confirm they fail
+3. Implement minimal code to make tests pass
+4. Run tests to confirm they pass
+5. Refactor code while keeping tests passing
+6. Repeat for each task
+
+**Standard Implementation Flow (if selected):**
+1. Implement the code according to the phase specification
+2. Write tests after implementation is complete
+3. Run tests to verify implementation
+
+**No Tests Flow (if selected):**
+1. Implement the code according to the phase specification
+2. Skip test creation
+3. Proceed to verification
+
+**Common Implementation Steps:**
 
 1. **Analyze the Phase File:**
    - Read and parse the phase file completely
@@ -67,7 +93,7 @@ Reading phase file: specs/phase-1-feature-name.md
 [Continue for all tasks]
 ```
 
-### 11. Run Code Quality Checks
+### 13. Run Code Quality Checks
 
 After implementation, run code quality checks:
 
@@ -87,44 +113,7 @@ Report any issues found:
 - **Warning**: Potential issues (should fix)
 - **Info**: Style or best practice suggestions (optional)
 
-### 12. Execute Tests
-
-**Unit Test Prompt:**
-Before running tests, ask the user if they want to include unit tests for this phase:
-
-```
-=== Unit Test Creation ===
-
-Would you like to include unit tests for this phase implementation?
-
-- Type 'yes' to create comprehensive unit tests
-- Type 'no' to skip unit test creation
-- Type 'later' to create tests later (not recommended for production code)
-```
-
-**If user selects 'yes':**
-- Create comprehensive unit tests for all new code
-- Ensure tests cover:
-  - Happy paths (expected functionality)
-  - Edge cases and boundary conditions
-  - Error handling and failure scenarios
-  - Integration points with other components
-- Run tests and ensure all pass before proceeding
-- If tests fail, fix implementation or tests until all pass
-- Generate test coverage report
-- Verify coverage meets requirements (minimum 80% for new code, 100% for critical paths)
-
-**If user selects 'no':**
-- Skip unit test creation
-- Note that this is not recommended for production code
-- Proceed to verification step
-- Consider adding tests later before deployment
-
-**If user selects 'later':**
-- Skip unit test creation for now
-- Add a reminder to create tests before deployment
-- Proceed to verification step
-- Note that tests should be created before production deployment
+### 14. Execute Tests
 
 Run tests to verify implementation:
 
@@ -200,7 +189,7 @@ Report test results:
 - If implementation is incorrect, fix implementation
 - Re-run tests after fixes
 
-### 13. Verify Implementation
+### 15. Verify Implementation
 
 After implementation, verify the success criteria:
 
@@ -227,25 +216,189 @@ After implementation, verify the success criteria:
   - 'adjust' to modify success criteria (if spec issue)
   - 'proceed' to continue with warnings (not recommended)
 
-### 14. Request Code Review
+### 16. Perform Automatic Code Review
 
-Ask the user to review the implemented code:
+Perform a comprehensive automatic code review of the implemented code:
 
+**Review Scope:**
+- Code quality and maintainability
+- Adherence to project conventions and patterns
+- Security vulnerabilities
+- Performance considerations
+- Spec compliance verification
+- Documentation completeness
+
+**Automated Review Checks:**
+
+1. **Code Quality Analysis:**
+   - Check code complexity and cyclomatic complexity
+   - Identify code smells and anti-patterns
+   - Verify proper error handling
+   - Check for potential bugs or edge cases
+   - Validate naming conventions
+
+2. **Spec Compliance Check:**
+   - Verify all implementation tasks from the phase are completed
+   - Check that technical requirements are met
+   - Validate success criteria are satisfied
+   - Ensure no deviations from the spec without justification
+
+3. **Security Review:**
+   - Check for common security vulnerabilities (SQL injection, XSS, etc.)
+   - Validate input sanitization
+   - Check authentication/authorization implementation
+   - Review sensitive data handling
+   - Verify dependency security (if applicable)
+
+4. **Performance Review:**
+   - Identify potential performance bottlenecks
+   - Check for inefficient algorithms or data structures
+   - Review database query optimization (if applicable)
+   - Check memory usage patterns
+   - Identify unnecessary computations
+
+5. **Documentation Review:**
+   - Verify code comments are present and helpful
+   - Check that public APIs are documented
+   - Validate inline documentation accuracy
+   - Ensure complex logic is explained
+
+**Review Report Generation:**
+Generate a comprehensive review report with:
+- Summary of findings (critical, major, minor issues)
+- Specific issues with file locations and line numbers
+- Recommendations for fixes
+- Overall quality score
+- Approval status (approve, approve with changes, needs revision)
+
+**Automatic Issue Resolution:**
+- For minor issues (style, formatting): Auto-fix if possible
+- For major issues (logic, security): Report and recommend fixes
+- For critical issues (blocking): Block phase completion until resolved
+
+**Review Outcome:**
 ```
-Phase [Phase Name] implementation complete.
+=== Code Review Report ===
 
-Please review the changes:
-- Check the implementation against the spec
-- Verify all success criteria are met
-- Test the implementation if applicable
+Overall Quality Score: [X]%
+Status: [APPROVED / APPROVED WITH CHANGES / NEEDS REVISION]
 
-When ready:
-- Type 'approve' to mark this phase as complete and proceed
+Critical Issues: [N]
+Major Issues: [N]
+Minor Issues: [N]
+
+[Detailed findings...]
+
+Recommended Actions:
+- [ ] Fix critical issue 1
+- [ ] Address major issue 2
+- [ ] Consider minor issue 3
+
+Proceed with implementation?
+- Type 'approve' to accept and continue
+- Type 'fix' to address issues before proceeding
 - Type 'retry' to re-implement this phase
-- Type 'exit' to stop the workflow (progress will be saved)
 ```
 
-### 15. Update Progress
+**If user selects 'approve':**
+- Mark review as complete
+- Proceed to documentation generation
+- Note any approved-with-changes items for future reference
+
+**If user selects 'fix':**
+- Implement the recommended fixes
+- Re-run code quality checks
+- Re-generate review report
+- Ask for approval again
+
+**If user selects 'retry':**
+- Roll back to checkpoint
+- Re-implement the phase with review feedback in mind
+
+### 17. Generate Documentation
+
+Automatically generate documentation for the implemented code:
+
+**Documentation Types to Generate:**
+
+1. **API Documentation:**
+   - Extract API endpoints, methods, and signatures
+   - Generate documentation for public interfaces
+   - Include request/response formats
+   - Add usage examples
+   - Document authentication/authorization requirements
+
+2. **Code Documentation:**
+   - Generate inline code comments if missing
+   - Create README files for new modules/components
+   - Document complex algorithms and business logic
+   - Add architecture diagrams where appropriate
+
+3. **User Documentation:**
+   - Generate user guides for new features
+   - Create usage documentation
+   - Add screenshots or examples where applicable
+   - Document configuration options
+
+4. **Developer Documentation:**
+   - Update project README with new features
+   - Document setup/installation changes
+   - Add contribution guidelines for new code
+   - Document environment variables and configuration
+
+**Documentation Generation Process:**
+
+1. **Analyze Implemented Code:**
+   - Identify new files and modified files
+   - Extract public APIs, classes, and functions
+   - Identify configuration changes
+   - Determine documentation requirements
+
+2. **Generate Documentation Files:**
+   - Create or update API documentation
+   - Generate code comments where needed
+   - Create user guides for new features
+   - Update project-level documentation
+
+3. **Validate Documentation:**
+   - Ensure documentation is accurate and complete
+   - Check for consistency with implementation
+   - Verify examples work correctly
+   - Validate links and references
+
+**Documentation Output:**
+```
+=== Documentation Generation ===
+
+Generated documentation:
+- API docs: docs/api/[feature].md
+- Code docs: Updated inline comments in [files]
+- User guide: docs/user/[feature].md
+- Project README: Updated with new features
+
+Documentation coverage: [X]%
+```
+
+**Documentation Storage:**
+- Store generated documentation in appropriate directories (docs/, README.md, inline comments)
+- Commit documentation changes with the implementation
+- Ensure documentation is versioned with the code
+
+**Skip Documentation Option:**
+If the user prefers to write documentation manually, provide an option to skip automatic generation:
+```
+Would you like to generate documentation automatically?
+- Type 'yes' to generate documentation automatically
+- Type 'no' to skip and write documentation manually
+```
+
+**If user selects 'no':**
+- Skip automatic documentation generation
+- Add a reminder to create documentation before deployment
+- Proceed to progress update
+- Note that documentation should be created before production deployment
+
+### 18. Update Progress
 
 If user approves:
 
@@ -254,7 +407,7 @@ If user approves:
 - Update specVersion field with the version used for implementation
 - Save the progress file
 
-### 16. Save Code (User Action)
+### 19. Save Code (User Action)
 
 Instruct the user to save the changes:
 
@@ -268,7 +421,7 @@ Please save the changes for this phase:
 After saving, type 'continue' to proceed to the next phase.
 ```
 
-### 17. Clean Up Checkpoint
+### 20. Clean Up Checkpoint
 
 After successful save, clean up the checkpoint:
 
@@ -305,11 +458,11 @@ rm -rf .phase-checkpoints/phase-*
 rm -rf .phase-checkpoints/phase-3-20240115-103045
 ```
 
-### 18. Continue to Next Phase
+### 21. Continue to Next Phase
 
-Repeat steps 6-18 for the next incomplete phase.
+Repeat steps 7-20 for the next incomplete phase.
 
-### 19. Completion
+### 22. Completion
 
 When all phases are complete:
 

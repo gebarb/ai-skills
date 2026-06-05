@@ -9,10 +9,12 @@ This workflow executes the implementation of specs and phases defined in a repos
 
 ## Prerequisites
 
-- Repository must have a `specs/` directory
-- `specs/README.md` must exist and define phase structure
+**Note**: The use of create-specs and validate-specs workflows is optional. Users may provide their own spec files or implementation requests. If specs cannot be determined, this workflow will ask for direction or recommend using create-specs.
+
+- If specs exist: Repository must have a `specs/` directory with `specs/README.md` defining phase structure
 - Phase files must be named `phase-*.md` (e.g., `phase-1-foundation.md`)
 - Each phase file should contain implementation tasks, technical requirements, and success criteria
+- If specs don't exist: Workflow will prompt user for direction or recommend create-specs
 
 ## Platform Requirements
 
@@ -47,10 +49,16 @@ The complete workflow is split into two phases to keep each document under 500 l
 
 **Note**: Technology stack selection (language, frameworks, architecture, etc.) is handled in the specs-create workflow. This implementation workflow uses the technology decisions documented in the specs.
 
-### Preparation Phase (Steps 1-9)
+**Key Enhancements**:
+- **Spec Existence Check**: If specs don't exist, workflow asks for direction or recommends create-specs
+- **TDD Support**: Before implementation, asks user if they want tests and whether to use TDD approach
+- **Automatic Code Review**: Performs comprehensive automatic code review after implementation
+- **Automatic Documentation**: Generates documentation automatically after code review
+
+### Preparation Phase (Steps 1-11)
 See `{{DOCS_DIR}}/specs-implement/setup.md` for:
-1. **Check for Existing Progress State** - Determine if this is a fresh start or a resume operation from a previous checkpoint
-2. **Repository Review** - Deep review of all code, configuration, and other files in the codebase to understand how it works, its intent, and how to work in it. This is performed for each phase since the codebase state changes after implementation.
+1. **Repository Review** - Deep review of all code, configuration, and other files in the codebase to understand how it works, its intent, and how to work in it. This is performed for each phase since the codebase state changes after implementation.
+2. **Check for Specs and Determine Implementation Approach** - Check if specs exist, and if not, ask user for direction or recommend create-specs
 3. Initialize Progress Tracking and Phase Selection
 4. Validate Spec Structure
 5. Parse Specs Structure
@@ -58,24 +66,27 @@ See `{{DOCS_DIR}}/specs-implement/setup.md` for:
 7. Determine Next Phase
 8. **Display Phase Overview** - Build and present a summary and plan of action for the upcoming phase implementation
 9. **Request User Confirmation** - Present the summary and plan to the user for confirmation before proceeding
+10. **Confirm Testing Approach (TDD Prompt)** - Ask user if they want unit tests and whether to use TDD approach before implementation begins
+11. Create Implementation Checkpoint
 
-### Implementation Phase (Steps 10-19)
+### Implementation Phase (Steps 12-22)
 See `{{DOCS_DIR}}/specs-implement/implementation.md` for:
-10. Create Implementation Checkpoint
-11. Implement Phase
-12. Run Code Quality Checks
-13. Execute Tests
-14. Verify Implementation
-15. Request Code Review
-16. Update Progress
-17. Save Code (User Action)
-18. Clean Up Checkpoint
-19. Continue to Next Phase
+12. Implement Phase (with TDD support if selected)
+13. Run Code Quality Checks
+14. Execute Tests
+15. Verify Implementation
+16. **Perform Automatic Code Review** - Comprehensive automatic code review with quality analysis, security review, performance review, and spec compliance
+17. **Generate Documentation** - Automatically generate API docs, code docs, user guides, and developer documentation
+18. Update Progress
+19. Save Code (User Action)
+20. Clean Up Checkpoint
+21. Continue to Next Phase
+22. Completion
 
 ## Reference Materials
 
 For detailed progress tracking, error handling, and guidelines, see:
-- **Setup Phase**: `{{DOCS_DIR}}/specs-implement/setup.md` - Steps 1-9
-- **Implementation Phase**: `{{DOCS_DIR}}/specs-implement/implementation.md` - Steps 10-19
+- **Setup Phase**: `{{DOCS_DIR}}/specs-implement/setup.md` - Steps 1-11
+- **Implementation Phase**: `{{DOCS_DIR}}/specs-implement/implementation.md` - Steps 12-22
 - **Progress Tracking**: `{{DOCS_DIR}}/specs-implement/progress.md` - Progress file format and validation
 - **Error Handling**: `{{DOCS_DIR}}/specs-implement/handling.md` - Error handling, rollback, and spec updates

@@ -41,9 +41,13 @@ This repository contains skills/workflows that can be used with AI agents to str
 ### `/specs-implement`
 **Description**: Implement specs and phases from a repository with progress tracking and user confirmation.
 
-**Use Case**: When you have existing specs in a `specs/` directory and want to implement them systematically.
+**Use Case**: When you have existing specs in a `specs/` directory and want to implement them systematically. Also works with user-provided specs or implementation requests.
 
 **Features**:
+- **Spec Existence Check**: If specs don't exist, asks for direction or recommends create-specs
+- **TDD Support**: Before implementation, asks if you want unit tests and whether to use TDD approach
+- **Automatic Code Review**: Performs comprehensive automatic code review with quality analysis, security review, performance review, and spec compliance
+- **Automatic Documentation**: Generates API docs, code docs, user guides, and developer documentation automatically
 - Progress tracking with `.specs-progress.json`
 - Phase selection (all phases, specific phase, or resume from progress)
 - Dependency resolution
