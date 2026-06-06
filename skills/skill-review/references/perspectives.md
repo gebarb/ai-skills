@@ -149,24 +149,35 @@ Document findings as:
 ```
 ## Standards & Best Practices Review
 
+### Sources Consulted (from Step 0)
+- List all sources consulted during Step 0 with key standards identified from each
+- Example: "agentskills.io specification: progressive disclosure, description format"
+- Example: "Anthropic skill-creator: kebab-case naming, <500 line limit"
+
 ### Platform Standards Compliance
-- **Compliant**: [List compliant items]
-- **Non-compliant**: [List issues with severity]
-- **Needs Review**: [Items requiring clarification]
+- **Compliant**: [List compliant items with source citations]
+- **Non-compliant**: [List issues with severity and source citations]
+- **Needs Review**: [Items requiring clarification with source citations]
 
 ### Agent Skills Guidelines Compliance
-- **Compliant**: [List compliant items]
-- **Non-compliant**: [List issues with severity]
-- **Needs Review**: [Items requiring clarification]
+- **Compliant**: [List compliant items with source citations]
+- **Non-compliant**: [List issues with severity and source citations]
+- **Needs Review**: [Items requiring clarification with source citations]
 
 ### Best Practices Compliance
-- **Compliant**: [List compliant items]
-- **Non-compliant**: [List issues with severity]
-- **Needs Review**: [Items requiring clarification]
+- **Compliant**: [List compliant items with source citations]
+- **Non-compliant**: [List issues with severity and source citations]
+- **Needs Review**: [Items requiring clarification with source citations]
 
 ### Critical Standards Issues
-[List any critical standards violations that must be fixed]
+[List any critical standards violations that must be fixed, with source citations]
 ```
+
+**IMPORTANT: Always cite sources when documenting compliance findings**
+- When stating a standard is met or violated, reference which source(s) established that standard
+- Example: "Description exceeds 2 sentences (violates Anthropic skill-creator guideline)"
+- Example: "Name follows kebab-case (compliant with agentskills.io and Anthropic standards)"
+- This transparency helps the user understand where each requirement comes from
 
 ## Subagent 2: Execution & Structure Review
 

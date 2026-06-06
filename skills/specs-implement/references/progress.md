@@ -10,6 +10,62 @@ This file contains the progress file format and validation for the spec implemen
 
 `.specs-progress.json` structure:
 
+**Audit Logging:**
+For compliance and debugging, the workflow maintains an audit log in the progress file:
+
+```json
+{
+  "repository": "user-provided",
+  "lastUpdated": "2024-01-15T10:30:00Z",
+  "specVersion": "1.0.0",
+  "startPhase": null,
+  "auditLog": [
+    {
+      "timestamp": "2024-01-15T09:00:00Z",
+      "action": "workflow_started",
+      "details": "Workflow initiated by user"
+    },
+    {
+      "timestamp": "2024-01-15T09:05:00Z",
+      "action": "phase_started",
+      "phase": "Phase 1: Foundation",
+      "details": "Beginning implementation of Phase 1"
+    },
+    {
+      "timestamp": "2024-01-15T09:30:00Z",
+      "action": "checkpoint_created",
+      "phase": "Phase 1: Foundation",
+      "details": "Checkpoint created: phase-1-20240115-093000"
+    },
+    {
+      "timestamp": "2024-01-15T10:00:00Z",
+      "action": "phase_completed",
+      "phase": "Phase 1: Foundation",
+      "details": "Phase 1 completed successfully, 8/8 tasks"
+    }
+  ],
+  "phases": []
+}
+```
+
+**Audit Log Events:**
+- `workflow_started`: Workflow initiated
+- `workflow_completed`: All phases completed
+- `phase_started`: Phase implementation began
+- `phase_completed`: Phase implementation finished
+- `phase_skipped`: Phase was skipped by user
+- `checkpoint_created`: Checkpoint was created
+- `checkpoint_restored`: Rollback to checkpoint performed
+- `error_occurred`: Error encountered during execution
+- `user_confirmation`: User provided confirmation at decision point
+- `spec_version_changed`: Spec version detected as changed
+
+**Audit Log Retention:**
+- Keep audit log for the duration of the project
+- Audit log grows with each action (typically 1-2 KB per 100 actions)
+- No automatic cleanup of audit log entries
+- Can be exported for compliance reporting
+
 ```json
 {
   "repository": "user-provided",
@@ -109,6 +165,60 @@ This file contains the progress file format and validation for the spec implemen
 
 To ensure the progress file remains valid, validate the structure:
 
+**AI Execution Instructions for Validation:**
+
+1. **Check if file exists and is valid JSON:**
+   - Read the progress file
+   - Verify it's valid JSON format
+   - If invalid, report error and ask user to fix or restore from backup
+
+2. **Automated Backup Before Writes:**
+   - Before any write operation to `.specs-progress.json`:
+     - Create backup directory if it doesn't exist: `.specs-progress-backups/`
+     - Generate timestamped backup filename: `.specs-progress-backups/specs-progress-YYYYMMDD-HHMMSS.json`
+     - Copy current progress file to backup location
+     - Keep only the 10 most recent backups (delete older ones)
+   - If backup fails:
+     - Report warning but proceed with write
+     - Note that backup was not created
+
+3. **Validate Before Write:**
+   - Before writing, validate the JSON structure
+   - Verify all required fields are present
+   - Verify all status values are valid
+   - If validation fails:
+     - Report error with specific validation failure details
+     - Do not write the invalid data
+     - Ask user how to proceed (fix data, restore from backup, or exit)
+
+4. **Check required fields:**
+   - Verify all required fields are present: repository, lastUpdated, specVersion, phases, startPhase
+   - If any field is missing, report error and ask user to fix
+
+5. **Validate phase status values:**
+   - Check that all phase status values are valid: pending, in-progress, completed, skipped, failed
+   - If invalid status found, report error and ask user to fix
+
+6. **Validate task status values:**
+   - Check that all task status values are valid: pending, in-progress, completed, skipped, failed
+   - If invalid status found, report error and ask user to fix
+
+7. **Validate timestamps:**
+   - Check that timestamps follow ISO 8601 format
+   - If invalid format found, report error and ask user to fix
+
+8. **Validate phase names:**
+   - Check that phase names are unique
+   - If duplicate names found, report error and ask user to fix
+
+9. **Validate file paths:**
+   - Check that file paths reference existing phase files
+   - If file doesn't exist, report error and ask user to fix
+
+10. **Validate startPhase:**
+   - Check that startPhase is null or a valid phase number
+   - If invalid, report error and ask user to fix
+
 **Validation Checklist:**
 - All required fields are present (repository, lastUpdated, specVersion, phases, startPhase)
 - Phase status values are valid (pending, in-progress, completed, skipped, failed)
@@ -117,48 +227,6 @@ To ensure the progress file remains valid, validate the structure:
 - Phase names are unique
 - File paths reference existing phase files
 - startPhase is null or a valid phase number
-
-**Automated Validation:**
-Implement automated schema validation when reading or writing the progress file:
-```bash
-# Validate progress file structure before use
-validate_progress_file() {
-  local progress_file="$1"
-  
-  # Check if file exists and is valid JSON
-  if ! jq empty "$progress_file" 2>/dev/null; then
-    echo "Error: Progress file is not valid JSON"
-    return 1
-  fi
-  
-  # Check required fields
-  required_fields=("repository" "lastUpdated" "specVersion" "phases" "startPhase")
-  for field in "${required_fields[@]}"; do
-    if ! jq -e ".has(\"$field\")" "$progress_file" > /dev/null; then
-      echo "Error: Missing required field: $field"
-      return 1
-    fi
-  done
-  
-  # Validate phase status values
-  invalid_statuses=$(jq -r '.phases[] | select(.status != "pending" and .status != "in-progress" and .status != "completed" and .status != "skipped" and .status != "failed") | .name' "$progress_file")
-  if [ -n "$invalid_statuses" ]; then
-    echo "Error: Invalid phase status values found for: $invalid_statuses"
-    return 1
-  fi
-  
-  echo "Progress file validation passed"
-  return 0
-}
-
-# Run validation before using progress file
-if [ -f .specs-progress.json ]; then
-  if ! validate_progress_file .specs-progress.json; then
-    echo "Error: Progress file validation failed. Please check .specs-progress.json"
-    exit 1
-  fi
-fi
-```
 
 ## Progress File Backup and Restore
 

@@ -4,6 +4,12 @@ This document provides detailed guidance for Steps 13-17 of the skill-builder wo
 
 ## Step 13: Self-Review Against Standards
 
+**IMPORTANT: Cite sources when documenting compliance findings**
+- When stating a standard is met or violated, reference which source(s) established that standard from Step 0
+- Example: "Description exceeds 2 sentences (violates Anthropic skill-creator guideline)"
+- Example: "Name follows kebab-case (compliant with agentskills.io and Anthropic standards)"
+- This transparency helps you understand where each requirement comes from
+
 ### Platform Standards Checklist
 
 **YAML Frontmatter**:

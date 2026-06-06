@@ -97,6 +97,8 @@ The complete workflow is organized into phases to ensure comprehensive skill/wor
 
 Before beginning the skill/workflow creation, perform research to retrieve current standards and best practices. This ensures your skill follows the most up-to-date guidelines.
 
+**IMPORTANT: Communicate research process to user explicitly** - Before and during research, tell the user which sources you are consulting and what standards you are looking up. This makes the process transparent and helps the user understand where standards come from.
+
 For detailed guidance on Step 0, including mode selection criteria and research strategies, see `references/standards-lookup.md`.
 
 ### Planning Phase (Steps 1-5)

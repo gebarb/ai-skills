@@ -68,6 +68,7 @@ The workflow will prompt you to specify which skill/workflow to review.
 0. **Dynamic Standards Lookup Phase (Step 0)**
    - Perform comprehensive live research to retrieve the most current standards and best practices from all available external sources
    - This is a dynamic, adaptive process that discovers and applies standards from any relevant platform or source
+   - **IMPORTANT: Communicate research process to user explicitly** - Before and during research, tell the user which sources you are consulting and what standards you are looking up. This makes the review transparent and helps the user understand where standards come from.
    - Use the retrieved information to inform all subsequent review steps
    - Reference specific sources when documenting compliance decisions
    - **Error handling**: If web searches fail or return no results, proceed with general best practices and document the limitation. If specific sources are unavailable, skip them and continue with available sources.

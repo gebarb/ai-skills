@@ -6,6 +6,12 @@ This document provides detailed guidance for Step 0 of the skill-builder workflo
 
 Before beginning the skill/workflow creation, perform research to retrieve current standards and best practices. This ensures your skill follows the most up-to-date guidelines.
 
+**CRITICAL: Communicate research process to the user explicitly**
+- Before starting research, tell the user which sources you plan to consult
+- During research, announce each source you are reading and what you are looking for
+- After reading each source, summarize the key standards/best practices found
+- This transparency helps the user understand where standards come from and builds trust in the development process
+
 ## Choosing Your Mode
 
 ### Quick Mode (Recommended for most users)
@@ -16,11 +22,17 @@ Before beginning the skill/workflow creation, perform research to retrieve curre
 - Time is limited and you need to proceed quickly
 
 **Steps:**
-1. Read and analyze https://agentskills.io/specification
-2. Read and analyze https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
-3. Identify common patterns between the two sources
-4. Document any conflicts and choose the more authoritative/recent source
-5. Time: 5 minutes
+1. **Communicate to user**: "Starting Step 0: Dynamic Standards Lookup (Quick Mode). I will consult the following sources: agentskills.io specification and Anthropic skill-creator documentation."
+2. **Communicate to user**: "Reading agentskills.io specification to understand current skill standards..."
+3. Read and analyze https://agentskills.io/specification
+4. **Communicate to user**: "Key findings from agentskills.io: [summarize 2-3 key standards]"
+5. **Communicate to user**: "Reading Anthropic skill-creator documentation to understand their standards..."
+6. Read and analyze https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
+7. **Communicate to user**: "Key findings from Anthropic: [summarize 2-3 key standards]"
+8. Identify common patterns between the two sources
+9. **Communicate to user**: "Common patterns identified: [list patterns]"
+10. Document any conflicts and choose the more authoritative/recent source
+11. Time: 5 minutes
 
 ### Advanced Mode (Optional)
 **Use Advanced Mode when:**
@@ -31,10 +43,16 @@ Before beginning the skill/workflow creation, perform research to retrieve curre
 - You want to ensure the highest possible quality and compliance
 
 **Steps:**
+- **Communicate to user**: "Starting Step 0: Dynamic Standards Lookup (Advanced Mode). I will perform comprehensive research across multiple sources to identify the most current standards."
+- For each source consulted, announce: "Consulting [source name] to research [specific topic]..."
+- After each source, summarize: "Key findings from [source]: [2-3 key standards]"
 - Perform broad web searches for "AI agent skill development best practices" and "AI workflow standards"
 - Discover and evaluate standards from any available source
 - Identify the most current and authoritative sources
+- When identifying patterns, announce: "Identifying common patterns across sources..."
+- When conflicts found, announce: "Found conflict between sources: [describe conflict]"
 - Synthesize findings from multiple sources into a cohesive approach
+- Final summary: "Standards lookup complete. Consulted [N] sources. Applied [X] standards from [most authoritative source]."
 - Time: 10-15 minutes
 
 ## Stop Criteria

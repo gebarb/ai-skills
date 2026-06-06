@@ -1,337 +1,67 @@
 ---
-description: Error handling, rollback, and spec update handling for spec implementation
+description: Spec update handling and workflow integration for spec implementation
 ---
 
-# Spec Implementation Error Handling
+# Spec Implementation - Spec Updates and Integration
 
-This file contains error handling, rollback, and spec update handling for the spec implementation workflow.
+This file contains spec update handling, quality metrics, documentation generation, troubleshooting, and workflow integration for the spec implementation workflow.
 
-## Error Handling
-
-If an error occurs during implementation:
-
-1. Report the error clearly to the user
-2. Show which task failed
-3. Provide context about what was being implemented
-4. Show relevant error messages or stack traces
-5. Categorize the error (fatal, recoverable, warning)
-6. Ask user how to proceed:
-   - 'retry' to attempt the task again
-   - 'skip' to skip the failing task (with warning)
-   - 'rollback' to revert to checkpoint and try different approach
-   - 'selective-rollback' to revert specific files/tasks
-   - 'exit' to stop and save progress
-
-**Error Categories:**
-- **Fatal**: Cannot proceed without fixing (e.g., compilation error, missing dependency)
-- **Recoverable**: Can work around or fix with minimal changes
-- **Warning**: Non-critical issue that should be addressed but doesn't block progress
-
-**Error Recovery Examples:**
-
-**Example 1: Compilation Error (Fatal)**
-```
-=== Error: Compilation Failed ===
-
-Task: Create user authentication component
-File: src/auth/UserAuth.tsx
-Error: TS2307: Cannot find module '@types/react' or its corresponding type declarations.
-
-This is a fatal error. The module is missing and compilation cannot proceed.
-
-Options:
-- 'retry' after installing missing dependencies
-- 'exit' to stop and manually fix dependencies
-```
-
-**Example 2: Test Failure (Recoverable)**
-```
-=== Error: Test Failed ===
-
-Task: Implement user login validation
-File: src/auth/login.test.ts
-Error: 2 of 5 tests failed:
-  - test('valid credentials') failed: Expected true, got false
-  - test('invalid password') failed: Timeout after 5000ms
-
-This is a recoverable error. The implementation may have bugs.
-
-Options:
-- 'retry' after fixing the implementation
-- 'skip' this task and continue (not recommended)
-- 'rollback' to checkpoint and try different approach
-```
-
-**Example 3: Linter Warning (Warning)**
-```
-=== Warning: Code Style Issues ===
-
-Task: Create data model for tasks
-File: src/models/Task.ts
-Warning: 3 linter warnings found:
-  - Line 15: Unused variable 'tempData'
-  - Line 23: Missing semicolon
-  - Line 45: Function too long (45 lines, max 30)
-
-These are non-critical warnings but should be addressed.
-
-Options:
-- 'continue' to proceed (warnings will be fixed later)
-- 'retry' after fixing the warnings
-- 'skip' this task
-```
-
-**Selective Rollback:**
-If user chooses selective rollback:
-```
-=== Selective Rollback ===
-
-Which files/tasks would you like to rollback?
-
-1. Specific files (list modified files)
-2. All changes since checkpoint
-
-Select option (1-2):
-```
-
-**Note**: Options for task category rollback and last N tasks rollback are not currently available due to limitations in the progress file schema. These may be added in future versions.
-
-Selective rollback allows:
-- Reverting only problematic files while keeping successful changes
-- Rolling back specific task categories
-- Rolling back a specific number of recent tasks
-- Preserving work that was successful
-
-**Selective Rollback Implementation:**
-
-**Note**: The helper functions `get_file_mtime` and `iso_to_epoch` used in the following sections are defined later in this document (see "Cross-platform Helper Functions" section below).
-
-**Option 1 - Specific Files:**
-```bash
-# List modified files since checkpoint (prefer git if available)
-if command -v git &> /dev/null && [ -d .git ]; then
-  FILES_TO_ROLLBACK=$(git diff --name-only HEAD 2>/dev/null)
-else
-  # Fallback: use file modification times (cross-platform compatible)
-  CHECKPOINT_TIME=$(get_file_mtime ".phase-checkpoints/${CHECKPOINT_NAME}")
-  FILES_TO_ROLLBACK=""
-  for file in $(find . -type f 2>/dev/null); do
-    FILE_TIME=$(get_file_mtime "$file")
-    if [ "$FILE_TIME" -gt "$CHECKPOINT_TIME" ]; then
-      FILES_TO_ROLLBACK="$FILES_TO_ROLLBACK$file\n"
-    fi
-  done
-fi
-
-# Restore specific files from checkpoint
-for file in $FILES_TO_ROLLBACK; do
-  cp ".phase-checkpoints/${CHECKPOINT_NAME}/$file" "$file"
-done
-```
-
-**Option 2 - Task Category:**
-- Identify files modified by task category based on phase file task list
-- Restore files associated with that category
-- **Note**: This option requires tracking which files were created/modified per task category. Currently, the progress file schema does not include file-level tracking. This option is not available in the current implementation.
-
-**Option 3 - Last N Tasks:**
-- Track task completion order in progress file
-- Identify files modified in last N tasks
-- Restore those files from checkpoint
-- **Note**: This option requires tracking task completion order and file modifications per task. Currently, the progress file schema does not include this level of detail. This option is not available in the current implementation.
-
-**Option 4 - All Changes Since Checkpoint:**
-- Same as full rollback (see Rollback Process below)
-
-**Rollback Process:**
-If user chooses full rollback:
-- Restore from checkpoint backup
-- Remove checkpoint backup after successful rollback
-
-If user chooses selective rollback:
-- Restore specific files from checkpoint backup
-- Keep successful changes
-- Remove only problematic files
-
-Then offer options:
-- 'retry' to attempt implementation again
-- 'skip' to skip this phase entirely
-- 'continue' to proceed with partial implementation
-- 'exit' to stop workflow
+**Table of Contents:**
+- [Spec Update Handling](#spec-update-handling)
+- [Quality Metrics](#quality-metrics)
+- [Documentation Generation](#documentation-generation)
+- [Notes](#notes)
+- [Troubleshooting Guide](#troubleshooting-guide)
+- [Workflow Integration](#workflow-integration)
+- [Integration Testing](#integration-testing)
 
 ## Spec Update Handling
 
 If specs are updated during implementation:
 
 **When to Run Detection:**
-- At the start of each new phase implementation (Step 10)
+- At the start of each new phase implementation (Step 7)
 - Before phase selection (Step 6) to ensure specs haven't changed
 - After user confirmation to proceed with a phase
 - This ensures spec changes are detected before implementation begins
 
-**Detection:**
-- Compare spec file modification time with phase start time
-- Compare spec version in progress file with current spec version
+**AI Execution Instructions for Detection:**
 
-**Implementation:**
-```bash
-#!/bin/bash
-set -e  # Exit on error
-set -u  # Exit on undefined variable
+1. **Get current spec version from README:**
+   - Read `specs/README.md`
+   - Look for version in common formats:
+     - "Spec Version: X.Y.Z"
+     - "Version: X.Y.Z"
+     - "vX.Y.Z"
+     - YAML frontmatter: `version:` or `specVersion:`
+   - Extract the version number (e.g., "1.0.0")
+   - Default to "unknown" if not found
 
-# Get current spec version from README with flexible parsing
-# Supports multiple formats: "Spec Version: X.Y.Z", "Version: X.Y.Z", "vX.Y.Z"
-CURRENT_SPEC_VERSION=$(awk '
-  /Spec Version:|[Vv]ersion:/{
-    match($0, /([0-9]+\.[0-9]+\.[0-9]+)/)
-    if (RSTART > 0) {
-      print substr($0, RSTART, RLENGTH)
-      exit
-    }
-  }
-  /^v[0-9]+\.[0-9]+\.[0-9]+/{
-    match($0, /([0-9]+\.[0-9]+\.[0-9]+)/)
-    if (RSTART > 0) {
-      print substr($0, RSTART, RLENGTH)
-      exit
-    }
-  }
-  # Also check for version in YAML frontmatter if present
-  /^version:|specVersion:/{
-    match($0, /([0-9]+\.[0-9]+\.[0-9]+)/)
-    if (RSTART > 0) {
-      print substr($0, RSTART, RLENGTH)
-      exit
-    }
-  }
-' specs/README.md 2>/dev/null)
+2. **Get spec version from progress file:**
+   - Read `.specs-progress.json`
+   - Extract the `specVersion` field
+   - Default to "unknown" if not found
 
-# Default to unknown if not found
-CURRENT_SPEC_VERSION="${CURRENT_SPEC_VERSION:-unknown}"
+3. **Check for spec file modifications:**
+   - If git repository exists:
+     - Get the phase start time from progress file (`.phases[].startedAt` for in-progress phase)
+     - Find the git commit closest to that time
+     - Run `git diff --name-only [commit] HEAD -- specs/*.md` to detect changes
+   - If no git repository:
+     - Get the phase start time from progress file
+     - Compare file modification times of spec files with phase start time
+     - List any spec files modified after phase start
 
-# Get spec version from progress file (check if jq is available)
-if command -v jq &> /dev/null; then
-  PROGRESS_SPEC_VERSION=$(jq -r '.specVersion' .specs-progress.json 2>/dev/null || echo "unknown")
-else
-  # Fallback: parse JSON with basic tools
-  PROGRESS_SPEC_VERSION=$(grep -o '"specVersion"[[:space:]]*:[[:space:]]*"[^"]*"' .specs-progress.json 2>/dev/null | sed 's/.*"specVersion"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/' || echo "unknown")
-fi
+4. **Compare versions:**
+   - If current spec version != progress spec version:
+     - Report version change to user
+     - Determine if it's a major, minor, or patch version change
+   - If spec files were modified:
+     - List modified files
+     - Report to user
 
-# Check for spec file modifications
-if command -v jq &> /dev/null; then
-  PHASE_START_TIME=$(jq -r '.phases[] | select(.status=="in-progress") | .startedAt' .specs-progress.json 2>/dev/null)
-else
-  # Fallback: parse JSON with basic tools
-  PHASE_START_TIME=$(grep -A 10 '"status":"in-progress"' .specs-progress.json 2>/dev/null | grep '"startedAt"' | head -1 | sed 's/.*"startedAt"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/' || echo "")
-fi
-
-# Cross-platform function to get file modification time in seconds
-# This function attempts multiple methods to get file modification time
-# It tries macOS stat, Linux stat, BSD stat, and Python as fallbacks
-# Returns 0 if all methods fail
-get_file_mtime() {
-  local file="$1"
-  if command -v stat &> /dev/null; then
-    # Try macOS stat first (common on macOS systems)
-    if stat -f "%m" "$file" &> /dev/null; then
-      stat -f "%m" "$file"
-    # Try Linux stat (common on Linux systems)
-    elif stat -c "%Y" "$file" &> /dev/null; then
-      stat -c "%Y" "$file"
-    # Try BSD stat with different format (FreeBSD, etc.)
-    elif stat -t "%s" "$file" &> /dev/null; then
-      stat -t "%s" "$file"
-    else
-      # Fallback: use Python if available
-      if command -v python3 &> /dev/null; then
-        python3 -c "import os, sys; print(int(os.path.getmtime('$file')))" 2>/dev/null || echo "0"
-      else
-        echo "0"
-      fi
-    fi
-  else
-    # Fallback: use Python if available
-    if command -v python3 &> /dev/null; then
-      python3 -c "import os, sys; print(int(os.path.getmtime('$file')))" 2>/dev/null || echo "0"
-    else
-      echo "0"
-    fi
-  fi
-}
-
-# Cross-platform function to convert ISO timestamp to seconds
-# This function attempts multiple methods to parse ISO 8601 timestamps
-# It tries macOS date, GNU date, and Python as fallbacks
-# Returns 0 if all methods fail
-iso_to_epoch() {
-  local iso_time="$1"
-  if command -v date &> /dev/null; then
-    # Try macOS date (BSD date)
-    if date -j -f "%Y-%m-%dT%H:%M:%SZ" "$iso_time" +%s &> /dev/null; then
-      date -j -f "%Y-%m-%dT%H:%M:%SZ" "$iso_time" +%s
-    # Try Linux date with -d (GNU date)
-    elif date -d "$iso_time" +%s &> /dev/null; then
-      date -d "$iso_time" +%s
-    # Try GNU date with --date (alternative format)
-    elif date --date="$iso_time" +%s &> /dev/null; then
-      date --date="$iso_time" +%s
-    else
-      # Fallback: use Python if available
-      if command -v python3 &> /dev/null; then
-        python3 -c "from datetime import datetime; import sys; print(int(datetime.strptime('$iso_time', '%Y-%m-%dT%H:%M:%SZ').timestamp()))" 2>/dev/null || echo "0"
-      else
-        echo "0"
-      fi
-    fi
-  else
-    # Fallback: use Python if available
-    if command -v python3 &> /dev/null; then
-      python3 -c "from datetime import datetime; import sys; print(int(datetime.strptime('$iso_time', '%Y-%m-%dT%H:%M:%SZ').timestamp()))" 2>/dev/null || echo "0"
-    else
-      echo "0"
-    fi
-  fi
-}
-
-# Check if any spec files were modified after phase start (cross-platform compatible)
-if [ -n "$PHASE_START_TIME" ]; then
-  PHASE_START_SECONDS=$(iso_to_epoch "$PHASE_START_TIME")
-  
-  if [ "$PHASE_START_SECONDS" != "0" ]; then
-    MODIFIED_FILES=""
-    for spec_file in specs/*.md; do
-      if [ -f "$spec_file" ]; then
-        FILE_TIME=$(get_file_mtime "$spec_file")
-        if [ "$FILE_TIME" -gt "$PHASE_START_SECONDS" ]; then
-          MODIFIED_FILES="$MODIFIED_FILES$spec_file\n"
-        fi
-      fi
-    done
-    if [ -n "$MODIFIED_FILES" ]; then
-      echo "Spec files modified since phase start:"
-      echo -e "$MODIFIED_FILES"
-    fi
-  fi
-fi
-
-# Enhanced detection: Use git diff if available to detect content changes
-if [ -d .git ] && command -v git &> /dev/null; then
-  # Get git commit hash at phase start (if available in progress file)
-  # Compare current HEAD with phase start commit
-  # This detects changes even if file modification times were restored
-  if [ -n "$PHASE_START_TIME" ]; then
-    # Find commit closest to phase start time
-    PHASE_COMMIT=$(git rev-list -1 --before="$PHASE_START_TIME" HEAD 2>/dev/null)
-    if [ -n "$PHASE_COMMIT" ]; then
-      GIT_CHANGED_FILES=$(git diff --name-only "$PHASE_COMMIT" HEAD -- specs/*.md 2>/dev/null)
-      if [ -n "$GIT_CHANGED_FILES" ]; then
-        echo "Spec files changed in git since phase start:"
-        echo "$GIT_CHANGED_FILES"
-      fi
-    fi
-  fi
-fi
-```
+5. **If changes detected:**
+   - Present options to user (see "When Spec Changes Are Detected" section below)
 
 **When Spec Changes Are Detected:**
 ```
@@ -475,109 +205,6 @@ Would you like to proceed with the new spec version?
 - Type 'exit' to stop and review the changes manually
 ```
 
-## Resuming from Interruption
-
-If the workflow is interrupted:
-
-1. Progress is saved in `.specs-progress.json`
-2. Next run will resume from the last incomplete phase
-3. User can choose to:
-   - Continue from where left off
-   - Re-implement the current phase (useful if partial implementation was done)
-   - Skip to a specific phase
-   - Resume from specific task within current phase
-
-**Progress Visualization:**
-Display current progress status:
-```
-=== Implementation Progress ===
-Total Phases: 15
-Completed: 5 (33%)
-In Progress: 1
-Pending: 9
-
-Completed Phases:
-✓ Phase 1: Foundation (8/8 tasks)
-✓ Phase 2: First Feature (5/5 tasks)
-✓ Phase 3: Second Feature (6/6 tasks)
-...
-
-Current Phase:
-→ Phase 3: Third Feature (3/5 tasks)
-  ✓ Task 1: Create data model
-  ✓ Task 2: Implement UI
-  ✓ Task 3: Add business logic
-  ○ Task 4: Write tests
-  ○ Task 5: Documentation
-
-Remaining Phases:
-○ Phase 4: Fourth Feature
-○ Phase 5: Fifth Feature
-...
-```
-
-**Resume Options:**
-- 'continue' to resume from last incomplete task
-- 'task' to resume from specific task number
-- 'phase' to re-implement entire current phase
-- 'skip' to skip current phase and move to next
-
-## Customization
-
-This workflow can be customized for different spec structures:
-
-- **Sequential phases**: Phases numbered sequentially (Phase 1, 2, 3, 4...)
-- **Categorized phases**: Phases organized by category (e.g., Foundational, Foundation, Core, Enhanced)
-- **Custom dependencies**: If phases have complex dependencies beyond sequential
-
-## Multi-Phase Rollback
-
-If you need to rollback multiple completed phases:
-
-**Rollback Scenarios:**
-- Critical bug discovered in an earlier phase
-- Spec changes require re-implementation of multiple phases
-- Architecture decision needs to be revisited
-- Testing reveals fundamental issues
-
-**Rollback Process:**
-```
-=== Multi-Phase Rollback ===
-
-Which phases would you like to rollback?
-
-1. Last N phases (e.g., last 2 phases)
-2. Specific phases (select from list)
-3. Rollback to specific milestone
-4. Rollback to specific phase
-
-Select option (1-4):
-```
-
-**Rollback to Specific Phase:**
-- Identify the checkpoint for target phase
-- Restore from checkpoint backup
-- Update progress file to mark phases as pending
-- (phases after target phase become pending again)
-
-**Rollback Impact Analysis:**
-- Identify all phases that will be affected
-- Check for dependencies on rolled-back phases
-- Warn about cascading effects
-- Suggest which phases need re-implementation
-
-**Progress File Update:**
-- Mark rolled-back phases as pending
-- Clear task progress for rolled-back phases
-- Update completion timestamps
-- Preserve history of what was completed (for reference)
-
-**Re-Implementation Strategy:**
-- After rollback, offer to re-implement phases
-- Can re-implement with updated specs if available
-- Can skip phases that are no longer needed
-- Can modify implementation approach based on lessons learned
-
 ## Quality Metrics
 
 **Spec Quality Metrics:**
@@ -586,6 +213,8 @@ Select option (1-4):
 - Success criteria measurability: % of criteria with action verbs
 - Dependency complexity: average number of dependencies per phase
 - Phase size appropriateness: % of phases within task count range
+
+**Note**: For detailed quality score calculation methodology and metric-specific thresholds, see `setup-initialization.md` Step 4 - Validate Spec Structure. This section contains the complete quality score calculation algorithm with specific thresholds for each metric.
 
 **Implementation Quality Metrics:**
 - Code coverage: % of code covered by tests
@@ -813,6 +442,52 @@ This workflow is designed to work seamlessly with the `/specs-create` workflow:
 4. This workflow parses the specs/ directory and tracks progress
 5. Implementation proceeds phase by phase with user confirmation
 
+**CI/CD Integration Patterns:**
+
+**GitHub Actions Example:**
+```yaml
+name: Spec Implementation
+on:
+  workflow_dispatch:
+    inputs:
+      from-phase:
+        description: 'Phase to start from'
+        required: false
+        default: '1'
+
+jobs:
+  implement:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run specs-implement
+        run: |
+          # Trigger the skill with optional phase selection
+          echo "Starting implementation from phase ${{ github.event.inputs.from-phase }}"
+          # The actual skill execution would be handled by your AI agent system
+```
+
+**GitLab CI Example:**
+```yaml
+spec_implementation:
+  stage: implementation
+  script:
+    - echo "Running specs-implement workflow"
+    # Trigger the skill with your AI agent system
+  only:
+    - main
+  when: manual
+```
+
+**Automated Implementation Considerations:**
+- CI/CD integration requires AI agent system with skill execution capability
+- Consider adding approval gates between phases for manual review
+- Implement automated testing after each phase completion
+- Use environment variables for configuration (e.g., `FROM_PHASE`, `SKIP_CONFIRMATION`)
+- Store progress file as artifact for traceability
+- Implement rollback strategy for failed CI/CD runs
+- Consider parallel phase implementation for independent phases
+
 **Cross-Workflow References:**
 - Spec creation: `/specs-create` workflow
 - Implementation: `/specs-implement` workflow
@@ -863,3 +538,120 @@ Validate that specs created by `/specs-create` work correctly with `/specs-imple
 - Missing required sections in phase files
 - Circular dependencies in phase structure
 - Quality score below 90% threshold
+
+## Skill Self-Testing and Validation
+
+To ensure the specs-implement skill works correctly, perform the following self-tests:
+
+**Test Suite Overview:**
+
+**1. Spec Parsing Tests**
+- **Test**: Parse a valid specs/README.md with sequential phases
+- **Expected**: Correctly extracts phase names, file paths, and dependencies
+- **Test**: Parse a valid specs/README.md with categorized phases
+- **Expected**: Correctly extracts phase names, categories, and dependencies from Feature Matrix
+- **Test**: Parse README with missing "Phase List" section
+- **Expected**: Reports parsing error and offers fix/exit/manual options
+
+**2. Dependency Resolution Tests**
+- **Test**: Resolve dependencies for simple sequential phases (1→2→3)
+- **Expected**: Identifies Phase 1 as ready, then Phase 2, then Phase 3
+- **Test**: Resolve dependencies for parallel phases (1→2, 1→3)
+- **Expected**: Identifies Phase 1 as ready, then both Phase 2 and Phase 3 as available
+- **Test**: Detect circular dependency (1→2→1)
+- **Expected**: Reports circular dependency and blocks implementation
+- **Test**: Handle skipped dependencies (Phase 2 skipped, Phase 3 depends on Phase 2)
+- **Expected**: Warns user and asks for confirmation before proceeding
+
+**3. Progress Tracking Tests**
+- **Test**: Initialize progress file for new implementation
+- **Expected**: Creates .specs-progress.json with correct structure
+- **Test**: Resume from existing progress file
+- **Expected**: Loads progress and identifies next incomplete phase
+- **Test**: Validate corrupted progress file
+- **Expected**: Reports error and offers restore from backup
+- **Test**: Test progress file backup before writes
+- **Expected**: Creates timestamped backup in .specs-progress-backups/
+
+**4. Checkpoint Tests**
+- **Test**: Create checkpoint with git repository
+- **Expected**: Uses git archive to create clean backup
+- **Test**: Create checkpoint without git repository
+- **Expected**: Copies all files to checkpoint directory
+- **Test**: Rollback to checkpoint
+- **Expected**: Restores files and updates progress file
+- **Test**: Checkpoint cleanup after successful phase
+- **Expected**: Removes checkpoint and keeps only 5 most recent
+
+**5. Quality Validation Tests**
+- **Test**: Calculate quality score for complete spec
+- **Expected**: Returns score ≥90% with all metrics passing
+- **Test**: Calculate quality score for incomplete spec
+- **Expected**: Returns score <90% with specific metrics below threshold
+- **Test**: Validate phase file format with all required sections
+- **Expected**: Passes validation
+- **Test**: Validate phase file format with missing sections
+- **Expected**: Reports missing sections and offers fix/exit options
+
+**6. Code Review Tests**
+- **Test**: Perform code review on simple implementation
+- **Expected**: Generates review report with quality score and issue list
+- **Test**: Detect hardcoded secrets in code
+- **Expected**: Flags as critical issue in review report
+- **Test**: Detect SQL injection vulnerability
+- **Expected**: Flags as critical issue with recommendation for parameterized queries
+- **Test**: Check spec compliance
+- **Expected**: Reports tasks completed, requirements met, criteria satisfied
+
+**7. Spec Version Tests**
+- **Test**: Detect spec version change between phases
+- **Expected**: Reports version change and offers continue/restart/merge options
+- **Test**: Lock spec version for phase implementation
+- **Expected**: Records spec version in progress file for that phase
+- **Test**: Handle breaking version change (1.0.0 → 2.0.0)
+- **Expected**: Blocks implementation and requires user confirmation
+
+**8. Error Handling Tests**
+- **Test**: Handle compilation error during implementation
+- **Expected**: Reports error as fatal and offers retry/exit options
+- **Test**: Handle test failure during verification
+- **Expected**: Reports error as recoverable and offers fix/skip/rollback options
+- **Test**: Handle disk space exhaustion during checkpoint
+- **Expected**: Reports error and offers cleanup/continue/exit options
+
+**Test Execution Procedure:**
+
+**Automated Testing:**
+1. Create test repository with sample specs
+2. Run each test case systematically
+3. Record results (pass/fail) with timestamps
+4. Generate test report with coverage metrics
+5. Review failed tests and fix issues
+
+**Manual Testing:**
+1. Test workflow with real-world spec files
+2. Verify user interaction flows work correctly
+3. Test edge cases (empty specs, malformed files, etc.)
+4. Validate error messages are clear and actionable
+5. Confirm rollback procedures work as expected
+
+**Test Coverage Goals:**
+- Spec parsing: 100% of README formats
+- Dependency resolution: All dependency patterns
+- Progress tracking: All file operations
+- Checkpoints: Both git and non-git scenarios
+- Quality validation: All validation rules
+- Code review: All review categories
+- Error handling: All error categories
+
+**Validation Checklist:**
+- [ ] All spec parsing tests pass
+- [ ] All dependency resolution tests pass
+- [ ] All progress tracking tests pass
+- [ ] All checkpoint tests pass
+- [ ] All quality validation tests pass
+- [ ] All code review tests pass
+- [ ] All spec version tests pass
+- [ ] All error handling tests pass
+- [ ] Manual testing completed successfully
+- [ ] Test coverage meets goals

@@ -6,16 +6,28 @@ This document provides detailed instructions for Step 0 of the skill-review work
 
 Step 0 performs comprehensive live research to retrieve the most current standards and best practices from all available external sources. This is a dynamic, adaptive process that discovers and applies standards from any relevant platform or source.
 
+**CRITICAL: Communicate research process to the user explicitly**
+- Before starting research, tell the user which sources you plan to consult
+- During research, announce each source you are reading and what you are looking for
+- After reading each source, summarize the key standards/best practices found
+- This transparency helps the user understand where standards come from and builds trust in the review process
+
 ## Basic Mode (5 minutes, 2-3 searches)
 
 For routine reviews or when time is constrained, use Basic Mode:
 
-1. Execute 2-3 web searches for AI agent skill/workflow standards
-2. Read and analyze https://agentskills.io/specification
-3. Read and analyze https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
-4. Identify common patterns across sources (look for requirements appearing in 2+ sources)
-5. Apply the most current standards found
-6. **Stop when**: patterns emerge or after 5 minutes
+1. **Communicate to user**: "Starting Step 0: Dynamic Standards Lookup (Basic Mode). I will consult the following sources: agentskills.io specification, Anthropic skill-creator documentation, and perform 2-3 web searches for current standards."
+2. Execute 2-3 web searches for AI agent skill/workflow standards
+3. **Communicate to user**: "Reading agentskills.io specification to understand current skill standards..."
+4. Read and analyze https://agentskills.io/specification
+5. **Communicate to user**: "Key findings from agentskills.io: [summarize 2-3 key standards]"
+6. **Communicate to user**: "Reading Anthropic skill-creator documentation to understand their standards..."
+7. Read and analyze https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
+8. **Communicate to user**: "Key findings from Anthropic: [summarize 2-3 key standards]"
+9. Identify common patterns across sources (look for requirements appearing in 2+ sources)
+10. **Communicate to user**: "Common patterns identified across sources: [list patterns]"
+11. Apply the most current standards found
+12. **Stop when**: patterns emerge or after 5 minutes
 
 **Basic Search Queries:**
 - "AI agent skill development best practices"
@@ -26,9 +38,21 @@ For routine reviews or when time is constrained, use Basic Mode:
 
 For comprehensive reviews or when domain is rapidly evolving, use Advanced Mode:
 
+**Communication Requirements for Advanced Mode:**
+- **Communicate to user**: "Starting Step 0: Dynamic Standards Lookup (Advanced Mode). I will perform comprehensive research across multiple sources to identify the most current standards."
+- For each source consulted, announce: "Consulting [source name] to research [specific topic]..."
+- After each source, summarize: "Key findings from [source]: [2-3 key standards]"
+- When identifying patterns, announce: "Identifying common patterns across sources..."
+- When conflicts found, announce: "Found conflict between sources: [describe conflict]"
+- Final summary: "Standards lookup complete. Consulted [N] sources. Applied [X] standards from [most authoritative source]."
+
 ### Direct Source Consultation
+- **Communicate to user**: "Reading agentskills.io specification to understand current skill standards..."
 - Read and analyze https://agentskills.io/specification
+- **Communicate to user**: "Key findings from agentskills.io: [summarize 2-3 key standards]"
+- **Communicate to user**: "Reading Anthropic skill-creator documentation to understand their standards..."
 - Read and analyze https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
+- **Communicate to user**: "Key findings from Anthropic: [summarize 2-3 key standards]"
 
 ### Broad Search Queries
 ```
