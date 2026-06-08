@@ -325,7 +325,7 @@ get_agent_config() {
         general)
             case $config_type in
                 name) echo "General" ;;
-                base_dir) echo "" ;;
+                base_dir) echo "$HOME/.agents" ;;
                 workflows_subdir) echo "workflows" ;;
             esac
             ;;

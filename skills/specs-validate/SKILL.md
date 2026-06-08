@@ -2,7 +2,8 @@
 name: specs-validate
 description: Validate specs through comprehensive multi-perspective review before implementation. Use when validating specs, reviewing project plans, or identifying issues in project specifications.
 argument-hint: Provide the repository path containing the specs/ directory to validate, or specify particular concerns or areas of focus.
-version: 1.0.0
+version: 1.1.0
+license: MIT
 compatibility: Requires repository access with specs/ directory, ability to read markdown files, and bash shell (version 4.0+)
 ---
 

@@ -2,7 +2,8 @@
 name: skill-review
 description: Comprehensive 3-perspective review of AI skills/workflows ensuring current standards compliance and execution success. ALWAYS use this skill when the user mentions skill review, workflow validation, quality assurance, needs to validate a skill before deployment, wants to improve a skill/workflow, or asks for best practices review.
 argument-hint: Provide the skill or workflow file path to review, along with any specific concerns or areas of focus.
-version: 1.0.0
+version: 1.1.0
+license: MIT
 compatibility: Requires ability to read markdown files, access to skill/workflow directory structure, and web access for Step 0 (optional but recommended)
 ---
 

@@ -64,6 +64,13 @@ This skill automates deployment of web applications to production environments
 for development teams by following a standardized deployment checklist.
 ```
 
+**Example Output:**
+```markdown
+# Purpose Statement
+
+This skill automates code review for security vulnerabilities and best practices for development teams by following a comprehensive security checklist and providing actionable improvement suggestions.
+```
+
 ### Scope Definition
 
 Define what the skill/workflow:
@@ -71,6 +78,33 @@ Define what the skill/workflow:
 - **Excludes**: Tasks and contexts explicitly out of scope
 - **Assumes**: Prerequisites and initial conditions
 - **Delivers**: Expected outputs and end states
+
+**Example Output:**
+```markdown
+# Scope and Boundaries
+
+## Included
+- Analyzing code for security vulnerabilities
+- Checking adherence to coding best practices
+- Providing improvement suggestions
+- Supporting multiple programming languages
+
+## Excluded
+- Deploying code changes
+- Running automated tests
+- Performance profiling
+- Integration testing
+
+## Assumptions
+- Code is in a version control system
+- User has read access to the codebase
+- Code follows standard project structure
+
+## Delivers
+- Security vulnerability report
+- Best practices compliance assessment
+- Actionable improvement recommendations
+```
 
 ### Scope Boundaries
 
@@ -145,6 +179,12 @@ Plan how to organize information:
 - **Level 2**: Core SKILL.md content (loaded on invocation)
 - **Level 3**: Supporting files (loaded as needed)
 - **Level 4**: Rarely used context (loaded only in specific scenarios)
+
+**Documentation Standards:**
+- Save all documented outputs as markdown files in the skill/workflow directory
+- Use descriptive filenames (e.g., `purpose-statement.md`, `scope-boundaries.md`)
+- Include date and version information in file headers
+- Reference documentation locations in validation checkpoints
 
 ## Step 5: Design Progressive Disclosure Structure
 
