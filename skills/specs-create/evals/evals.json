@@ -1,0 +1,23 @@
+{
+  "skill_name": "specs-create",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create specs for a simple task management web application using React, Node.js, and PostgreSQL. The app should have user authentication, task CRUD operations, and task categorization.",
+      "expected_output": "A specs/ directory containing README.md with project overview, phase organization, and feature matrix; phase files following phase-[N]-[slug].md naming pattern; CHANGELOG.md initialized; all validation rules pass; quality score ≥90%",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I need to create specs for a new mobile app project. I want to build a fitness tracking app with workout logging, progress charts, and social features. I'm thinking of using React Native and Firebase.",
+      "expected_output": "Workflow guides through technology stack selection (since this is a new codebase), creates specs/ directory with README.md and phase files, validates spec structure, calculates quality score ≥90%",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Generate specs for an existing e-commerce codebase. The project uses Django, PostgreSQL, and Redis. I need to add a new feature for product recommendations based on user behavior.",
+      "expected_output": "Workflow performs repository review first to understand existing patterns, creates specs for the new feature phase with appropriate dependencies on existing phases, validates no circular dependencies, quality score ≥90%",
+      "files": []
+    }
+  ]
+}

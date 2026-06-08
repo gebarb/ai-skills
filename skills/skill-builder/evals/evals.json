@@ -1,0 +1,23 @@
+{
+  "skill_name": "skill-builder",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to create a skill that helps with code review. It should analyze code for common issues, check for security vulnerabilities, and provide improvement suggestions.",
+      "expected_output": "Workflow performs Step 0 standards lookup, guides through planning phase (skill vs workflow decision, purpose/scope definition, use cases, requirements, progressive disclosure structure), creates skill directory with SKILL.md and supporting files, validates against standards, provides testing guidance",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Create a workflow for deploying applications to AWS. It should handle infrastructure setup, deployment, and rollback procedures.",
+      "expected_output": "Workflow performs standards lookup, determines this should be a workflow (manual invocation), creates workflow file in workflows/ directory with proper structure, includes error handling and rollback procedures, validates execution path, provides testing scenarios",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I need to build a skill for database migrations. The skill should support multiple database types, handle schema changes, and include rollback capabilities.",
+      "expected_output": "Workflow guides through progressive disclosure planning (SKILL.md under 300 lines, supporting files for database-specific details), creates skill with proper YAML frontmatter, includes comprehensive error handling, validates against current standards, provides test cases in evals/evals.json",
+      "files": []
+    }
+  ]
+}

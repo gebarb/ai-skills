@@ -1,0 +1,23 @@
+{
+  "skill_name": "skill-review",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review the skill at skills/code-review. Focus on standards compliance and execution clarity.",
+      "expected_output": "Workflow performs Step 0 standards lookup (consults 2+ external sources), applies 3 perspectives (Standards, Execution, Completeness) with fresh context, generates validation report with prioritized issues, provides actionable recommendations with severity ratings, includes readiness assessment",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I need a comprehensive review of the workflow at workflows/deployment. Use Comprehensive Review mode with 2-3 iterations.",
+      "expected_output": "Workflow performs Advanced Step 0 (10-15 minutes), runs 2-3 iterations with fresh context each time, identifies issues across all perspectives, correlates findings by root cause, prioritizes using severity framework, provides detailed validation report with executive summary and findings",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Quick review of the skill at skills/simple-task. Focus on critical issues only.",
+      "expected_output": "Workflow uses Quick Review mode (30 minutes, Basic Step 0), applies 3 perspectives efficiently, identifies critical and high-priority issues, provides focused validation report, recommends whether skill is ready for use or needs fixes",
+      "files": []
+    }
+  ]
+}

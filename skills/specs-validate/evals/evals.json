@@ -1,0 +1,23 @@
+{
+  "skill_name": "specs-validate",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Validate the specs in the current repository before implementation.",
+      "expected_output": "Workflow performs repository review, validates spec structure and completeness, applies 3 perspectives (Technical/Architecture, Implementation Feasibility, Completeness/Gaps) with fresh context, aggregates findings, prioritizes issues by severity, generates validation report with recommendations, provides readiness assessment",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Review the specs for potential technical issues and architectural inconsistencies. Focus on the technology stack choices.",
+      "expected_output": "Workflow applies Technical & Architecture Review perspective, analyzes technology stack compatibility, identifies architectural inconsistencies, assesses scalability and performance considerations, documents findings with specific examples, provides recommendations for technical improvements",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Check if the specs are ready for implementation. Identify any gaps or missing details that would block implementation.",
+      "expected_output": "Workflow applies Implementation Feasibility Review perspective, evaluates task breakdown completeness, identifies missing dependencies, assesses time estimates realism, checks for ambiguous specifications, validates success criteria measurability, provides implementation readiness assessment",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "skill_name": "specs-implement",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Implement the specs in the current repository. Start from Phase 1 and proceed through all phases.",
+      "expected_output": "Workflow performs repository review, validates spec structure (quality score ≥90%), parses dependencies, implements each phase with user confirmation, performs automatic code review after each phase, generates documentation, tracks progress in .specs-progress.json, completes all phases successfully",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Resume implementation from Phase 3. The workflow was interrupted after completing Phase 2.",
+      "expected_output": "Workflow detects existing .specs-progress.json, validates Phase 3 dependencies are satisfied (Phases 1-2 completed), displays Phase 3 overview, requests user confirmation, implements Phase 3 with code review and documentation, updates progress, continues to remaining phases",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Implement specs using TDD approach. Start from Phase 1 and write tests before implementation for each phase.",
+      "expected_output": "Workflow confirms TDD approach before each phase, writes unit tests first for each task, implements code to pass tests, runs test suite with ≥80% coverage, performs code review, generates documentation, tracks progress with test completion status",
+      "files": []
+    }
+  ]
+}
