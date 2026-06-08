@@ -1,9 +1,8 @@
 ---
 name: skill-builder
-description: Create AI skills/workflows following current best practices. Use when creating skills, building workflows, writing SKILL.md, or needing skill development guidance.
-when_to_use: | - User asks to create a skill, build a workflow, or write a SKILL.md - User mentions skill development, workflow creation, or AI agent capabilities - User needs guidance on current best practices for skills/workflows - Do NOT use for: modifying existing skills/workflows (use skill-review)
+description: Create AI skills/workflows following current best practices. Use this skill whenever the user asks to create a skill, build a workflow, write a SKILL.md, mentions skill development or workflow creation, needs guidance on current best practices, or wants to automate a task with an AI agent. Do NOT use for modifying existing skills/workflows (use skill-review).
 argument-hint: Provide the task or process you want to automate, along with any specific requirements or constraints.
-version: 1.3.0
+version: 1.4.0
 compatibility: Requires repository root access, ability to create and edit markdown files, standard file system tools, and web access for Step 0 (optional but recommended)
 ---
 
@@ -16,6 +15,14 @@ This workflow guides you through creating AI skills or workflows that follow cur
 - Clear understanding of the task or process you want to automate
 - Basic familiarity with AI agent skills and workflows
 - Understanding of the difference between Skills (automatic invocation) and Workflows (manual invocation)
+
+**Prerequisite Validation:**
+Before starting, verify you have:
+- Repository root access (ability to create directories in the repository)
+- Ability to create and edit markdown files
+- Standard file system tools available
+
+If any prerequisite is not met, contact your administrator or check file permissions before proceeding.
 
 **Progressive Disclosure**: This workflow uses a 4-level information loading system where only essential context (name + description) is always visible, detailed instructions load when invoked, supporting files load as needed, and rarely used context loads only in specific scenarios. This keeps the context window lean while providing comprehensive guidance.
 
@@ -40,7 +47,12 @@ This workflow guides you through creating AI skills or workflows that follow cur
 
 ## Quick Start
 
-For a fast path to creating a skill or workflow, see `references/quick-start.md` for step-by-step guidance and examples.
+**Minimal Quick Start (3 steps):**
+1. Run `/skill-builder` and follow the workflow phases
+2. Read each reference file when prompted (e.g., "Read references/planning.md now")
+3. Test your created skill/workflow with realistic scenarios
+
+For detailed step-by-step guidance and examples, see `references/quick-start.md`.
 
 ## Platform Requirements
 
@@ -55,10 +67,10 @@ Run this workflow from the root of your repository:
 
 
 **Interactive Workflow Features:**
-- You can skip phases if already completed (e.g., if you have existing standards, skip Step 0)
-- Save your progress at any phase and return later
+- You can skip phases if already completed with documented evidence (e.g., existing purpose statement, scope boundaries, documented standards). Do not skip without proof of completion.
+- Save your progress at any phase by documenting which phase you're on and what outputs you've produced in a temporary file or comment
 - Revisit previous phases if needed during the workflow
-- If you get stuck, consult the relevant reference file or troubleshooting guide
+- If you get stuck, consult the relevant reference file or troubleshooting guide. If the reference file doesn't resolve your issue, see `references/troubleshooting.md` or consider pausing and seeking help
 ```
 /skill-builder
 ```
@@ -78,17 +90,18 @@ The complete workflow is organized into phases to ensure comprehensive skill/wor
 **Note**: Time estimates assume familiarity with markdown files and basic AI agent concepts. If you have never created a skill/workflow before, add 100% to the estimates above. If you have created 1-2 skills/workflows, add 50%.
 
 **Success Criteria for Each Phase:**
-- **Step 0 (Dynamic Standards Lookup)**: 3+ key principles identified from sources OR time limit reached
-- **Planning Phase (Steps 1-5)**: All 5 planning steps completed with documented outputs (purpose statement, scope boundaries, use case mappings, requirements inventory, progressive disclosure structure)
-- **Creation Phase (Steps 6-12)**: Skill/workflow directory created, SKILL.md written with proper YAML frontmatter, all supporting files added
-- **Validation Phase (Steps 13-17)**: All validation checklists completed with documented results, execution path walkthrough performed, all identified ambiguities resolved
-- **Refinement Phase (Steps 18-20)**: All critical and high-priority issues addressed, documentation added, quality checklist passed
+- **Step 0 (Dynamic Standards Lookup)**: 3+ key principles identified from sources AND documented before proceeding. If time limit was reached without adequate standards, extend time or use fallback guidelines.
+- **Planning Phase (Steps 1-5)**: All 5 planning steps completed with documented outputs (purpose statement, scope boundaries, use case mappings, requirements inventory, progressive disclosure structure). Confirm all success criteria are met before proceeding to next phase.
+- **Creation Phase (Steps 6-12)**: Skill/workflow directory created, SKILL.md written with proper YAML frontmatter, all supporting files added. Confirm all success criteria are met before proceeding to next phase.
+- **Validation Phase (Steps 13-17)**: All validation checklists completed with documented results, execution path walkthrough performed, all identified ambiguities resolved. Confirm all success criteria are met before proceeding to next phase.
+- **Refinement Phase (Steps 18-20)**: All critical and high-priority issues addressed, documentation added, quality checklist passed. Confirm all success criteria are met before proceeding to next phase.
 
 **Error Handling:**
 - If Step 0 web searches fail: Proceed with general best practices and document the limitation
 - If supporting files are missing: Create them using templates in `references/templates.md`
 - If validation fails: Use `references/validation.md` checklists to identify and fix issues
-- If user gets stuck: Review relevant reference file or consult the specific phase documentation
+- If user gets stuck: Review relevant reference file or consult the specific phase documentation. If still stuck, see `references/troubleshooting.md` for escalation guidance
+- If reference files are missing or corrupted: Verify file paths and permissions. If files cannot be accessed, recreate from templates in `references/templates.md`
 - For detailed error handling guidance, see `references/validation.md` and `references/refinement.md`
 
 ### Dynamic Standards Lookup Phase (Step 0)
@@ -99,18 +112,22 @@ Before beginning the skill/workflow creation, perform research to retrieve curre
 
 **IMPORTANT: Communicate research process to user explicitly** - Before and during research, tell the user which sources you are consulting and what standards you are looking up. This makes the process transparent and helps the user understand where standards come from.
 
-For detailed guidance on Step 0, including mode selection criteria and research strategies, see `references/standards-lookup.md`.
+**Validation Checkpoint:** Before proceeding to Planning Phase, confirm at least 3 standards were retrieved and documented. If time limit was reached without adequate standards, extend research time or use fallback guidelines from `references/guidelines.md`.
+
+Read `references/standards-lookup.md` now for detailed guidance on Step 0, including mode selection criteria and research strategies.
 
 ### Planning Phase (Steps 1-5)
-See `references/planning.md` for:
+Read `references/planning.md` now for detailed guidance on:
 1. **Determine Skill vs Workflow** - Decide whether to create a Skill (automatic invocation) or Workflow (manual invocation)
 2. **Define Purpose and Scope** - Clearly articulate what the skill/workflow should accomplish and its boundaries
 3. **Identify Use Cases** - Map out specific scenarios where this skill/workflow will be used
 4. **Gather Requirements** - Collect all necessary context, templates, scripts, and supporting materials
 5. **Design Progressive Disclosure Structure** - Plan how to organize information across SKILL.md and supporting files
 
+**Validation Checkpoint:** Before proceeding to Creation Phase, confirm all 5 planning steps are completed with documented outputs.
+
 ### Creation Phase (Steps 6-12)
-See `references/creation.md` for:
+Read `references/creation.md` now for detailed guidance on:
 6. **Create Skill/Workflow Directory** - Set up the proper directory structure
 7. **Write YAML Frontmatter** - Create proper name and description following current standards retrieved in Step 0
 8. **Draft Core Content** - Write the main SKILL.md or workflow markdown content
@@ -119,19 +136,25 @@ See `references/creation.md` for:
 11. **Add Error Handling and Edge Cases** - Ensure robust execution
 12. **Include Examples and Usage Instructions** - Make the skill/workflow easy to understand and use
 
+**Validation Checkpoint:** Before proceeding to Validation Phase, confirm directory is created, SKILL.md is written with proper frontmatter, and all supporting files are added.
+
 ### Validation Phase (Steps 13-17)
-See `references/validation.md` for:
+Read `references/validation.md` now for detailed guidance on:
 13. **Self-Review Against Standards** - Verify compliance with current standards retrieved in Step 0
 14. **Test Execution Path** - Walk through the skill/workflow step by step
 15. **Validate Progressive Disclosure** - Ensure information loads at appropriate levels
 16. **Check for Ambiguities** - Identify and clarify unclear instructions
 17. **Verify Completeness** - Ensure all necessary context is provided
 
+**Validation Checkpoint:** Before proceeding to Refinement Phase, confirm all validation checklists are completed with documented results and all ambiguities are resolved.
+
 ### Refinement Phase (Steps 18-20)
-See `references/refinement.md` for:
+Read `references/refinement.md` now for detailed guidance on:
 18. **Iterate Based on Review** - Make improvements identified during validation
 19. **Add Documentation** - Create supporting documentation if needed
 20. **Final Polish** - Ensure clarity, consistency, and professional quality
+
+**Validation Checkpoint:** Before proceeding to Testing Phase, confirm all critical and high-priority issues are addressed, documentation is added, and quality checklist is passed.
 
 ### Testing and Integration Phase (Step 21)
 21. **Test the Created Skill/Workflow** - Verify the skill/workflow works as intended
@@ -182,6 +205,7 @@ See `references/refinement.md` for:
    - Track time taken for each test scenario
 
 **If Issues Are Found:**
+- Identify which step or phase failed and consult the corresponding reference file for that phase
 - Return to the Refinement Phase (Steps 18-20) to address issues
 - Fix critical issues (blocking execution) immediately
 - Fix high-priority issues (affecting usability) before common use
@@ -224,18 +248,3 @@ This ensures that skills and workflows are built to high standards from the star
 ### Full Lifecycle Example
 
 For a concrete example of the complete skill/workflow development lifecycle, including the recommended review cadence, see `references/lifecycle-example.md`.
-
-## Revision History
-
-### v1.3.0 - 2025-06-05
-- Moved Quick Start section to separate `references/quick-start.md` file to reduce SKILL.md length
-- Added fallback mechanism for Step 0 if web access fails
-- Added concrete full lifecycle example showing integration with skill-review
-- Added note about time estimate assumptions for new users
-- Added troubleshooting section for common workflow issues
-
-### v1.2.0 - 2025-05-XX
-- Initial comprehensive workflow structure
-- Dynamic standards lookup phase
-- Progressive disclosure implementation
-- Comprehensive reference materials

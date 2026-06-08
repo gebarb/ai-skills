@@ -82,7 +82,6 @@ description: Brief description
 version: 1.0.0
 author: Your Name
 tags: [deployment, automation, production]
-when_to_use: | - User asks to create a skill, build a workflow, or write a SKILL.md
 argument-hint: Provide the task or process you want to automate
 compatibility: Requires repository root access, ability to create and edit markdown files
 ---
@@ -92,7 +91,6 @@ compatibility: Requires repository root access, ability to create and edit markd
 - **version**: Semantic version number (e.g., 1.0.0) for tracking changes
 - **author**: Name or identifier of the skill/workflow creator
 - **tags**: Array of keywords for categorization and discoverability
-- **when_to_use**: Multi-line string describing when to invoke this skill/workflow
 - **argument-hint**: Brief guidance on what arguments or context to provide
 - **compatibility**: Notes about platform requirements or dependencies
 

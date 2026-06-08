@@ -57,6 +57,7 @@ This perspective evaluates compliance with current standards retrieved in Step 0
 - [ ] If workflow: appropriate for manual invocation
 - [ ] Choice between skill/workflow is justified
 - [ ] Structure matches the type chosen
+- [ ] For hybrid approaches (combining skill and workflow characteristics): document the hybrid nature and ensure both automatic and manual invocation scenarios are supported
 
 ### Platform-Specific Standards Checklist
 
@@ -397,10 +398,10 @@ Each perspective should be applied with fresh context:
 - Don't be influenced by previous perspectives
 
 **Techniques for achieving fresh context:**
-- Take a 5-minute break between perspectives
 - Re-read the file from start to end before starting next perspective
 - Do not refer to previous notes or findings
-- Clear mental context by focusing on a different task briefly
+- For AI agents: Approach the file as if encountering it for the first time, without memory of previous analysis
+- For human reviewers: Take a 5-minute break between perspectives OR clear mental context by focusing on a different task briefly
 - **Measurable criteria**: Fresh context achieved when you can answer "What is this skill/workflow about?" without referring to previous notes
 
 ### Perspective Independence

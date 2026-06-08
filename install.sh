@@ -23,8 +23,13 @@
 #     * Claude:   ~/.claude/
 #
 #   - Repository: Installs to a specific repository's agent directory
-#     * Windsurf: <repo>/.codeium/windsurf/
+#     * Windsurf: <repo>/.windsurf/
 #     * Claude:   <repo>/.claude/
+#
+# AGENTS:
+#   - Windsurf: Codeium's Windsurf AI agent
+#   - Claude: Anthropic's Claude AI agent
+#   - General: Agent-agnostic installation to .agents/ directory
 #
 # COMPONENTS:
 #   - Skills: Reusable AI agent capabilities and workflows
@@ -65,8 +70,13 @@ INSTALLATION TYPES:
     * Claude:   ~/.claude/
 
   - Repository: Installs to a specific repository's agent directory
-    * Windsurf: <repo>/.codeium/windsurf/
+    * Windsurf: <repo>/.windsurf/
     * Claude:   <repo>/.claude/
+
+AGENTS:
+  - Windsurf: Codeium's Windsurf AI agent
+  - Claude: Anthropic's Claude AI agent
+  - General: Agent-agnostic installation to .agents/ directory
 
 COMPONENTS:
   - Skills: Reusable AI agent capabilities and workflows
@@ -289,7 +299,7 @@ select_option() {
 # Agent configuration
 # Get configuration details for a specific AI agent
 # Args:
-#   $1 - agent: Agent identifier (windsurf or claude)
+#   $1 - agent: Agent identifier (windsurf, claude, or general)
 #   $2 - config_type: Type of configuration to retrieve (name, base_dir, or workflows_subdir)
 # Returns:
 #   The requested configuration value for the specified agent
@@ -312,16 +322,23 @@ get_agent_config() {
                 workflows_subdir) echo "workflows" ;;
             esac
             ;;
+        general)
+            case $config_type in
+                name) echo "General" ;;
+                base_dir) echo "" ;;
+                workflows_subdir) echo "workflows" ;;
+            esac
+            ;;
     esac
 }
 
 # Prompt user for agent selection using multi-select menu
-# Supports selecting "ALL" or specific agents (Windsurf, Claude)
+# Supports selecting "ALL" or specific agents (Windsurf, Claude, General)
 # Sets global variables:
 #   SELECTED_AGENTS - Array of selected agent identifiers
 #   AGENT_NAMES - Array of selected agent display names
 select_agent() {
-    select_option "true" "" "ALL" "Windsurf" "Claude"
+    select_option "true" "" "ALL" "Windsurf" "Claude" "General"
     local selected_indices=($SELECT_OPTION_RESULT)
     
     SELECTED_AGENTS=()
@@ -338,8 +355,8 @@ select_agent() {
     
     if [ "$all_selected" = true ]; then
         # Select all agents
-        SELECTED_AGENTS=("windsurf" "claude")
-        AGENT_NAMES=("Windsurf" "Claude")
+        SELECTED_AGENTS=("windsurf" "claude" "general")
+        AGENT_NAMES=("Windsurf" "Claude" "General")
     else
         # Select only the chosen agents
         for idx in "${selected_indices[@]}"; do
@@ -351,6 +368,10 @@ select_agent() {
                 2)
                     SELECTED_AGENTS+=("claude")
                     AGENT_NAMES+=("Claude")
+                    ;;
+                3)
+                    SELECTED_AGENTS+=("general")
+                    AGENT_NAMES+=("General")
                     ;;
             esac
         done
@@ -576,8 +597,10 @@ install_for_agent() {
     if [ "$INSTALL_TYPE" = "global" ]; then
         BASE_DIR=$(get_agent_config "$agent" base_dir)
     else
-        if [ "$agent" = "windsurf" ]; then
-            BASE_DIR="$REPO_PATH/.codeium/windsurf"
+        if [ "$agent" = "general" ]; then
+            BASE_DIR="$REPO_PATH/.agents"
+        elif [ "$agent" = "windsurf" ]; then
+            BASE_DIR="$REPO_PATH/.windsurf"
         else
             BASE_DIR="$REPO_PATH/.claude"
         fi

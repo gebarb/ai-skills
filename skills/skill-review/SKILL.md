@@ -1,7 +1,6 @@
 ---
 name: skill-review
-description: Comprehensive 3-perspective review of AI skills/workflows ensuring current standards compliance and execution success.
-when_to_use: | - User mentions skill review, workflow validation, quality assurance, needs to validate a skill before deployment, wants to improve a skill/workflow, or asks for best practices review - ALWAYS use this skill when reviewing skills or workflows for quality assurance
+description: Comprehensive 3-perspective review of AI skills/workflows ensuring current standards compliance and execution success. ALWAYS use this skill when the user mentions skill review, workflow validation, quality assurance, needs to validate a skill before deployment, wants to improve a skill/workflow, or asks for best practices review.
 argument-hint: Provide the skill or workflow file path to review, along with any specific concerns or areas of focus.
 version: 1.0.0
 compatibility: Requires ability to read markdown files, access to skill/workflow directory structure, and web access for Step 0 (optional but recommended)
@@ -15,9 +14,40 @@ This workflow performs a comprehensive validation of AI skills or workflows usin
 
 ## Prerequisites
 
-- A skill or workflow file to review (SKILL.md or workflow markdown file; this workflow assumes markdown format with YAML frontmatter. For other formats, adapt the approach accordingly)
+- A skill or workflow file to review (SKILL.md or workflow markdown file; this workflow assumes markdown format with YAML frontmatter. For other formats, adapt the approach accordingly: focus on the same review phases but adjust file reading and parsing steps as needed for the format)
 - Supporting files and documentation for the skill/workflow (for skills with binary assets, focus review on text-based documentation and configuration files)
 - Understanding of the intended use case and execution goals
+
+## Success Criteria
+
+A successful skill-review workflow execution should:
+- Complete all 5 phases and 14 steps
+- Step 0: Consult at least 2 external sources and identify common patterns
+- Generate a validation report with findings
+- Identify at least 3 issues per perspective (or document why fewer were found with re-verification)
+- Provide actionable recommendations with specific fixes
+- Achieve fresh context for each perspective
+- Document all sources consulted during Step 0
+- Prioritize issues by severity using the framework
+- Provide a clear readiness assessment
+- Validate that implemented changes address identified issues (in Finalization phase)
+
+**Terminology**:
+- "Issue": A problem that requires fixing (non-compliance, error, gap)
+- "Finding": Any observation during review (including issues and positive findings)
+- "Observation": General note about the skill/workflow
+
+## Error Handling
+
+If you encounter issues during any phase of this workflow:
+- See `references/troubleshooting.md` for comprehensive troubleshooting guidance
+- Common issues include: reference files not found, skill/workflow file won't load, review seems incomplete, no issues found, user rejects all recommendations
+- For self-review edge cases, see the "Self-Review" section in troubleshooting.md
+- If web access fails during Step 0, proceed with general best practices and document the limitation
+
+## Skill/Workflow Complexity Definitions
+
+See `references/complexity.md` for definitions used to guide review depth.
 
 ## Platform Requirements
 
@@ -55,7 +85,7 @@ Run this workflow from the root of your repository:
 
 The workflow will prompt you to specify which skill/workflow to review.
 
-**Recommended:** Run this workflow 2+ times after creating or modifying a skill/workflow to ensure thorough refinement. Each run provides fresh context and can identify different issues.
+**Recommended:** Run this workflow 2+ times after creating or modifying a skill/workflow to ensure thorough refinement. Each run provides fresh context and can identify different issues. For simple skills or minor changes, a single run may be sufficient.
 
 **Review Modes:**
 - **Quick Review**: 1 iteration, 30 minutes, Basic Step 0 - for routine reviews, simple skills, or time-constrained situations
@@ -71,7 +101,18 @@ The workflow will prompt you to specify which skill/workflow to review.
    - **IMPORTANT: Communicate research process to user explicitly** - Before and during research, tell the user which sources you are consulting and what standards you are looking up. This makes the review transparent and helps the user understand where standards come from.
    - Use the retrieved information to inform all subsequent review steps
    - Reference specific sources when documenting compliance decisions
-   - **Error handling**: If web searches fail or return no results, proceed with general best practices and document the limitation. If specific sources are unavailable, skip them and continue with available sources.
+   - **Error handling**: If web searches fail or return no results, proceed with general best practices and document the limitation. If specific sources are unavailable, skip them and continue with available sources. If web access is completely unavailable, apply these core standards without research:
+     - YAML frontmatter compliance (name, description fields required)
+     - Progressive disclosure principles (keep SKILL.md under 300 lines; complex workflows may exceed this with justification)
+     - Clear step-by-step instructions with specific actions
+     - Error handling for common scenarios
+     - Success criteria defined for the skill/workflow
+   
+   **Conflict Resolution**: If sources provide conflicting standards:
+   1. Prioritize official specification documents over blog posts or articles
+   2. Prioritize more recent sources (within last 12 months)
+   3. If conflict persists between equally authoritative sources, document both standards and note the decision rationale
+   4. Create a "Standards Conflicts" section in the validation report
 
    **For detailed instructions, see `references/step0.md`**
 
@@ -91,21 +132,21 @@ The workflow will prompt you to specify which skill/workflow to review.
    - Read the skill/workflow file completely from start to finish (read the entire file, paying attention to structure, content, and organization; approach with fresh context as if encountering for the first time)
    - Read all supporting files referenced in the skill/workflow (verify file count matches references)
    - Document your initial observations using the template in `references/initial.md` (fill all template sections)
-   - Identify the stated purpose, goals, and scope (typically 3+ sentences each; fewer if skill is simple)
-   - Note any unclear sections or missing information (document all significant observations; typically 3+ for complex skills, fewer for simple or excellent skills)
+   - Identify the stated purpose, goals, and scope (3+ sentences each for complex skills; 1-2 sentences for simple skills)
+   - Note any unclear sections or missing information (document all significant observations; 3+ for complex skills, 1-2 for simple or excellent skills)
 
 ---
 
 **Transition to Multi-Perspective Review Phase**: After completing initial assessment, proceed to apply the three analytical perspectives.
 
 2. **Multi-Perspective Review Phase (Steps 4-6)**
-   - Apply each perspective sequentially with fresh context (approach the skill/workflow as if reviewing for the first time for each perspective; achieve fresh context by: taking a 5-minute break between perspectives, re-reading the file from start to end, not referring to previous notes, clearing mental context):
-     - **Subagent 1 (Standards)**: Use the checklists in `references/perspectives.md` to verify compliance with current standards retrieved in Step 0 (check all applicable checklist items; typically 20+ for complex skills [>200 lines, multiple reference files, multiple domains], fewer for simple skills [<100 lines, single domain, well-understood])
-     - **Subagent 2 (Execution)**: Walk through the skill/workflow execution mentally, identifying bottlenecks and ambiguities (document all findings; typically 3+ for complex skills, fewer for simple or excellent skills)
-     - **Subagent 3 (Completeness)**: Check for missing requirements, context gaps, and goal achievement (document all findings; typically 3+ for complex skills, fewer for simple or excellent skills)
+   - Apply each perspective sequentially with fresh context (approach the skill/workflow as if reviewing for the first time for each perspective; achieve fresh context by re-reading the file from start to end without referring to previous notes):
+     - **Subagent 1 (Standards)**: Use the checklists in `references/perspectives.md` to verify compliance with current standards retrieved in Step 0. Check items from all applicable checklist sections (General Standards, Platform-Specific, Agent Skills Guidelines, Industry Best Practices). Target 15+ total checked items for complex skills [>200 lines, 3+ reference files, multiple domains], 5-10 for simple skills [<100 lines, single domain, well-understood]
+     - **Subagent 2 (Execution)**: Walk through the skill/workflow execution mentally, identifying bottlenecks and ambiguities (document all findings; 3+ for complex skills, 1-2 for simple or excellent skills)
+     - **Subagent 3 (Completeness)**: Check for missing requirements, context gaps, and goal achievement (document all findings; 3+ for complex skills, 1-2 for simple or excellent skills)
    - Document findings for each perspective independently (create 3 separate output sections)
    - Don't let findings from one perspective influence another (complete each perspective before starting the next)
-   - **Note**: If you find fewer than 3 issues per perspective, this may indicate the skill is high quality - document this as a positive finding. If you find zero issues, document this as a positive finding but consider running the review again with fresh context to verify.
+   - **Note**: If you find fewer than 3 issues per perspective, this may indicate the skill is high quality - document this as a positive finding. If you find zero issues, re-run the perspective with fresh context before proceeding to verify findings. If still zero issues after re-run, document as a positive finding and proceed to synthesis with an empty findings section for that perspective.
 
 ---
 
@@ -113,7 +154,7 @@ The workflow will prompt you to specify which skill/workflow to review.
 
 3. **Synthesis Phase (Steps 7-9)**
    - Aggregate all findings from the three perspectives (list all issues from each perspective)
-   - Identify related issues and root causes (group at least 2 sets of related issues; if perspectives disagree, prioritize by severity [Critical > High > Medium > Low], then by impact on execution)
+   - Identify related issues and root causes (group at least 2 sets of related issues; if perspectives disagree [e.g., Standards says fix X but Execution says X is fine], prioritize by severity [Critical > High > Medium > Low], then by impact on execution)
    - Prioritize issues by severity using the framework in `references/synthesis.md` (calculate priority scores for all issues)
    - Generate a comprehensive validation report using the templates provided (follow template with all sections filled)
 
@@ -139,11 +180,9 @@ The workflow will prompt you to specify which skill/workflow to review.
 
 ---
 
-**Transition to Initial Assessment Phase**: After completing Step 0, proceed to Steps 1-3 with the standards retrieved.
-
 ### Key Principles
 
-- **Fresh Context**: Approach each perspective as if reviewing for the first time
+- **Fresh Context**: Approach each perspective as if reviewing for the first time. Techniques: re-read the file from start to end, take a short break between perspectives, do not refer to previous notes, clear mental context by focusing on a different task briefly.
 - **Independence**: Each perspective should operate independently without cross-referencing
 - **Depth**: Go beyond surface-level checks, provide specific examples and explanations
 - **Balance**: Note strengths as well as weaknesses, provide constructive feedback
@@ -192,7 +231,7 @@ See `references/perspectives.md` for:
 
 **Success Criteria**:
 - All three perspectives applied independently with fresh context (each perspective approaches the skill/workflow as if for the first time)
-- Standards compliance verified with checklist (all applicable checklist items checked; typically 20+ for complex skills)
+- Standards compliance verified with checklist (sum of checked items across all applicable checklist sections; target 15-20+ total for complex skills, 5-10 for simple skills)
 - Execution flow analyzed and documented (all findings documented; typically 3+ for complex skills)
 - Completeness gaps identified and documented (all findings documented; typically 3+ for complex skills)
 - Findings from each perspective documented separately (3 separate output sections)
@@ -235,7 +274,11 @@ See `references/finalization.md` for:
 - Issue resolution verified (each implemented fix tested and confirmed resolved)
 - No regressions introduced (no new issues found in re-review)
 - Final summary generated (follows template with all sections filled)
-- Readiness assessment provided (explicit readiness rating: Ready/Ready with Caveats/Needs More Work/Not Ready)
+- Readiness assessment provided with explicit criteria:
+  - **Ready**: No critical or high priority issues remaining
+  - **Ready with Caveats**: No critical issues, minor high priority issues remaining
+  - **Needs More Work**: Critical or high priority issues remaining
+  - **Not Ready**: Critical issues preventing execution
 
 ## Troubleshooting
 
@@ -262,6 +305,8 @@ For detailed review criteria, templates, and guidelines, see:
 - **Troubleshooting**: `references/troubleshooting.md` - Common issues and edge cases
 
 ## Integration in Development Lifecycle
+
+**Note**: This SKILL.md is 317 lines, which exceeds the 300-line progressive disclosure recommendation. This is justified because this is a complex workflow with comprehensive guidance that benefits from being self-contained. The detailed instructions reduce the need for users to reference multiple files during execution.
 
 This workflow is designed to run after skill/workflow creation and before deployment:
 

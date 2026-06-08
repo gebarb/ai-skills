@@ -1,7 +1,6 @@
 ---
 name: specs-validate
-description: Validate specs through comprehensive multi-perspective review before implementation
-when_to_use: | - User asks to validate specs, review project plans, or check specs before implementation - User mentions spec validation, quality assurance for specs, or needs to review a specs/ directory - User wants to identify issues, bugs, or gaps in project specifications
+description: Validate specs through comprehensive multi-perspective review before implementation. Use this skill when the user asks to validate specs, review project plans, or check specs before implementation, mentions spec validation or quality assurance for specs, or wants to identify issues, bugs, or gaps in project specifications.
 argument-hint: Provide the repository path containing the specs/ directory to validate, or specify particular concerns or areas of focus.
 version: 1.0.0
 compatibility: Requires repository access with specs/ directory, ability to read markdown files, and web access for Step 0 (optional but recommended)

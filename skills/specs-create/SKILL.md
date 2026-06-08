@@ -1,7 +1,6 @@
 ---
 name: specs-create
-description: Create comprehensive design and spec plans for a project with phases and implementation details
-when_to_use: | - User asks to create project specifications, design documents, or implementation plans - User mentions spec creation, project planning, or needs a comprehensive project breakdown - User wants to create a specs/ directory with phase files
+description: Create comprehensive design and spec plans for a project with phases and implementation details. Use this skill when the user asks to create project specifications, design documents, or implementation plans, mentions spec creation or project planning, or wants to create a specs/ directory with phase files.
 argument-hint: Provide the project name, goals, features, and technology stack. Include any specific requirements or constraints.
 version: 1.0.0
 compatibility: Requires repository root access, ability to create markdown files and directories, and basic understanding of project planning

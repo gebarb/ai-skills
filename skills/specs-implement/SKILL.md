@@ -1,7 +1,6 @@
 ---
 name: specs-implement
-description: Implement specs and phases from a repository with progress tracking and user confirmation. Use this skill whenever the user mentions implementing specs, executing project phases, working through a specs/ directory, following a project plan, phase execution, spec implementation, or needs to track progress through implementation phases with confirmation. Always use this skill for spec-driven development workflows.
-when_to_use: | - User asks to implement specs, execute project phases, or work through a specs/ directory - User mentions spec implementation, phase execution, or needs to follow a project plan - User wants to track progress through implementation phases with confirmation
+description: Implement specs and phases from a repository with progress tracking and user confirmation. Always use this skill for spec-driven development workflows when implementing specs, executing project phases, or tracking progress through implementation phases.
 argument-hint: Provide the repository path containing the specs/ directory, or specify the phase to start from if resuming.
 license: MIT
 compatibility: Requires repository access with specs/ directory, ability to read and write files, and user confirmation capability
@@ -14,6 +13,15 @@ metadata:
 
 This workflow executes the implementation of specs and phases defined in a repository's `specs/` directory. It tracks progress, requires user confirmation between phases, and allows resuming from where left off.
 
+**Success Criteria:**
+The skill execution is considered successful when:
+- All phases are implemented with quality score ≥90%
+- All phase-specific success criteria are met
+- Code review passes without critical issues
+- Tests pass with ≥80% coverage (if tests enabled)
+- Progress file shows all phases as "completed"
+- Documentation is generated (if not skipped)
+
 ## AI Execution Overview
 
 This skill provides detailed instructions for implementing specs. As an AI, you should:
@@ -21,9 +29,14 @@ This skill provides detailed instructions for implementing specs. As an AI, you 
 1. **Read the phase files** to understand what needs to be implemented
 2. **Follow the step-by-step instructions** in the reference files
 3. **Execute each step** using the AI execution instructions provided
-4. **Ask for user confirmation** at key decision points
+4. **Ask for user confirmation** at key decision points (before each phase, when quality score <90%, when errors occur)
 5. **Track progress** in `.specs-progress.json`
-6. **Handle errors gracefully** with rollback options
+6. **Handle errors gracefully** with rollback options (report errors clearly, offer retry/skip/rollback options, use checkpoint mechanism for recovery)
+
+**Terminology:**
+- **Deep review**: Comprehensive examination of all files to understand architecture, patterns, coding conventions, and integration points
+- **Key decision points**: Moments requiring user input (phase confirmation, quality score warnings, error recovery, testing approach selection)
+- **Handle errors gracefully**: Report specific errors with context, categorize severity (fatal/recoverable/warning), and provide actionable recovery options
 
 The workflow is split into three phases:
 - **Setup Initialization Phase** (Steps 1-6): See `references/setup-initialization.md`
@@ -37,6 +50,30 @@ The workflow is split into three phases:
 - If specs exist: Repository must have a `specs/` directory with `specs/README.md` defining phase structure
 - Phase files must be named `phase-*.md` (e.g., `phase-1-foundation.md`)
 - Each phase file should contain implementation tasks, technical requirements, and success criteria
+
+**Example Phase File Format:**
+```markdown
+# Phase 1: Foundation
+
+## Overview
+[Detailed description of what this phase implements]
+
+## Context
+[Additional context about why this phase is needed]
+
+## Implementation Tasks
+- [ ] Task 1
+- [ ] Task 2
+
+## Technical Requirements
+- Requirement 1
+- Requirement 2
+
+## Success Criteria
+- [ ] Criterion 1
+- [ ] Criterion 2
+```
+
 - If specs don't exist: Workflow will prompt user for direction or recommend create-specs
 
 ## Platform Requirements
@@ -257,7 +294,7 @@ If the workflow is interrupted:
 
 The complete workflow is split into three phases to keep each document under 500 lines:
 
-**Important**: All steps below are performed for EACH phase being implemented. The workflow loops through phases until all are complete.
+**Important**: Steps 7-20 repeat for EACH phase being implemented. The workflow loops through phases until all are complete. Steps 1-6 are performed once at the start.
 
 **Note**: Technology stack selection (language, frameworks, architecture, etc.) is handled in the specs-create workflow. This implementation workflow uses the technology decisions documented in the specs.
 
@@ -272,9 +309,9 @@ The complete workflow is split into three phases to keep each document under 500
 
 ### Setup Initialization Phase (Steps 1-6)
 See `references/setup-initialization.md` for:
-1. **Repository Review** - Deep review of all code, configuration, and other files in the codebase to understand how it works, its intent, and how to work in it. This is performed for each phase since the codebase state changes after implementation.
+1. **Repository Review** - Deep review of all code, configuration, and other files in the codebase to understand how it works, its intent, and how to work in it. Performed once at the start to understand architecture, patterns, and conventions. For subsequent phases, perform incremental review focusing on changes since last phase.
 2. **Check for Specs and Determine Implementation Approach** - Check if specs exist, and if not, ask user for direction or recommend create-specs
-3. **Initialize Progress Tracking and Phase Selection** - Check for existing progress file (initialization deferred until after spec parsing)
+3. **Initialize Progress Tracking and Phase Selection** - Check for existing progress file (initialization deferred until after spec parsing). If using --from-phase flag, validate that all dependencies for the selected phase are satisfied. If dependencies are not satisfied, warn user and suggest starting from an earlier phase or require explicit override confirmation.
 4. **Validate Spec Structure** - Validate specs directory structure, phase file format, and calculate quality score (≥90% threshold)
 5. **Parse Specs Structure** - Parse README to extract phase information and dependencies
 6. **Resolve Dependencies** - Resolve phase dependencies with examples and edge case handling
@@ -311,3 +348,26 @@ For detailed progress tracking, error handling, and guidelines, see:
 - **Progress Tracking**: `references/progress.md` - Progress file format and validation
 - **Error Handling**: `references/error-handling.md` - Error handling and rollback procedures
 - **Spec Updates**: `references/spec-updates.md` - Spec update handling and workflow integration
+
+**Progress File Structure Example:**
+```json
+{
+  "repository": "my-project",
+  "lastUpdated": "2024-01-15T10:30:00Z",
+  "specVersion": "1.0.0",
+  "startPhase": null,
+  "auditLog": [],
+  "phases": [
+    {
+      "name": "Phase 1: Foundation",
+      "file": "specs/phase-1-foundation.md",
+      "status": "completed",
+      "completedAt": "2024-01-15T09:00:00Z",
+      "specVersion": "1.0.0",
+      "tasksCompleted": 8,
+      "totalTasks": 8,
+      "tasks": []
+    }
+  ]
+}
+```
