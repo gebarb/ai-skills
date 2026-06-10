@@ -31,7 +31,7 @@ This skill provides detailed instructions for implementing specs. As an AI, you 
 3. **Execute each step** using the AI execution instructions provided
 4. **Ask for user confirmation** at key decision points (before each phase, when quality score <90%, when errors occur)
 5. **Track progress** in `.specs-progress.json`
-6. **Handle errors gracefully** with rollback options (report errors clearly, offer retry/skip/rollback options, use checkpoint mechanism for recovery)
+6. **Handle errors gracefully** with rollback options (report errors clearly, offer retry/skip/rollback options, use checkpoint mechanism for recovery). See error-handling.md for comprehensive error handling procedures including timeout handling, git corruption, progress file corruption, and spec file deletion scenarios
 
 **Terminology:**
 - **Deep review**: Comprehensive examination of all files to understand architecture, patterns, coding conventions, and integration points
@@ -176,8 +176,12 @@ If the workflow is interrupted:
 - Progress tracking throughout
 
 **When to Use Full Workflow vs Quick Start:**
-- Use Quick Start for: Standard spec-driven development, straightforward implementations
-- Use Full Workflow for: Custom testing approaches (TDD), selective phase implementation, complex dependency management, spec updates during implementation
+- Use Quick Start for: Standard spec-driven development, straightforward implementations, when you want the workflow to handle all decisions automatically
+- Use Full Workflow for: Custom testing approaches (TDD), selective phase implementation, complex dependency management, spec updates during implementation, when you need fine-grained control over each phase
+
+**Decision Guide:**
+- Choose Quick Start if: You have standard specs, want automatic progression, don't need custom testing approaches
+- Choose Full Workflow if: You need TDD, want to select specific phases, have complex dependencies, expect spec changes during implementation
 
 ## Workflow Diagram
 
@@ -309,9 +313,9 @@ The complete workflow is split into three phases to keep each document under 500
 
 ### Setup Initialization Phase (Steps 1-6)
 See `references/setup-initialization.md` for:
-1. **Repository Review** - Deep review of all code, configuration, and other files in the codebase to understand how it works, its intent, and how to work in it. Performed once at the start to understand architecture, patterns, and conventions. For subsequent phases, perform incremental review focusing on changes since last phase.
+1. **Repository Review** - Deep review of all code, configuration, and other files in the codebase to understand how it works, its intent, and how to work in it. This includes reading all files, identifying patterns, documenting architecture, coding conventions, and integration points. Performed once at the start to understand architecture, patterns, and conventions. For subsequent phases, perform incremental review focusing on changes since last phase.
 2. **Check for Specs and Determine Implementation Approach** - Check if specs exist, and if not, ask user for direction or recommend create-specs
-3. **Initialize Progress Tracking and Phase Selection** - Check for existing progress file (initialization deferred until after spec parsing). If using --from-phase flag, validate that all dependencies for the selected phase are satisfied. If dependencies are not satisfied, warn user and suggest starting from an earlier phase or require explicit override confirmation.
+3. **Check for Existing Progress and Phase Selection** - Check for existing progress file (initialization deferred until after spec parsing). If using --from-phase flag, validate that all dependencies for the selected phase are satisfied. If dependencies are not satisfied, warn user and suggest starting from an earlier phase or require explicit override confirmation.
 4. **Validate Spec Structure** - Validate specs directory structure, phase file format, and calculate quality score (≥90% threshold)
 5. **Parse Specs Structure** - Parse README to extract phase information and dependencies
 6. **Resolve Dependencies** - Resolve phase dependencies with examples and edge case handling
@@ -326,12 +330,12 @@ See `references/setup-preparation.md` for:
 
 ### Implementation Phase (Steps 12-22)
 See `references/implementation.md` for:
-12. Implement Phase (with TDD support if selected)
+12. Implement Phase (with TDD support if selected) - Review existing files for naming conventions, architectural patterns, and coding standards, then implement following project patterns
 13. Run Code Quality Checks
 14. Execute Tests
 15. Verify Implementation
-16. **Perform Automatic Code Review** - Comprehensive automatic code review with quality analysis, security review, performance review, and spec compliance
-17. **Generate Documentation** - Automatically generate API docs, code docs, user guides, and developer documentation
+16. **Perform Automatic Code Review** - Comprehensive automatic code review with quality analysis, security review, performance review, and spec compliance. See code-review.md for failure handling (approve, fix, retry options)
+17. **Generate Documentation** - Automatically generate API docs, code docs, user guides, and developer documentation. See implementation.md for documentation formats and conflict handling
 18. Update Progress
 19. Save Code (User Action)
 20. Clean Up Checkpoint

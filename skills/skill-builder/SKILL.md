@@ -1,6 +1,6 @@
 ---
 name: skill-builder
-description: Create AI skills/workflows following current best practices. Use when creating skills, building workflows, writing SKILL.md, or automating tasks with AI agents. Do NOT use for modifying existing skills/workflows (use skill-review).
+description: Create AI skills/workflows following current best practices for creating skills, building workflows, writing SKILL.md, or automating tasks with AI agents. Do NOT use for modifying existing skills/workflows (use skill-review).
 argument-hint: Provide the task or process you want to automate, along with any specific requirements or constraints.
 version: 1.5.0
 license: MIT

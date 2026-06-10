@@ -9,6 +9,7 @@ This is the setup initialization phase of the specs-implement workflow, covering
 **Table of Contents:**
 - [Prerequisites](#prerequisites)
 - [Usage](#usage)
+- [Platform Detection](#platform-detection)
 - [Workflow Steps](#workflow-steps)
   - [1. Repository Review](#1-repository-review-required-first-step)
   - [2. Check for Specs and Determine Implementation Approach](#2-check-for-specs-and-determine-implementation-approach)
