@@ -6,7 +6,7 @@
 # A comprehensive installer for AI agent skills, rules, and workflows.
 #
 # FEATURES:
-#   - Multi-agent support: Windsurf and Claude
+#   - Multi-agent support: Windsurf, Claude, and Cursor
 #   - Interactive menu with arrow key navigation
 #   - Multi-select capabilities for agents and components
 #   - Flexible installation: Global (recommended) or repository-specific
@@ -21,14 +21,17 @@
 #   - Global: Installs to agent's global directory (recommended for use across all projects)
 #     * Windsurf: ~/.codeium/windsurf/
 #     * Claude:   ~/.claude/
+#     * Cursor:   ~/.cursor/
 #
 #   - Repository: Installs to a specific repository's agent directory
 #     * Windsurf: <repo>/.windsurf/
 #     * Claude:   <repo>/.claude/
+#     * Cursor:   <repo>/.cursor/
 #
 # AGENTS:
 #   - Windsurf: Codeium's Windsurf AI agent
 #   - Claude: Anthropic's Claude AI agent
+#   - Cursor: Cursor's AI agent
 #   - General: Agent-agnostic installation to .agents/ directory
 #
 # COMPONENTS:
@@ -57,7 +60,7 @@ USAGE:
   ./install.sh -h|--help    - Display this help message
 
 FEATURES:
-  - Multi-agent support: Windsurf and Claude
+  - Multi-agent support: Windsurf, Claude, and Cursor
   - Interactive menu with arrow key navigation
   - Multi-select capabilities for agents and components
   - Flexible installation: Global (recommended) or repository-specific
@@ -68,14 +71,17 @@ INSTALLATION TYPES:
   - Global: Installs to agent's global directory (recommended for use across all projects)
     * Windsurf: ~/.codeium/windsurf/
     * Claude:   ~/.claude/
+    * Cursor:   ~/.cursor/
 
   - Repository: Installs to a specific repository's agent directory
     * Windsurf: <repo>/.windsurf/
     * Claude:   <repo>/.claude/
+    * Cursor:   <repo>/.cursor/
 
 AGENTS:
   - Windsurf: Codeium's Windsurf AI agent
   - Claude: Anthropic's Claude AI agent
+  - Cursor: Cursor's AI agent
   - General: Agent-agnostic installation to .agents/ directory
 
 COMPONENTS:
@@ -299,7 +305,7 @@ select_option() {
 # Agent configuration
 # Get configuration details for a specific AI agent
 # Args:
-#   $1 - agent: Agent identifier (windsurf, claude, or general)
+#   $1 - agent: Agent identifier (windsurf, claude, cursor, or general)
 #   $2 - config_type: Type of configuration to retrieve (name, base_dir, or workflows_subdir)
 # Returns:
 #   The requested configuration value for the specified agent
@@ -322,6 +328,13 @@ get_agent_config() {
                 workflows_subdir) echo "workflows" ;;
             esac
             ;;
+        cursor)
+            case $config_type in
+                name) echo "Cursor" ;;
+                base_dir) echo "$HOME/.cursor" ;;
+                workflows_subdir) echo "commands" ;;
+            esac
+            ;;
         general)
             case $config_type in
                 name) echo "General" ;;
@@ -333,12 +346,12 @@ get_agent_config() {
 }
 
 # Prompt user for agent selection using multi-select menu
-# Supports selecting "ALL" or specific agents (Windsurf, Claude, General)
+# Supports selecting "ALL" or specific agents (Windsurf, Claude, Cursor, General)
 # Sets global variables:
 #   SELECTED_AGENTS - Array of selected agent identifiers
 #   AGENT_NAMES - Array of selected agent display names
 select_agent() {
-    select_option "true" "" "ALL" "Windsurf" "Claude" "General"
+    select_option "true" "" "ALL" "Windsurf" "Claude" "Cursor" "General"
     local selected_indices=($SELECT_OPTION_RESULT)
     
     SELECTED_AGENTS=()
@@ -355,8 +368,8 @@ select_agent() {
     
     if [ "$all_selected" = true ]; then
         # Select all agents
-        SELECTED_AGENTS=("windsurf" "claude" "general")
-        AGENT_NAMES=("Windsurf" "Claude" "General")
+        SELECTED_AGENTS=("windsurf" "claude" "cursor" "general")
+        AGENT_NAMES=("Windsurf" "Claude" "Cursor" "General")
     else
         # Select only the chosen agents
         for idx in "${selected_indices[@]}"; do
@@ -370,6 +383,10 @@ select_agent() {
                     AGENT_NAMES+=("Claude")
                     ;;
                 3)
+                    SELECTED_AGENTS+=("cursor")
+                    AGENT_NAMES+=("Cursor")
+                    ;;
+                4)
                     SELECTED_AGENTS+=("general")
                     AGENT_NAMES+=("General")
                     ;;
@@ -586,7 +603,7 @@ select_components() {
 # Install selected components for a specific AI agent
 # Creates necessary directories and copies selected skills, rules, and workflows
 # Args:
-#   $1 - agent: Agent identifier (windsurf or claude)
+#   $1 - agent: Agent identifier (windsurf, claude, cursor, or general)
 install_for_agent() {
     local agent="$1"
     local agent_name=$(get_agent_config "$agent" name)
@@ -597,13 +614,20 @@ install_for_agent() {
     if [ "$INSTALL_TYPE" = "global" ]; then
         BASE_DIR=$(get_agent_config "$agent" base_dir)
     else
-        if [ "$agent" = "general" ]; then
-            BASE_DIR="$REPO_PATH/.agents"
-        elif [ "$agent" = "windsurf" ]; then
-            BASE_DIR="$REPO_PATH/.windsurf"
-        else
-            BASE_DIR="$REPO_PATH/.claude"
-        fi
+        case "$agent" in
+            general)
+                BASE_DIR="$REPO_PATH/.agents"
+                ;;
+            windsurf)
+                BASE_DIR="$REPO_PATH/.windsurf"
+                ;;
+            cursor)
+                BASE_DIR="$REPO_PATH/.cursor"
+                ;;
+            claude)
+                BASE_DIR="$REPO_PATH/.claude"
+                ;;
+        esac
     fi
     
     WORKFLOWS_SUBDIR=$(get_agent_config "$agent" workflows_subdir)

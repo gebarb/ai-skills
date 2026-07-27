@@ -1,0 +1,23 @@
+{
+  "skill_name": "pr-creator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I've just finished working on the feature/user-authentication branch and want to create a PR for it. Can you help me create a comprehensive PR description?",
+      "expected_output": "The skill should detect the current branch, analyze git history, check if a PR exists, generate a comprehensive PR description, and create a new PR with that description. The output should include the PR URL and a summary of what was done.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I've added more commits to my existing PR. Can you update the PR description to include the new changes?",
+      "expected_output": "The skill should perform a fresh git analysis, detect that a PR already exists, generate an updated PR description including all commits (both old and new), and update the existing PR with the fresh description. The output should confirm the update was successful.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "@pr-creator I need to document my branch changes for review. The branch is feature/payment-integration.",
+      "expected_output": "The skill should detect the current branch (feature/payment-integration), analyze git history, check for existing PR, generate a comprehensive PR description, and either create or update the PR accordingly. The output should include the PR URL and summary.",
+      "files": []
+    }
+  ]
+}
