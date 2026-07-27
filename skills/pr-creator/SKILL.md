@@ -58,7 +58,7 @@ Perform a fresh analysis of git history to detect changes:
 **If this fails:**
 - No commits found: Inform user that branch has no changes compared to target
 - Git history unavailable: Ask user to ensure git history is accessible
-- Large diff: Use `--stat` first, then analyze specific files if needed
+- Large diff or truncated output: When `git diff target..current` output is truncated or too large, run `git diff target..current -- filepath` for each modified file individually to capture complete changes. Always check for truncation indicators and analyze specific files when needed.
 
 ### Step 3: Check if PR Already Exists
 
